@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-head" />
+<body>
+	<div class="wrapper-box">
+		<div class="main-wrapper">
+
+			<div th:replace="common/head :: navbar" />
+
+			<div id="container-wrapper">
+				
+
+<div class="row">
+
+		
+		<div class="col-md-10 col-md-offset-1">
+		<h5>Bad request. The request path is invalid. Click <a th:href="@{/}">here</a> to return to the home page.</h5>
+		</div>
+		
+
+</div>
+
+	
+					<div class="clear"></div>
+				
+
+				<script th:src="@{/js/controller.js}"></script>
+
+				<!-- end of container -->
+				<div th:replace="common/head :: footer" />
+
+				<div th:replace="common/head :: body-bottom-scripts" />
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

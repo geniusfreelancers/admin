@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>All Pages</strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-file-text-o" aria-hidden="true"></i>All Pages</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+
+
+	
+		<div class="table-responsive">
+			<div class="col-md-10 col-md-offset-1">
+
+<div class="col-md-12 border-all">
+<div class="col-md-6">
+	<h3><i class="fa fa-check" aria-hidden="true" style="color:limegreen;"></i> 
+	Thank you for your order #<span th:text="${order.id}"></span></h3>
+</div>
+<div class="col-md-6">
+	<a href="/productshelf" style="float: right;" class="btn btn-default">Continue Shopping</a>
+</div>
+<br/><br/>
+<div class="col-md-12">
+	<p class="text-success head-link"><i class="fa fa-check-square-o" aria-hidden="true"></i> You'll receive an email with tracking information when your item ships.</p>
+</div>
+<div class="col-md-6">
+<p><strong>Order #</strong>	<span th:text="${order.id}"></span></p>
+</div>
+<div class="col-md-6">
+<p><strong>Ordered Date:</strong> <span id="orderedDate" th:text="${order.orderDate}"></span></p>
+<script th:inline="javascript">
+  /*<![CDATA[*/ 
+    var dateordered = [[${order.orderDate}]];
+   $('#orderedDate').html($.format.date(dateordered, "E MMM dd yyyy h:mm:ss a"));
+   /*]]>*/
+    </script>
+</div>
+<div class="col-md-4">
+<p>Paypal Response: <span th:text="${transaction.getId()}"></span></p>
+<p>Paypal Response: <span th:text="${transaction.getPaymentInstrumentType()}"></span></p>
+<p><strong>Shipping Method:</strong> <span th:text="${order.shippingMethod}"></span></p>
+<p><strong>Shipping address</strong></p>
+<p><span th:text="${order.shippingAddress.firstName}"></span> <span th:text="${order.shippingAddress.lastName}"></span></p>
+<p><span th:text="${order.shippingAddress.ShippingAddressStreet1}"></span></p>
+<p><span th:text="${order.shippingAddress.ShippingAddressStreet2}"></span></p>
+<p><span th:text="${order.shippingAddress.ShippingAddressCity}"></span>, 
+<span th:text="${order.shippingAddress.ShippingAddressState}"></span> 
+<span th:text="${order.shippingAddress.ShippingAddressZipcode}"></span></p> 
+</div>
+<div class="col-md-8">
+<p><strong>Order Status</strong></p>
+
+<div class="progress">
+  <div th:if="${currentStatus} &gt; 1" class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" style="width:30%">
+    ORDER PLACED
+  </div>
+  <div th:if="${currentStatus} &gt; 2" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" style="width:15%">
+    PROCESSING
+  </div>
+  <div th:if="${currentStatus} &gt; 3" class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" style="width:15%">
+    SHIPPED
+  </div>
+  <div th:if="${currentStatus} &gt; 4" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width:15%">
+    IN TRANSIT
+  </div>
+   <div th:if="${currentStatus} == 6" class="progress-bar progress-bar-success" role="progressbar" style="width:25%">
+    DELIVERED
+  </div>
+</div>
+
+<div th:if="${currentStatus} == 4" class="col-md-12">
+    <p><strong>SHIPPED ON:</strong> <span id="shippedOn" th:text="${order.shippingDate}"></span></p>
+    <script th:inline="javascript">
+  /*<![CDATA[*/ 
+    var dateshipped = [[${order.shippingDate}]];
+   $('#shippedOn').html($.format.date(dateshipped, "E MMM dd yyyy h:mm:ss a"));
+   /*]]>*/
+    </script>
+    <p><strong>Tracking Number:</strong> <span id="trackingNumber" th:text="${order.id}"></span></p>
+    <p><strong>Shipped Via:</strong> <span id="shippedVia" th:text="${order.id}"></span></p>
+</div>
+
+</div>
+<div class="col-md-12 text-center">
+<p><strong>Estimated Delivery Date:</strong> <span class="text-success" th:text="${estimatedDeliveryDate}"></span></p>
+</div>
+</div>
+</div>
+</div>
+<br/><br/>
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+
+<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h4 class="panel-title text-center">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#shippingInfo">Item Details</a>
+								</h4>
+							</div>
+							<div id="shippingInfo" class="panel-collapse collapse">
+							<div class="panel-body">
+<div class="row">
+						<div class="col-xs-6"><h4>Products</h4></div>
+						<div class="col-xs-2"><h4>Price</h4></div>
+						<div class="col-xs-2"><h4>Qty</h4></div>
+						<div class="col-xs-2 text-right"><h4>Amount</h4></div>
+						</div>
+						
+						<!-- Display products in cart -->
+						<div class="row" th:each="cartItem : ${cartItemList}">
+						
+						<hr/>
+						<div class="col-xs-2">
+						<a th:href="@{/productDetail(id=${cartItem.product.id})}">
+						<img class="img-responsive shelf-product" th:src="#{adminPath}+@{/image/product/}+${cartItem.product.id}+'.png'" style="width:70px;" />
+						</a>
+						</div>
+						<div class="col-xs-4">
+							<div style="margin-left:50px;">	
+							<a th:href="@{/productDetail?id=}+${cartItem.product.id}"><h4 th:text="${cartItem.product.title}"></h4></a>
+								<span>Size: </span><span th:text="${cartItem.productSize}"></span> | <span>Web ID: </span><span th:text="${cartItem.product.sku}"></span>
+							</div>
+							</div>
+							<div class="col-xs-2">
+								<h5 style="color: #db3208; font-size: large;">
+									$<span th:text="${cartItem.product.ourPrice}"
+										th:style="${cartItem.product.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+								</h5>
+								
+							</div>
+							<div class="col-xs-2">
+								<h5 style="font-size:large" th:text="${cartItem.qty}"></h5>
+							</div>
+							<div class="col-xs-2">
+							
+							<h5 class="text-primary text-right" style="font-size: large;"  th:with="result=${cartItem.product.ourPrice * cartItem.qty}">
+									$<span th:text="${#numbers.formatDecimal(result, 0, 'COMMA', 2, 'POINT')}" ></span>
+								</h5>
+							</div>
+					
+						</div>
+					</div>
+					</div>
+				</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+<div class="col-md-4 order-summary">
+<p><strong>Order summary</strong></p>
+<p><span class="col-xs-6">Subtotal(2 items)</span><span class="col-xs-6">$<span th:text="${order.orderSubtotal}"></span></span></p>
+<p class="text-success"><span class="col-xs-6">Promo Discount</span><span class="col-xs-6">$<span th:text="${order.discount}"></span></span></p>
+<p><span class="col-xs-6">Shipping</span><span class="col-xs-6">$<span th:text="${order.shippingCost}"></span></span></p>
+<hr class="dark-line"/>
+<p><strong><span class="col-xs-6">Total</span><span class="col-xs-6">$<span th:text="${order.orderTotal}"></span></span></strong></p>
+
+</div>
+<div class="col-md-4 payment-type">
+<p><strong>Payment type</strong></p>
+<div th:if="${creditMethod}">
+	<!--span th:text="${transaction.getCreditCard().getCardType()}"></span-->Ending in
+	<strong><span th:text="${transaction.getCreditCard().getLast4()}"></span></strong>
+</div>
+<div th:if="${paypalMethod}">
+	<span><i class="fa fa-paypal" aria-hidden="true"></i> Paypal</span>	
+</div>
+</div>
+<div th:if="${creditMethod}" class="col-md-4 billing-address">
+<p><strong>Billing address</strong></p>
+<p><span th:text="${order.billingAddress.BillingAddressStreet1}"></span></p>
+<p><span th:text="${order.billingAddress.BillingAddressStreet2}"></span></p>
+<p><span th:text="${order.billingAddress.BillingAddressCity}"></span>, 
+<span th:text="${order.billingAddress.BillingAddressState}"></span> 
+<span th:text="${order.billingAddress.BillingAddressZipcode}"></span></p> 
+</div>
+</div>
+</div>
+		</div>
+<button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+							
+	
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	<script>
+		$(document).ready(function(){
+			$("#productListTable").DataTable({
+				"lengthMenu": [[5,10,15,20,-1],[5,10,15,20,"All"]],
+				//"ordering": false,
+				"order": [[ 2, "desc" ]],
+				stateSave: true
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> <strong><span th:text="${staticpage.pagename}" ></span></strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/pages}">All Pages</a></li>
+                <li><i class="fa fa-file" aria-hidden="true"></i><span class="capitalize" th:text="${staticpage.pagename}"></span></li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+
+
+	
+		<div class="table-responsive">
+			<strong><span>Page # : </span></strong><span class="capitalize" th:text="${staticpage.id}"></span><br/>
+			<strong><span>Page Title : </span></strong><span class="capitalize" th:text="${staticpage.title}"></span><br/>
+			<strong><span>Page Body : </span></strong><span th:utext="${staticpage.maincontent}"></span><br/>
+			<strong><span>Author : </span></strong><span class="capitalize" th:text="${staticpage.addedBy}"></span><br/>
+			<strong><span>Added On : </span></strong><span class="capitalize" th:text="${staticpage.addedDate}"></span><br/>
+			<strong><span>Modified By : </span></strong><span class="capitalize" th:text="${staticpage.updateBy}"></span><br/>
+			<strong><span>Modified On : </span></strong><span class="capitalize" th:text="${staticpage.updatedDate}"></span><br/>
+			<strong><span>Status : </span></strong><span class="capitalize" th:text="${staticpage.published}? ${#strings.toUpperCase('Published')} : 'Unpublished'"></span><br/>
+			
+		</div>
+
+							
+	
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	<script>
+		$(document).ready(function(){
+			$("#productListTable").DataTable({
+				"lengthMenu": [[5,10,15,20,-1],[5,10,15,20,"All"]],
+				"ordering": false,
+			//	"order": [[ 2, "desc" ]],
+				stateSave: true
+			});
+		});
+	</script>
+</body>
+</html>

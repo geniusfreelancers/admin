@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>Product Inventory Information</strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-laptop"></i>All Products</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+
+
+	
+		<div class="table-responsive">
+			<table id="productListTable"
+				class="table table-bordered table-hover table-striped">
+				<thead>
+					<tr>
+						<th><input th:id="selectAllProducts" type="checkbox" /></th>
+						<th>Product Information</th>
+						<th>Category</th>
+						<th>In Stock</th>
+						<th>Price</th>
+						<th>Status</th>
+						<th><i class="icon_cogs"></i> Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="product : ${productList}">
+						<td class="col-md-1">
+						<input hidden="hidden" name="id" th:value="${product.id}"/>
+						<input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
+						</td>
+						<td class="col-md-4">
+							<div class="col-md-4">
+								<a th:href="@{/product/productInfo(id=${product.id})}">
+									<img th:src="@{/image/product/}+${product.id}+'/'+${product.coverImageName}" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-md-8">
+									<a th:href="@{/product/productInfo(id=${product.id})}">
+								<b><span th:text="${product.title}"></span></b></a><br/>
+								<strong>Brand: </strong> <span th:text="${product.brand}"></span><br/>
+								<strong>SKU: </strong> <span th:text="${product.sku}"></span><br/>
+								<strong>Product ID: </strong> <span th:text="${product.id}"></span><br/>
+								<strong>Gender: </strong> <span th:text="${product.gender}"></span><br/>
+								<strong>Sizes: </strong> <span th:text="${product.size}"></span>
+							</div>
+						</td>
+						
+						<td class="col-md-1">
+							<i class="fa fa-folder" aria-hidden="true" style="margin-right:5px;"></i><span th:text="${product.category.categoryName}" ></span><br/>
+							<i class="fa fa-folder-open" aria-hidden="true" style="margin-left:5px; margin-right:5px;"></i><span th:text="${product.subCategory.subCategoryName}" ></span><br/>
+							<i class="fa fa-folder-open-o" aria-hidden="true" style="margin-left:10px; margin-right:5px;"></i><span th:text="${product.mainSubCategory.subSubCategoryName}" ></span><br/>
+						</td>
+						<td th:text="${product.inStockNumber}" class="col-md-1"></td>
+						<td class="col-md-2">
+							<strong>Our Price: </strong> <span th:text="${product.ourPrice}"></span><br/>
+							<strong>List Price: </strong> <span th:text="${product.listPrice}"></span>
+							
+						</td>
+						<td th:text="${product.active}" class="col-md-1"></td>
+						<td class="col-md-2">
+							<input hidden="hidden" name="id" th:value="${product.id}"/>
+							<a class="btn btn-primary btn-xs edit-product" th:href="@{/product/updateProduct?id=}+${product.id}">
+							<span class="fa fa-pencil-square-o"></span> Edit</a>
+							<button th:id="'oneProduct-'+${product.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete">
+							<span class="fa fa-times"></span> Delete</button>		
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+<button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+							
+	
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	<script>
+		$(document).ready(function(){
+			$("#productListTable").DataTable({
+				"lengthMenu": [[5,10,15,20,-1],[5,10,15,20,"All"]],
+				"ordering": false,
+				stateSave: true
+			});
+		});
+	</script>
+</body>
+</html>
