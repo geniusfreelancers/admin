@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>General Settings</strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-folder"></i><a th:href="@{/}">Settings</a></li>
+                <li><i class="fa fa-laptop"></i>General Settings</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+<div class="row">
+
+
+<!-- Panel Start -->
+<div class="row">
+
+<form th:action="@{/settings/update}" method="post" id="payment-form">
+<div class="col-md-11 text-right">
+					<div class="form-group">
+							<button type="submit" id="updatesettings" class="btn btn-success">Save</button>
+							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+					</div>	
+</div>
+				
+<div class="col-md-6">
+				<div class="panel-group" id="accordion">
+					
+					<div class="col-md-12">
+
+						<!-- 1. General Site Setting -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#generalInfo">General Site Setting</a>
+								</h4>
+							</div>
+							<div id="generalInfo" class="panel-collapse collapse in">
+								<div class="panel-body">
+			<div class="form-group">
+						<label for="loginKillSwitch">Login Kill Switch :</label>
+						<br/>
+							<label class="col-md-6" > <input type="radio" name="loginKillSwitch"
+								th:checked="${siteSettings.loginKillSwitch}" value="true" /> Active
+							</label> 
+							<label class="col-md-6" > <input type="radio" name="loginKillSwitch" 
+							th:checked="!${siteSettings.loginKillSwitch}" value="false"/>
+								Inactive
+							</label> 
+			</div>											
+									<!-- Minimum for free shipping -->
+
+
+	
+
+	
+				
+				<!-- title -->
+
+					<div class="form-group">
+						<label for="freeShippingMin">Minimum for Free Shipping</label>
+						
+							<input type="text" name="freeShippingMin" class="form-control" id="freeShippingMin"
+								th:value="${siteSettings.freeShippingMin}" required="required"
+								placeholder="Minimum for Free Shipping" /> 
+						
+					</div>
+
+					<div class="row">
+										
+										<div class="col-xs-6">
+											<!-- Ground Shipping Cost -->
+												<div class="form-group">
+													<label for="shippingCost">Ground Shipping Cost</label>
+													
+														<input type="number" name="shippingCost" class="form-control" id="shippingCost" step="0.01"
+															th:value="${siteSettings.shippingCost}" required="required"
+															placeholder="Ground Shipping Cost" /> 
+													
+												</div>
+										</div>
+										<div class="col-xs-6">
+											<!-- Premium Shipping Cost -->
+												<div class="form-group">
+													<label for="premiumShippingCost">Premium Shipping Cost</label>
+													
+														<input type="number" name="premiumShippingCost" class="form-control" id="premiumShippingCost"
+															step="0.01" th:value="${siteSettings.premiumShippingCost}" required="required"
+															placeholder="Premium Shipping Cost" /> 
+													
+												</div>
+										</div>
+									</div>				
+
+					<!-- Slides -->
+					<div class="form-group">
+						<label for="homeSlide">Home Page Slides</label>
+						
+							<input type="text" name="homeSlide" class="form-control" id="homeSlide"
+								th:value="${siteSettings.homeSlide}" required="required"
+								placeholder="Home Page Slides" /> 
+						
+					</div>
+							
+						</div>
+					</div>
+					</div>
+					</div>
+					</div></div>
+					<div class="col-md-6">
+					<!-- Store Address Settings -->
+					
+					<div class="col-md-12">
+					<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#storeLocationInfo">Store Address</a>
+								</h4>
+							</div>
+							<div id="storeLocationInfo" class="panel-collapse collapse in">
+								<div class="panel-body">
+																		
+									<div class="form-group">
+										<label for="storeAddress1">* Street Address</label> <input
+											type="text" class="form-control" id="storeAddress1"
+											placeholder="Street Address 1"
+											th:name="storeAddress1" required="required"
+											th:value="${siteSettings.storeAddress1}" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control"
+											placeholder="Street Address 2"
+											th:name="storeAddress2"
+											th:value="${siteSettings.storeAddress2}" />
+									</div>
+									<div class="form-group">
+												<label for="storeAddressCity">* City</label> <input type="text"
+													class="form-control" id="storeAddressCity"
+													placeholder="City" th:name="storeAddressCity"
+													required="required"
+													th:value="${siteSettings.storeAddressCity}" />
+											</div>
+									<div class="row">
+										
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="storeAddressState">* State</label> <select
+													id="storeAddressState" class="form-control"
+													th:name="storeAddressState"
+													th:value="${siteSettings.storeAddressState}"
+													required="required">
+													<option value="" disabled="disabled">Please select
+														an option</option>
+													<option th:each="state : ${stateList}" th:text="${state}"
+														th:selected="(${siteSettings.storeAddressState}==${state})"></option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="storeAddressZip">* Zipcode</label> <input
+													type="text" class="form-control" id="storeAddressZip"
+													placeholder="Zipcode"
+													th:name="storeAddressZip" required="required"
+													th:value="${siteSettings.storeAddressZip}" />
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="storePhone">* Store Phone</label> <input
+													type="text" class="form-control" id="storePhone"
+													placeholder="Store Phone"
+													th:name="storePhone" required="required"
+													th:value="${siteSettings.storePhone}" />
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="storeFax">Store Fax</label> <input
+													type="text" class="form-control" id="storeFax"
+													placeholder="Store Fax"
+													th:name="storeFax"
+													th:value="${siteSettings.storeFax}" />
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="storeSupportEmail">* Support Email</label> <input
+													type="text" class="form-control" id="storeSupportEmail"
+													placeholder="Support Email"
+													th:name="storeSupportEmail" required="required"
+													th:value="${siteSettings.storeSupportEmail}" />
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="storeInfoEmail">* Info Email</label> <input
+													type="text" class="form-control" id="storeInfoEmail"
+													placeholder="Info Email"
+													th:name="storeInfoEmail" required="required"
+													th:value="${siteSettings.storeInfoEmail}" />
+											</div>
+										</div>
+										
+									</div>
+
+								
+
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					</div>
+									
+	</form>
+					</div>
+<!-- Panel End -->
+
+	
+
+		</div>
+		
+
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	
+</body>
+</html>

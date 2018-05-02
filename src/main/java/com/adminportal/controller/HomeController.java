@@ -196,6 +196,58 @@ public class HomeController {
 		staticPageRepository.save(staticpage); 
 		return "redirect:/pages";
 	}
+	
+	@RequestMapping("/homesettings")
+	public String homeSettings(Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
+		model.addAttribute("siteSettings",siteSettings);
+		List<String> stateList = USConstants.listOfUSStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList",stateList);
+        model.addAttribute("user", user);
+		return "homesettings";
+		/*
+		 slideOneImg
+		 slideOneUrl
+		 slideTwoImg
+		 slideTwoUrl
+		 slideThreeImg
+		 slideThreeUrl
+		 categoryOneImg
+		 categoryOneUrl
+		 categoryOneLable
+		 categoryTwoImg
+		 categoryTwoUrl
+		 categoryTwoLable
+		 categoryThreeImg
+		 categoryThreeUrl
+		 categoryThreeLable
+		 categoryFourImg
+		 categoryFourUrl
+		 categoryFourLable
+		 bannerOneImg
+		 bannerOneUrl
+		 bannerTwoImg
+		 bannerTwoUrl
+		 bannerThreeImg
+		 bannerThreeUrl
+		 bannerFourImg
+		 bannerFourUrl
+		 bannerFiveImg
+		 bannerFiveUrl
+		 bannerSixImg
+		 bannerSixUrl
+		 offerOneImg
+		 offerOneUrl
+		 offerTwoImg
+		 offerTwoUrl
+		 offerThreeImg
+		 offerThreeUrl
+		 offerFourImg
+		 offerFourUrl
+		 * */
+	}
 
 	}
 
