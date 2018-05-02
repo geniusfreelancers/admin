@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.adminportal.domain.Contact;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
+import com.adminportal.repository.ContactRepository;
 import com.adminportal.repository.StaticPageRepository;
 import com.adminportal.service.SiteSettingService;
 import com.adminportal.service.UserService;
@@ -37,6 +40,9 @@ public class HomeController {
 	
 	@Autowired
 	private StaticPageRepository staticPageRepository;
+	
+	@Autowired
+	private ContactRepository contactRepository;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -197,6 +203,23 @@ public class HomeController {
 		return "redirect:/pages";
 	}
 	
+	@RequestMapping("/contactLists")
+	public String contactLists(Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
+		model.addAttribute("siteSettings",siteSettings);
+		List<Contact> contactList = (List<Contact>) contactRepository.findAll();
+		if(contactList == null) {
+			model.addAttribute("emptyOrder", true);
+			return "orderList";
+		}else {
+			model.addAttribute("emptyOrder", false);
+		}
+		model.addAttribute("user",user);
+		model.addAttribute("contactList",contactList);
+		return "contactLists";
+	}
+	
 	@RequestMapping("/homesettings")
 	public String homeSettings(Model model,@AuthenticationPrincipal User activeUser){
 		User user = userService.findByUsername(activeUser.getUsername());
@@ -248,6 +271,9 @@ public class HomeController {
 		 offerFourUrl
 		 * */
 	}
+	
+	
+	
 
 	}
 
