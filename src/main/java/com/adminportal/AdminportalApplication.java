@@ -1,6 +1,5 @@
 package com.adminportal;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,33 +14,18 @@ import com.adminportal.domain.security.UserRole;
 import com.adminportal.service.UserService;
 import com.adminportal.utility.SecurityUtility;
 import com.braintreegateway.BraintreeGateway;
-import com.adminportal.BraintreeGatewayFactory;
 
 @SpringBootApplication
 public class AdminportalApplication implements CommandLineRunner{
 
-	public static String DEFAULT_CONFIG_FILENAME = "config.properties";
-    public static BraintreeGateway gateway;
+//	public static String DEFAULT_CONFIG_FILENAME = "config.properties";
+//    public static BraintreeGateway gateway;
     
 	@Autowired
 	private UserService userService;
 	
 	public static void main(String[] args) {
-		String PATH = "src/main/resources/";
-	    
-		String folderName =  PATH.concat(DEFAULT_CONFIG_FILENAME);
-		
-		File configFile = new File(folderName);
-        try {
-            if(configFile.exists() && !configFile.isDirectory()) {
-                gateway = BraintreeGatewayFactory.fromConfigFile(configFile);
-            } else {
-                gateway = BraintreeGatewayFactory.fromConfigMapping(System.getenv());
-            }
-        } catch (NullPointerException e) {
-            System.err.println("Could not load Braintree configuration from config file or system environment.");
-            System.exit(1);
-        }
+
 		SpringApplication.run(AdminportalApplication.class, args);
 	}
 	

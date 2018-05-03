@@ -30,6 +30,7 @@ import com.adminportal.service.StaticPageService;
 
 @Controller
 public class HomeController {
+	
 	@Autowired
 	private UserService userService;
 	
@@ -238,12 +239,7 @@ public class HomeController {
 		Collections.sort(stateList);
 		model.addAttribute("stateList",stateList);
         model.addAttribute("user", user);
-		return "homesettings";
-		
+		return "homesettings";	
 	}
-	
-	
-	
-
-	}
+}
 
