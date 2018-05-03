@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.adminportal.domain.Contact;
+import com.adminportal.domain.HomePage;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
 import com.adminportal.repository.ContactRepository;
 import com.adminportal.repository.StaticPageRepository;
+import com.adminportal.service.HomePageService;
 import com.adminportal.service.SiteSettingService;
 import com.adminportal.service.UserService;
 import com.adminportal.utility.USConstants;
@@ -34,6 +36,8 @@ public class HomeController {
 	@Autowired
 	private SiteSettingService siteSettingService;
 
+	@Autowired
+	private HomePageService homePageService;
 	
 	@Autowired
 	private StaticPageService staticPageService;
@@ -203,21 +207,21 @@ public class HomeController {
 		return "redirect:/pages";
 	}
 	
-	@RequestMapping("/contactLists")
+	@RequestMapping("/contactlists")
 	public String contactLists(Model model,@AuthenticationPrincipal User activeUser){
 		User user = userService.findByUsername(activeUser.getUsername());
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
 		List<Contact> contactList = (List<Contact>) contactRepository.findAll();
 		if(contactList == null) {
-			model.addAttribute("emptyOrder", true);
-			return "orderList";
+			model.addAttribute("emptyContact", true);
+			return "contactList";
 		}else {
-			model.addAttribute("emptyOrder", false);
+			model.addAttribute("emptyContact", false);
 		}
 		model.addAttribute("user",user);
 		model.addAttribute("contactList",contactList);
-		return "contactLists";
+		return "contactList";
 	}
 	
 	@RequestMapping("/homesettings")
@@ -225,51 +229,17 @@ public class HomeController {
 		User user = userService.findByUsername(activeUser.getUsername());
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
+		HomePage homePage = homePageService.findOne(new Long(1));
+		if(homePage == null) {
+			homePage = new HomePage();
+		}
+		model.addAttribute("homePage",homePage);
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList",stateList);
         model.addAttribute("user", user);
 		return "homesettings";
-		/*
-		 slideOneImg
-		 slideOneUrl
-		 slideTwoImg
-		 slideTwoUrl
-		 slideThreeImg
-		 slideThreeUrl
-		 categoryOneImg
-		 categoryOneUrl
-		 categoryOneLable
-		 categoryTwoImg
-		 categoryTwoUrl
-		 categoryTwoLable
-		 categoryThreeImg
-		 categoryThreeUrl
-		 categoryThreeLable
-		 categoryFourImg
-		 categoryFourUrl
-		 categoryFourLable
-		 bannerOneImg
-		 bannerOneUrl
-		 bannerTwoImg
-		 bannerTwoUrl
-		 bannerThreeImg
-		 bannerThreeUrl
-		 bannerFourImg
-		 bannerFourUrl
-		 bannerFiveImg
-		 bannerFiveUrl
-		 bannerSixImg
-		 bannerSixUrl
-		 offerOneImg
-		 offerOneUrl
-		 offerTwoImg
-		 offerTwoUrl
-		 offerThreeImg
-		 offerThreeUrl
-		 offerFourImg
-		 offerFourUrl
-		 * */
+		
 	}
 	
 	

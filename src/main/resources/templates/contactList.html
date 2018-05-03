@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:if="${emptyOrder}">
+					<tr th:if="${emptyContact}">
 						<td>No orders to dispaly</td>
 					</tr>
 					<tr th:if="!${emptyContact}" data-th-each="contact : ${contactList}">
