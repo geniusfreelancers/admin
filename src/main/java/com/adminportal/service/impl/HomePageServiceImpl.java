@@ -3,11 +3,12 @@ package com.adminportal.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.adminportal.domain.HomePage;
 import com.adminportal.repository.HomePageRepository;
 import com.adminportal.service.HomePageService;
-
+@Service
 public class HomePageServiceImpl implements HomePageService{
 
 	@Autowired

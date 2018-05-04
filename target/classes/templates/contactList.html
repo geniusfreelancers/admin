@@ -28,10 +28,10 @@
 				<thead>
 					<tr>
 						<th><input th:id="selectAllProducts" type="checkbox" /></th>
-						<th>Inquiry #</th>
+						<th>INQ #</th>
 						<th>Customer Information</th>
-						<th>Email</th>
 						<th>Reason</th>
+						<th>Details</th>
 						<th>Status</th>
 						<th><i class="icon_cogs"></i> Action</th>
 					</tr>
@@ -46,7 +46,7 @@
 						<input th:id="'selected'+${contact.id}" class="checkboxProduct" type="checkbox" />
 						</td>	
 
-						<td class="col-md-2">
+						<td class="col-md-1">
 								<a th:href="@{/order/orderdetails/}+${contact.id}">
 
 									<span th:text="${contact.id}"></span>
@@ -55,20 +55,23 @@
 						
 
 						<td class="col-md-3">
-							<strong>Shipping Method:</strong> <span th:text="${contact.email}" ></span><br/>
+							<strong>Name:</strong> <span th:text="${contact.fullName}" ></span><br/>
+							<strong>Email:</strong> <span th:text="${contact.email}" ></span><br/>
+							<strong>Order #:</strong> <span th:text="${contact.orderNumber}" ></span><br/>
 							
 							
 						</td>
 						<td class="col-md-2">
-							<strong>Email:</strong> <span th:text="${contact.email}" ></span><br/>
+							<span th:text="${contact.reason}" ></span><br/>
+							<span th:text="${contact.reasonType}" ></span><br/>
 							
 						</td>
 
 						
 						
 
-						<td class="col-md-1 text-center">
-							<strong>$</strong> <span th:text="${contact.reason}"></span>
+						<td class="col-md-2 text-center">
+							<span th:text="${contact.details}"></span>
 							
 							
 						</td>

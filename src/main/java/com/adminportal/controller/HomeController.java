@@ -21,6 +21,7 @@ import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
 import com.adminportal.repository.ContactRepository;
 import com.adminportal.repository.StaticPageRepository;
+import com.adminportal.service.ContactService;
 import com.adminportal.service.HomePageService;
 import com.adminportal.service.SiteSettingService;
 import com.adminportal.service.UserService;
@@ -48,6 +49,9 @@ public class HomeController {
 	
 	@Autowired
 	private ContactRepository contactRepository;
+	
+	@Autowired
+	private	ContactService contactService;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -213,7 +217,8 @@ public class HomeController {
 		User user = userService.findByUsername(activeUser.getUsername());
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
-		List<Contact> contactList = (List<Contact>) contactRepository.findAll();
+	//	List<Contact> contactList = (List<Contact>) contactRepository.findAll();
+		List<Contact> contactList = (List<Contact>)contactService.findAllByOrderByIdDesc();
 		if(contactList == null) {
 			model.addAttribute("emptyContact", true);
 			return "contactList";

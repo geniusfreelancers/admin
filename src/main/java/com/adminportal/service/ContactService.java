@@ -1,5 +1,9 @@
 package com.adminportal.service;
 
-public interface ContactService {
+import java.util.List;
 
+import com.adminportal.domain.Contact;
+
+public interface ContactService {
+	List<Contact> findAllByOrderByIdDesc();
 }
