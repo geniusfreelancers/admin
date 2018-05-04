@@ -35,9 +35,10 @@
 </div>
 				
 <div class="col-md-6">
+			<div class="col-md-12">
 				<div class="panel-group" id="accordion">
 					
-					<div class="col-md-12">
+					
 
 						<!-- 1. Sliders Setting -->
 						<div class="panel panel-default">
@@ -47,8 +48,9 @@
 										href="#generalInfo">Sliders</a>
 								</h4>
 							</div>
-							<div id="generalInfo" class="panel-collapse collapse in">
+							<div id="generalInfo" class="panel-collapse collapse">
 								<div class="panel-body">
+								
 		<!-- Slider One Image -->
 				<div class="slider-container">
 					<div class="col-md-12">
@@ -119,7 +121,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-4">
-							<label for="slideThreeImg">Slider Two</label>
+							<label for="slideThreeImg">Slider Three</label>
 						</div>
 						<div class="col-md-8">
 							<input type="file" class="form-control" id="slideThreeImg"
@@ -133,159 +135,21 @@
 					</div>
 					</div>
 					</div>
-					</div></div>
-					<div class="col-md-6">
-					<!-- Store Address Settings -->
+					</div>
 					
 					<div class="col-md-12">
 					<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#storeLocationInfo">Category</a>
+										href="#bannersCon">Banners</a>
 								</h4>
 							</div>
-							<div id="storeLocationInfo" class="panel-collapse collapse in">
-								<div class="panel-body">
-																		
-					<!-- Category One Image -->
-					<div class="col-md-6 slider-container">
-					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideTwoImg}" /><br/>
-					</div>
-					<!-- Url-->
-					<div class="form-group">
-						<label for="slideTwoUrl">Category One Label</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category One Link" /> 
-						
-					</div>
-					<div class="form-group">
-						<label for="slideTwoUrl">Category One Link</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Slider Two Link" /> 
-						
-					</div>
-					<div class="form-group">
-						
-							<label for="slideTwoImg">Category One</label>
-						
-							<input type="file" class="form-control" id="slideTwoImg"
-								name="slideTwoImg" th:value="${homePage.slideTwoImg}"/>
-						<span class="help-block">Add Image for Category One</span>
-						
-
-					</div>	
-					</div>
-					
-					<!-- Category Two Image -->
-					<div class="col-md-6 slider-container">
-					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideTwoImg}" /><br/>
-					</div>
-					<!-- Url-->
-					<div class="form-group">
-						<label for="slideTwoUrl">Category Two Label</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category Two Label" /> 
-						
-					</div>
-					<div class="form-group">
-						<label for="slideTwoUrl">Category Two Link</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category Two Link" /> 
-						
-					</div>
-					<div class="form-group">
-						
-							<label for="slideTwoImg">Category Two</label>
-						
-							<input type="file" class="form-control" id="slideTwoImg"
-								name="slideTwoImg" th:value="${homePage.slideTwoImg}"/>
-						<span class="help-block">Add Image for Category Two</span>
-						
-
-					</div>	
-					</div>
-					
-					<!-- Category Three Image -->
-					<div class="col-md-6 slider-container">
-					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideTwoImg}" /><br/>
-					</div>
-					<!-- Url-->
-					<div class="form-group">
-						<label for="slideTwoUrl">Category Three Label</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category Three Label" /> 
-						
-					</div>
-					<div class="form-group">
-						<label for="slideTwoUrl">Category Three Link</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category Three Link" /> 
-						
-					</div>
-					<div class="form-group">
-						
-							<label for="slideTwoImg">Category Three</label>
-						
-							<input type="file" class="form-control" id="slideTwoImg"
-								name="slideTwoImg" th:value="${homePage.slideTwoImg}"/>
-						<span class="help-block">Add Image for Category Three</span>
-						
-
-					</div>	
-					</div>
-
-					<!-- Category Four Image -->
-					<div class="col-md-6 slider-container">
-					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideTwoImg}" /><br/>
-					</div>
-					<!-- Url-->
-					<div class="form-group">
-						<label for="slideTwoUrl">Category Four Label</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category Four Label" /> 
-						
-					</div>
-					<div class="form-group">
-						<label for="slideTwoUrl">Category Four Link</label>
-						
-							<input type="text" name="slideTwoUrl" class="form-control" id="slideTwoUrl"
-								th:value="${homePage.slideTwoUrl}" required="required"
-								placeholder="Category Four Link" /> 
-						
-					</div>
-					<div class="form-group">
-						
-							<label for="slideTwoImg">Category Four</label>
-						
-							<input type="file" class="form-control" id="slideTwoImg"
-								name="slideTwoImg" th:value="${homePage.slideTwoImg}"/>
-						<span class="help-block">Add Image for Category Four</span>
-						
-
-					</div>	
-					</div>										
+							<div id="bannersCon" class="panel-collapse collapse">
+								<div class="panel-body">						
 									<div class="row">
 										
-										<div class="col-xs-6">
+										<!--div class="col-xs-6">
 											<div class="form-group">
 												<label for="storeAddressState">* State</label> <select
 													id="storeAddressState" class="form-control"
@@ -298,61 +162,496 @@
 														th:selected="(${siteSettings.storeAddressState}==${state})"></option>
 												</select>
 											</div>
-										</div>
-										<div class="col-xs-6">
-											<div class="form-group">
-												<label for="storeAddressZip">* Zipcode</label> <input
-													type="text" class="form-control" id="storeAddressZip"
-													placeholder="Zipcode"
-													th:name="storeAddressZip" required="required"
-													th:value="${siteSettings.storeAddressZip}" />
-											</div>
-										</div>
-										<div class="col-xs-6">
-											<div class="form-group">
-												<label for="storePhone">* Store Phone</label> <input
-													type="text" class="form-control" id="storePhone"
-													placeholder="Store Phone"
-													th:name="storePhone" required="required"
-													th:value="${siteSettings.storePhone}" />
-											</div>
-										</div>
-										<div class="col-xs-6">
-											<div class="form-group">
-												<label for="storeFax">Store Fax</label> <input
-													type="text" class="form-control" id="storeFax"
-													placeholder="Store Fax"
-													th:name="storeFax"
-													th:value="${siteSettings.storeFax}" />
-											</div>
-										</div>
-										<div class="col-xs-6">
-											<div class="form-group">
-												<label for="storeSupportEmail">* Support Email</label> <input
-													type="text" class="form-control" id="storeSupportEmail"
-													placeholder="Support Email"
-													th:name="storeSupportEmail" required="required"
-													th:value="${siteSettings.storeSupportEmail}" />
-											</div>
-										</div>
-										<div class="col-xs-6">
-											<div class="form-group">
-												<label for="storeInfoEmail">* Info Email</label> <input
-													type="text" class="form-control" id="storeInfoEmail"
-													placeholder="Info Email"
-													th:name="storeInfoEmail" required="required"
-													th:value="${siteSettings.storeInfoEmail}" />
-											</div>
-										</div>
+										</div-->
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerOneImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="bannerOneUrl">Banner One Link</label>
+						
+							<input type="text" name="bannerOneUrl" class="form-control" id="bannerOneUrl"
+								th:value="${homePage.bannerOneUrl}" required="required"
+								placeholder="Banner One Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="bannerOneImg">Banner One</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="bannerOneImg"
+								name="bannerOneImg" th:value="${homePage.bannerOneImg}"/>
+						<span class="help-block">Add Image for Banner One</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerTwoImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="bannerTwoUrl">Banner Two Link</label>
+						
+							<input type="text" name="bannerTwoUrl" class="form-control" id="bannerTwoUrl"
+								th:value="${homePage.bannerTwoUrl}" required="required"
+								placeholder="Banner Two Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="bannerTwoImg">Banner Two</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="bannerTwoImg"
+								name="bannerTwoImg" th:value="${homePage.bannerTwoImg}"/>
+						<span class="help-block">Add Image for Banner Two</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerThreeImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="bannerThreeUrl">Banner Three Link</label>
+						
+							<input type="text" name="bannerThreeUrl" class="form-control" id="bannerThreeUrl"
+								th:value="${homePage.bannerThreeUrl}" required="required"
+								placeholder="Banner Three Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="bannerThreeImg">Banner Three</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="bannerThreeImg"
+								name="bannerThreeImg" th:value="${homePage.bannerThreeImg}"/>
+						<span class="help-block">Add Image for Banner Three</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerFourImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="bannerFourUrl">Banner Four Link</label>
+						
+							<input type="text" name="bannerFourUrl" class="form-control" id="bannerFourUrl"
+								th:value="${homePage.bannerFourUrl}" required="required"
+								placeholder="Banner Four Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="bannerFourImg">Banner Four</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="bannerFourImg"
+								name="bannerFourImg" th:value="${homePage.bannerFourImg}"/>
+						<span class="help-block">Add Image for Banner Four</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideOneImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="slideOneUrl">Slider One Link</label>
+						
+							<input type="text" name="slideOneUrl" class="form-control" id="slideOneUrl"
+								th:value="${homePage.slideOneUrl}" required="required"
+								placeholder="Slider One Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="slideOneImg">Slider One</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="slideOneImg"
+								name="slideOneImg" th:value="${homePage.slideOneImg}"/>
+						<span class="help-block">Add Banner for Slider One</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideOneImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="slideOneUrl">Slider One Link</label>
+						
+							<input type="text" name="slideOneUrl" class="form-control" id="slideOneUrl"
+								th:value="${homePage.slideOneUrl}" required="required"
+								placeholder="Slider One Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="slideOneImg">Slider One</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="slideOneImg"
+								name="slideOneImg" th:value="${homePage.slideOneImg}"/>
+						<span class="help-block">Add Banner for Slider One</span>
+						</div>
+
+					</div>	
+					</div>				
+					
+						
 										
 									</div>
+</div>
+</div>
+</div>
+</div>
+					
+					</div>
+					
+					
+					<div class="col-md-6">
+					<!-- Store Address Settings -->
+					
+					<div class="col-md-12">
+					<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#storeLocationInfo">Category</a>
+								</h4>
+							</div>
+							<div id="storeLocationInfo" class="panel-collapse collapse">
+								<div class="panel-body">
+					<div class="row">													
+					<!-- Category One Image -->
+					<div class="col-md-6 slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryOneImg}" /><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="slideTwoUrl">Category One Label</label>
+						
+							<input type="text" name="categoryOneLable" class="form-control" id="categoryOneLable"
+								th:value="${homePage.categoryOneLable}" required="required"
+								placeholder="Category One Label" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="slideTwoUrl">Category One Link</label>
+						
+							<input type="text" name="categoryOneUrl" class="form-control" id="categoryOneUrl"
+								th:value="${homePage.categoryOneUrl}" required="required"
+								placeholder="Category One Link" /> 
+						
+					</div>
+					<div class="form-group">
+						
+							<label for="slideTwoImg">Category One</label>
+						
+							<input type="file" class="form-control" id="categoryOneImg"
+								name="categoryOneImg" th:value="${homePage.categoryOneImg}"/>
+						<span class="help-block">Add Image for Category One</span>
+						
 
-								
+					</div>	
+					</div>
+					
+					<!-- Category Two Image -->
+					<div class="col-md-6 slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryTwoImg}" /><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="categoryTwoLable">Category Two Label</label>
+						
+							<input type="text" name="categoryTwoLable" class="form-control" id="categoryTwoLable"
+								th:value="${homePage.categoryTwoLable}" required="required"
+								placeholder="Category Two Label" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="categoryTwoUrl">Category Two Link</label>
+						
+							<input type="text" name="categoryTwoUrl" class="form-control" id="categoryTwoUrl"
+								th:value="${homePage.categoryTwoUrl}" required="required"
+								placeholder="Category Two Link" /> 
+						
+					</div>
+					<div class="form-group">
+						
+							<label for="categoryTwoImg">Category Two</label>
+						
+							<input type="file" class="form-control" id="categoryTwoImg"
+								name="categoryTwoImg" th:value="${homePage.categoryTwoImg}"/>
+						<span class="help-block">Add Image for Category Two</span>
+						
 
+					</div>	
+					</div>
+					
+					<!-- Category Three Image -->
+					<div class="col-md-6 slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryThreeImg}" /><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="categoryThreeLable">Category Three Label</label>
+						
+							<input type="text" name="categoryThreeLable" class="form-control" id="categoryThreeLable"
+								th:value="${homePage.categoryThreeLable}" required="required"
+								placeholder="Category Three Label" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="categoryThreeUrl">Category Three Link</label>
+						
+							<input type="text" name="categoryThreeUrl" class="form-control" id="categoryThreeUrl"
+								th:value="${homePage.categoryThreeUrl}" required="required"
+								placeholder="Category Three Link" /> 
+						
+					</div>
+					<div class="form-group">
+						
+							<label for="categoryThreeImg">Category Three</label>
+						
+							<input type="file" class="form-control" id="categoryThreeImg"
+								name="categoryThreeImg" th:value="${homePage.categoryThreeImg}"/>
+						<span class="help-block">Add Image for Category Three</span>
+						
+
+					</div>	
+					</div>
+
+					<!-- Category Four Image -->
+					<div class="col-md-6 slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryFourImg}" /><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="categoryFourLable">Category Four Label</label>
+						
+							<input type="text" name="categoryFourLable" class="form-control" id="categoryFourLable"
+								th:value="${homePage.categoryFourLable}" required="required"
+								placeholder="Category Four Label" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="categoryFourUrl">Category Four Link</label>
+						
+							<input type="text" name="categoryFourUrl" class="form-control" id="categoryFourUrl"
+								th:value="${homePage.categoryFourUrl}" required="required"
+								placeholder="Category Four Link" /> 
+						
+					</div>
+					<div class="form-group">
+						
+							<label for="categoryFourImg">Category Four</label>
+						
+							<input type="file" class="form-control" id="categoryFourImg"
+								name="categoryFourImg" th:value="${homePage.categoryFourImg}"/>
+						<span class="help-block">Add Image for Category Four</span>
+						
+
+					</div>	
+					</div>	
+					</div>			
 								</div>
 							</div>
 						</div>
 					</div>
+				
+					<!-- Store Address Settings -->
+					
+					<div class="col-md-12">
+					<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#offerCon">Offers</a>
+								</h4>
+							</div>
+							<div id="offerCon" class="panel-collapse collapse">
+								<div class="panel-body">						
+									<div class="row">
+										
+										<!--div class="col-xs-6">
+											<div class="form-group">
+												<label for="storeAddressState">* State</label> <select
+													id="storeAddressState" class="form-control"
+													th:name="storeAddressState"
+													th:value="${siteSettings.storeAddressState}"
+													required="required">
+													<option value="" disabled="disabled">Please select
+														an option</option>
+													<option th:each="state : ${stateList}" th:text="${state}"
+														th:selected="(${siteSettings.storeAddressState}==${state})"></option>
+												</select>
+											</div>
+										</div-->
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.offerOneImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="slideOneUrl">Offer One Link</label>
+						
+							<input type="text" name="offerOneUrl" class="form-control" id="offerOneUrl"
+								th:value="${homePage.offerOneUrl}" required="required"
+								placeholder="Offer One Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="offerOneImg">Offer One</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="offerOneImg"
+								name="offerOneImg" th:value="${homePage.slideOneImg}"/>
+						<span class="help-block">Add Image for Offer One</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.offerTwoImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="slideOneUrl">Offer Two Link</label>
+						
+							<input type="text" name="offerTwoUrl" class="form-control" id="offerTwoUrl"
+								th:value="${homePage.offerTwoUrl}" required="required"
+								placeholder="Offer Two Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="offerTwoImg">Offer Two</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="offerTwoImg"
+								name="offerTwoImg" th:value="${homePage.offerTwoImg}"/>
+						<span class="help-block">Add Image for Offer Two</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.offerThreeImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="offerThreeUrl">Offer Three Link</label>
+						
+							<input type="text" name="offerThreeUrl" class="form-control" id="offerThreeUrl"
+								th:value="${homePage.offerThreeUrl}" required="required"
+								placeholder="Offer Three Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="slideOneImg">Offer Three</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="offerThreeImg"
+								name="offerThreeImg" th:value="${homePage.offerThreeImg}"/>
+						<span class="help-block">Add Image for Offer Three</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					<!-- Slider One Image -->
+				<div class="slider-container">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="@{/image/}+${homePage.offerFourImg}"/><br/>
+					</div>
+					<!-- Url-->
+
+					<div class="form-group">
+						<label for="offerFourUrl">Offer Four Link</label>
+						
+							<input type="text" name="offerFourUrl" class="form-control" id="offerFourUrl"
+								th:value="${homePage.offerFourUrl}" required="required"
+								placeholder="Offer Four Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="offerFourImg">Offer Four</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="offerFourImg"
+								name="offerFourImg" th:value="${homePage.offerFourImg}"/>
+						<span class="help-block">Add Image for Offer Four</span>
+						</div>
+
+					</div>	
+					</div>
+					
+					
+					
+					
+					
+						
+										
+									</div>
+</div>
+</div>
+</div>
+</div>
+
+								
+
+					
 					
 					</div>
 									

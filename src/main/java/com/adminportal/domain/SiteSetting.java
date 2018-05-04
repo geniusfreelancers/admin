@@ -28,6 +28,12 @@ public class SiteSetting {
 
 	private boolean loginKillSwitch;
 	
+	private String facebookUrl;
+	private String twitterUrl;
+	private String instagramUrl;
+	private String googleUrl;
+	private String pintrestUrl;
+	
 	public Long getId() {
 		return id;
 	}
@@ -130,6 +136,36 @@ public class SiteSetting {
 	}
 	public void setLoginKillSwitch(boolean loginKillSwitch) {
 		this.loginKillSwitch = loginKillSwitch;
+	}
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
+	}
+	public String getTwitterUrl() {
+		return twitterUrl;
+	}
+	public void setTwitterUrl(String twitterUrl) {
+		this.twitterUrl = twitterUrl;
+	}
+	public String getInstagramUrl() {
+		return instagramUrl;
+	}
+	public void setInstagramUrl(String instagramUrl) {
+		this.instagramUrl = instagramUrl;
+	}
+	public String getGoogleUrl() {
+		return googleUrl;
+	}
+	public void setGoogleUrl(String googleUrl) {
+		this.googleUrl = googleUrl;
+	}
+	public String getPintrestUrl() {
+		return pintrestUrl;
+	}
+	public void setPintrestUrl(String pintrestUrl) {
+		this.pintrestUrl = pintrestUrl;
 	}	
 	
 }
