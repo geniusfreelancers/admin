@@ -12,10 +12,10 @@ public class SiteSetting {
 	private BigDecimal freeShippingMin;
 	
 	private BigDecimal shippingCost;
-	private String homeSlide;
 	private BigDecimal premiumShippingCost;
 	private String siteLogo;
-	private String categoryBanner;
+	private String shopOfferBanner;
+	private String cartOfferBanner;
 	private String storeAddress1;
 	private String storeAddress2;
 	private String storeAddressCity;
@@ -33,6 +33,15 @@ public class SiteSetting {
 	private String instagramUrl;
 	private String googleUrl;
 	private String pintrestUrl;
+	
+	private String topOfferTicker;
+	
+	private String bottomOfferTickerLeft;
+	private String bottomOfferTickerLeftUrl;
+	private String bottomOfferTickerCenter;
+	private String bottomOfferTickerCenterUrl;
+	private String bottomOfferTickerRight;
+	private String bottomOfferTickerRightUrl;
 	
 	public Long getId() {
 		return id;
@@ -52,12 +61,7 @@ public class SiteSetting {
 	public void setShippingCost(BigDecimal shippingCost) {
 		this.shippingCost = shippingCost;
 	}
-	public String getHomeSlide() {
-		return homeSlide;
-	}
-	public void setHomeSlide(String homeSlide) {
-		this.homeSlide = homeSlide;
-	}
+
 	public BigDecimal getPremiumShippingCost() {
 		return premiumShippingCost;
 	}
@@ -71,11 +75,60 @@ public class SiteSetting {
 	public void setSiteLogo(String siteLogo) {
 		this.siteLogo = siteLogo;
 	}
-	public String getCategoryBanner() {
-		return categoryBanner;
+
+	public String getShopOfferBanner() {
+		return shopOfferBanner;
 	}
-	public void setCategoryBanner(String categoryBanner) {
-		this.categoryBanner = categoryBanner;
+	public void setShopOfferBanner(String shopOfferBanner) {
+		this.shopOfferBanner = shopOfferBanner;
+	}
+	public String getCartOfferBanner() {
+		return cartOfferBanner;
+	}
+	public void setCartOfferBanner(String cartOfferBanner) {
+		this.cartOfferBanner = cartOfferBanner;
+	}
+	public String getTopOfferTicker() {
+		return topOfferTicker;
+	}
+	public void setTopOfferTicker(String topOfferTicker) {
+		this.topOfferTicker = topOfferTicker;
+	}
+	public String getBottomOfferTickerLeft() {
+		return bottomOfferTickerLeft;
+	}
+	public void setBottomOfferTickerLeft(String bottomOfferTickerLeft) {
+		this.bottomOfferTickerLeft = bottomOfferTickerLeft;
+	}
+	public String getBottomOfferTickerLeftUrl() {
+		return bottomOfferTickerLeftUrl;
+	}
+	public void setBottomOfferTickerLeftUrl(String bottomOfferTickerLeftUrl) {
+		this.bottomOfferTickerLeftUrl = bottomOfferTickerLeftUrl;
+	}
+	public String getBottomOfferTickerCenter() {
+		return bottomOfferTickerCenter;
+	}
+	public void setBottomOfferTickerCenter(String bottomOfferTickerCenter) {
+		this.bottomOfferTickerCenter = bottomOfferTickerCenter;
+	}
+	public String getBottomOfferTickerCenterUrl() {
+		return bottomOfferTickerCenterUrl;
+	}
+	public void setBottomOfferTickerCenterUrl(String bottomOfferTickerCenterUrl) {
+		this.bottomOfferTickerCenterUrl = bottomOfferTickerCenterUrl;
+	}
+	public String getBottomOfferTickerRight() {
+		return bottomOfferTickerRight;
+	}
+	public void setBottomOfferTickerRight(String bottomOfferTickerRight) {
+		this.bottomOfferTickerRight = bottomOfferTickerRight;
+	}
+	public String getBottomOfferTickerRightUrl() {
+		return bottomOfferTickerRightUrl;
+	}
+	public void setBottomOfferTickerRightUrl(String bottomOfferTickerRightUrl) {
+		this.bottomOfferTickerRightUrl = bottomOfferTickerRightUrl;
 	}
 	public String getStoreAddress1() {
 		return storeAddress1;

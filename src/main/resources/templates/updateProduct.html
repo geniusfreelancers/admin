@@ -237,6 +237,24 @@
 					</div>	
 					</div>
 					</div>	
+					<!-- Stiching Option of Product -->
+					<div class="form-group">
+					<div class="row">
+					<div class="col-md-4">
+						<label for="unStiched">Unstiched :</label>
+					</div>	
+					<div class="col-md-8">
+							<label class="col-md-12"> <input type="radio" name="unStiched"
+								th:checked="${product.unStiched}" value="true" /> Available
+							</label> <label class="col-md-12"> <input type="radio" name="unStiched" value="false" th:checked="${!product.unStiched}"/>
+								Unavailable
+							</label>
+						</div>	 
+						
+					</div>
+					</div>
+					
+					
 					<!-- Sizes -->
 					<div class="form-group">
 					<div class="row">

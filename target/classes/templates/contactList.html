@@ -14,7 +14,7 @@
             <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>Contact List</strong></h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-laptop"></i>All Orders</li>
+                <li><i class="fa fa-laptop"></i>All Inquiries</li>
             </ol>
         </div>
     </div>
@@ -38,7 +38,7 @@
 				</thead>
 				<tbody>
 					<tr th:if="${emptyContact}">
-						<td>No orders to dispaly</td>
+						<td>No inquiry to dispaly</td>
 					</tr>
 					<tr th:if="!${emptyContact}" data-th-each="contact : ${contactList}">
 						<td class="col-md-1">
@@ -47,8 +47,7 @@
 						</td>	
 
 						<td class="col-md-1">
-								<a th:href="@{/order/orderdetails/}+${contact.id}">
-
+								<a th:href="@{/contactdetails/}+${contact.id}">
 									<span th:text="${contact.id}"></span>
 								</a>
 						</td>
@@ -62,18 +61,22 @@
 							
 						</td>
 						<td class="col-md-2">
+							<span><strong>Reason</strong></span><br/>
 							<span th:text="${contact.reason}" ></span><br/>
+							<span><strong>Help For</strong></span><br/>
+							<span th:text="${contact.helpFor}" ></span><br/>
+							<span><strong>Assistance Type</strong></span><br/>
+							<span th:text="${contact.assistanceType}" ></span><br/>
+							<span><strong>Reason Type</strong></span><br/>
 							<span th:text="${contact.reasonType}" ></span><br/>
 							
 						</td>
 
-						
-						
-
-						<td class="col-md-2 text-center">
-							<span th:text="${contact.details}"></span>
-							
-							
+						<td class="col-md-2">
+							<span><strong>Contact Date</strong></span><br/>
+							<span th:text="${contact.contactDate}" ></span><br/>
+							<span><strong>Details</strong></span><br/>
+							<span th:text="${contact.details}" ></span><br/>						
 						</td>
 						<td th:text="${contact.status}" class="col-md-1 text-center"></td>
 						<td class="col-md-2 text-center">
