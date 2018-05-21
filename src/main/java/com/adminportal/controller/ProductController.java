@@ -38,13 +38,16 @@ import com.adminportal.domain.User;
 import com.adminportal.service.CategoryService;
 import com.adminportal.service.ProductService;
 import com.adminportal.service.UserService;
+
 import com.adminportal.service.impl.AmazonClient;
 import com.amazonaws.services.s3.AmazonS3;
+
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 	
+
 	private AmazonClient amazonClient;
 	
 
@@ -61,6 +64,7 @@ public class ProductController {
         this.amazonClient = amazonClient;
     }
 	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -108,6 +112,7 @@ public class ProductController {
         List<MultipartFile> files = product.getProductImage();
         if (files != null && files.size() > 0) 
         {
+
         	
             for (MultipartFile multipartFile : files) {
             	
@@ -117,62 +122,20 @@ public class ProductController {
 					productImageName = newFileName;
 					count++;
 					}else {
+
 						productImageName = productImageName+","+newFileName;
 					}
-/*					byte[] bytes = multipartFile.getBytes();
-				
-				//To generate random number 50 is max and 10 is min
-				Random rand = new Random();
-				int  newrandom = rand.nextInt(50) + 10;
-				
-				Using Product Id with Time Stamp and Random Number for File name so we can 
-				  have unique file always within product id folder
-				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-				String newFileName = product.getId()+timestamp.getTime()+newrandom+".png";
-				
-				if(count == 1) {
-				product.setCoverImageName(newFileName);
-				productImageName = newFileName;
-				count++;
-				}else {
-					imagesName = imagesName+newFileName+",";
-					productImageName = productImageName+","+newFileName;
-				}
-				//String PATH = "http:\\localhost:8083\\image\\product/";
-				String PATH = "src/main/resources/static/image/product/";
-				
-				String folderName =  PATH.concat(Long.toString(product.getId()));
-				
-				//Create Folder with product ID as name
-				File directory = new File(folderName);
-				if (! directory.exists()){
-				    directory.mkdir();     
-				}
-				 
-				 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(folderName+"/"+newFileName)));
-				 stream.write(bytes);
-				 stream.close();*/
+
+					}
+					
+
             }
-  //          product.setProductImagesName(imagesName);
-        }
+ 
+        
         product.setProductImagesName(productImageName);
         productService.save(product);
 		
-/*		MultipartFile productImage = product.getProductImage();
-		
-		try{
-			byte[] bytes = productImage.getBytes();
-		
-			//Name to assign to image
-			String name = product.getId()+".png";
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/product/"+name)));
-		    stream.write(bytes);
-		    stream.close();
-		}catch (Exception e){
-			e.printStackTrace();
-		}*/
-		
-		
+
 		
 		return "redirect:productList";
 	}
@@ -191,8 +154,10 @@ public class ProductController {
 		model.addAttribute("sizeList", sizeList);
 		model.addAttribute("productImageList", productImageList);
 		model.addAttribute("product", product);
+
 		String fileUrl = endpointUrl + "/" + bucketName + "/";
 		model.addAttribute("fileUrl", fileUrl);
+
 		return "productInfo";
 		
 	}
@@ -227,11 +192,14 @@ public class ProductController {
 	public String updateProductPost(
 			@Valid @ModelAttribute("product") Product product, BindingResult result, @ModelAttribute("removefile") boolean removefile, @ModelAttribute("removeCover") boolean removeCover, HttpServletRequest request) {
 		String productImageName = null;
+
 		String fileUrl ="";
+
 		if(removefile){
 			String getProductImagesName = product.getProductImagesName();
 			List<String> imageList = Arrays.asList(getProductImagesName.split("\\s*,\\s*"));
 		//	int numberOfImage = imageList.size();
+
 			/*String PATHS = "src/main/resources/static/image/product/";
 		    
 			String folderNames =  PATHS.concat(Long.toString(product.getId()));
@@ -243,17 +211,14 @@ public class ProductController {
 					 fileUrl = endpointUrl + "/" + bucketName + "/" + image;
 					 amazonClient.deleteFileFromS3Bucket(fileUrl);
 					 System.out.println("Removing All Images "+fileUrl);
-				  /* productImageName = folder+"\\"+image;
-				try {
-					Files.delete(Paths.get(productImageName));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
+
+
+				}
+
 				}
 				
 			}
-		}
+		
 		productService.save(product);
 		
 		int count =1;
@@ -282,12 +247,14 @@ public class ProductController {
 					if(count == 1) {
 						if(!removefile) {
 							if(product.getCoverImageName().equalsIgnoreCase(newFileName) && !removeCover) {
+
 								if(productImageName != null) {
 									productImageName = product.getCoverImageName()+","+productImageName;
 								}else {
 									productImageName = product.getCoverImageName();
 								}
 								
+
 							}else {
 								productImageName = product.getProductImagesName()+","+newFileName;
 							}
@@ -297,6 +264,7 @@ public class ProductController {
 							newFileName = product.getCoverImageName();
 							product.setCoverImageName(newFileName);
 						}
+
 		
 						}else {
 							if(product.getCoverImageName().equalsIgnoreCase(newFileName) && !removeCover) {
@@ -306,6 +274,7 @@ public class ProductController {
 							}
 							
 						}
+
 					count++;
 					}else {
 						if(!removefile) {
@@ -387,10 +356,12 @@ public class ProductController {
 		User user = userService.findByUsername(activeUser.getUsername());
         model.addAttribute("user", user);
 		List<Product> productList = productService.findAllByOrderByIdDesc();
+
 		String fileUrl = endpointUrl + "/" + bucketName + "/";
 		// Only get published products need to implement that logic here
 		model.addAttribute("productList", productList);
 		model.addAttribute("fileUrl", fileUrl);
+
 		return "productList";
 		
 	}

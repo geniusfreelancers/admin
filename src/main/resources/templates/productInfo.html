@@ -34,15 +34,20 @@
             <div class="col-md-6">
             <div class="col-md-2">
             	<div class="image-additional" data-th-each="image : ${productImageList}">
+
                     <a th:href="${fileUrl}+${image}" th:title="${product.title}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1',smallImage: '/adminportal/image/product/+${product.id}+'/'+${image}'" >
                     	<img th:src="${fileUrl}+${image}" width="62" th:attr="title=${product.title},alt=${product.title}" />
+
                     </a>
                     
                 </div>
             </div>
                 <div class="image col-md-10">
+
                 <a th:href="${fileUrl}+${product.coverImageName}" th:attr="title=${product.title}" class="cloud-zoom colorbox" id='zoom1' rel="adjustX: 0, adjustY:0, tint:'#000000',tintOpacity:0.2, zoomWidth:360, position:'inside', showTitle:false">
                 	<img th:src="${fileUrl}+${product.coverImageName}" th:attr="title=${product.title},alt=${product.title}" id="image" class="main-image"/>
+
+
                 <span id="zoom-image"><i class="zoom_bttn"></i> Zoom</span>
                 </a>
                 </div>

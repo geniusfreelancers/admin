@@ -76,6 +76,7 @@ public class Product {
 	@Transient
 	private List<MultipartFile> productImage;
 	
+
 	@Transient
 	private MultipartFile productCoverImage;
 	/*@OneToMany(mappedBy="product")
@@ -320,6 +321,7 @@ public class Product {
 		this.productToCartItemList = productToCartItemList;
 	}*/
 	
+
 
 	public MultipartFile getProductCoverImage() {
 		return productCoverImage;
