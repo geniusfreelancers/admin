@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>Add Category</strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-folder"></i><a th:href="@{/}">Categories</a></li>
+                <li><i class="fa fa-laptop"></i>Add Category</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+<div class="row">
+<div class="col-md-4">
+<div class="col-md-12 well">
+	<h2>Add Category</h2>
+	<form id="catform" class="form-horizontal col-md-12" action=""
+				method="post">
+				<fieldset>
+				
+				<!-- title -->
+					<div class="form-group">
+						<label for="categoryName">Category Name</label>
+						
+							<input type="text" name="categoryName" class="form-control" id="categoryName"
+								th:value="${category.categoryName}" required="required"
+								placeholder="Category Name" /> 
+						
+					</div>
+					
+					<!-- Slug -->
+					<div class="form-group">
+						<label for="categorySlug">Category Slug</label>
+						
+							<input type="text" name="categorySlug" class="form-control" id="categorySlug"
+								value="" required="required"
+								placeholder="Category Slug" /> 
+						
+					</div>
+					<div class="form-group">
+						
+							<button type="submit" id="addnewcategorysubmit" class="btn btn-success">Add
+								Category</button>
+							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+						
+					</div>	
+					
+					</fieldset>
+		</form>
+	
+</div>	
+<div id="categoryList" class="col-md-12">
+
+</div>
+
+
+</div>
+<div class="col-md-4">
+<div class="col-md-12 well">
+	<h2>Add Sub Category</h2>
+	<form class="form-horizontal col-md-12" action=""
+				method="post">
+				<fieldset>
+				
+				<!-- title -->
+					<div class="form-group">
+						<label for="subCategoryName">Sub Category Name</label>
+						
+							<input type="text" name="subCategoryName" class="form-control" id="subCategoryName"
+								value="" required="required"
+								placeholder="Sub Category Name" /> 
+						
+					</div>
+					
+					<!-- Slug -->
+					<div class="form-group">
+						<label for="subCategorySlug">Sub Category Slug</label>
+						
+							<input type="text" name="subCategorySlug" class="form-control" id="subCategorySlug"
+								value="" required="required"
+								placeholder="Sub Category Slug" /> 
+						
+					</div>
+					<!-- Parent Category -->
+					<div class="form-group">
+						<label for="parentcategory">Parent Category</label>
+						
+							<select id="parentcategory"
+								name="parentcategory" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+									
+								<option data-th-each="category : ${categoryList}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+								
+							</select>
+						
+					</div>
+					<div class="form-group">
+						
+							<button type="submit" id="addnewsubcategorysubmit" class="btn btn-success">Add Sub Category</button>
+							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+						
+					</div>	
+					
+					</fieldset>
+		</form>
+	</div>
+	
+	<div id="subcategoryList" class="col-md-12">
+
+</div>
+</div>
+<div class="col-md-4">
+<div class="col-md-12 well">
+	<h2>Add Sub Sub-Category</h2>
+	<form class="form-horizontal col-md-12" action=""
+				method="post">
+				<fieldset>
+				<!-- Parent Category -->
+					<div class="form-group">
+						<label for="category">Parent Category</label>
+						
+							<select id="category"
+								name="category" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+									
+								<option data-th-each="category : ${supercategoryList}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+								
+							</select>
+						
+					</div>
+					
+					<!-- Parent Sub Category -->
+					<div class="form-group">
+						<label for="subCategory">Parent Sub Category</label>
+						<select id="subCategory"
+								name="subCategory" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								
+								
+							</select>
+						
+					</div>
+				<!-- title -->
+					<div class="form-group">
+						<label for="subSubCategoryName">Sub Sub-Category Name</label>
+						
+							<input type="text" name="subSubCategoryName" class="form-control" id="subSubCategoryName"
+								value="" required="required"
+								placeholder="Sub Sub-Category Name" /> 
+						
+					</div>
+					
+					<!-- Slug -->
+					<div class="form-group">
+						<label for="subSubCategorySlug">Sub Sub-Category Slug</label>
+						
+							<input type="text" name="subSubCategorySlug" class="form-control" id="subSubCategorySlug"
+								value="" required="required"
+								placeholder="Sub Sub-Category Slug" /> 
+						
+					</div>
+					
+					
+					
+					<div class="form-group">
+						
+							<button type="submit" id="addnewsubsubcategorysubmit" class="btn btn-success">Add Sub Sub-Category</button>
+							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+						
+					</div>	
+					
+					</fieldset>
+		</form>
+</div>
+<div id="subsubcategoryList" class="col-md-12">
+
+</div>
+</div>
+</div>
+	
+		
+
+							
+	
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	
+</body>
+</html>

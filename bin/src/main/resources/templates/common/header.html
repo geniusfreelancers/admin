@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<title>KolyStyle - Fashion For All</title>
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+<!-- Data Table -->
+<link th:href="@{/css/jquery.datatables.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/datatables.bootstrap.min.css}" rel="stylesheet"/>
+
+<!-- Font Awesome icons -->
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+
+<link rel="icon" href="/image/logo-icon.png" />
+</head>
+
+<body>
+<div th:fragment="navbar">
+
+	<!-- Static navbar -->
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" th:href="@{/}">KolyStyle</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Product <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/product/add}">Add Product</a></li>
+							<li><a th:href="@{/product/productList}">View Products</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a th:href="@{/logout}">Sign Out</a></li>
+					 
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+		<!--/.container-fluid -->
+	</nav>
+	</div>
+	<div th:fragment="body-bottom-scripts">
+		<script
+		th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootbox.min.js}"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+	<!-- Data Tables -->
+	<script th:src="@{/js/jquery.datatables.min.js}"></script>
+	<script th:src="@{/js/datatables.bootstrap.min.js}"></script>
+	</div>
+</body>
+</html>
