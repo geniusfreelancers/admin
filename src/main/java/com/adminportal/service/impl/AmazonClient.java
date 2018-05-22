@@ -93,4 +93,10 @@ public class AmazonClient {
         s3client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
         return "Successfully deleted";
     }
+    
+    public String deleteFileFromS3BucketByFilename(String fileName) {
+      //  String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+        s3client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
+        return "Successfully deleted";
+    }
 }

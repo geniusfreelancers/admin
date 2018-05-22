@@ -27,7 +27,7 @@
 				<fieldset>
 		<div class="col-md-6">
 					<input hidden="hidden" name="id" th:value="${product.id}"/>
-					<input hidden="hidden" name="coverImageName" th:value="${product.coverImageName}"/>
+					
 					<!-- title -->
 					<div class="form-group">
 						<label for="title">Title</label>
@@ -309,6 +309,7 @@
 						
 					</div>
 					
+					
 					<!-- Product Images -->
 					<div class="col-md-6">
 						
@@ -322,7 +323,18 @@
 					
 					</div>
 					</div>	
-					
+					<!-- Product Cover Image -->
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="productCoverImage">Upload Cover Image</label>
+						</div>
+						<div class="col-md-8">
+							<input type="file" class="form-control" id="productCoverImage"
+								name="productCoverImage" th:value="${product.productCoverImage}" />
+						<span class="help-block">Add Product Cover Picture</span>
+						</div>
+
+					</div>
 					<!-- Product Image -->
 					<div class="form-group">
 						<div class="col-md-4">
@@ -330,7 +342,7 @@
 						</div>
 						<div class="col-md-8">
 							<input type="file" class="form-control" id="productImage"
-								name="productImage" th:value="${product.productImage}"  multiple="multiple"/>
+								name="productImage"  multiple="multiple"/>
 						<span class="help-block">Add multiple pictures of the for the Product</span>
 						</div>
 
@@ -351,7 +363,7 @@
 						
 					</div>	
 					
-						<!-- Change Cover Picture-->
+						<!-- Change Cover Picture>
 					<div class="form-group">
 						<div class="col-md-6">
 						<label for="removeCover">Change Cover Image:</label>
@@ -365,7 +377,7 @@
 							</label> 
 						</div>
 						
-					</div>
+					</div-->
 					
 					<!-- Color And Wash Care -->
 					<div class="form-group">

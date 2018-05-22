@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -101,42 +102,34 @@ public class ProductController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addProductPost(
-			@ModelAttribute("product") Product product, HttpServletRequest request
-			){
+			@ModelAttribute("product") Product product, HttpServletRequest request,@AuthenticationPrincipal User activeUser,
+			Model model){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
 		Date addedDate = Calendar.getInstance().getTime();
 		product.setAddedDate(addedDate);	
-		productService.save(product);
-		String productImageName = null;
+	//	productService.save(product);
 		 //Get the uploaded files and store them
-		int count =1;	
+		MultipartFile coverImage = product.getProductCoverImage();
+		String coverImageName = null;
+		if(coverImage == null || coverImage.isEmpty()) {
+			return "addProduct";
+		}else {
+			coverImageName = amazonClient.uploadFile(coverImage);
+			product.setCoverImageName(coverImageName);
+		}
+		String productImageName = coverImageName;
         List<MultipartFile> files = product.getProductImage();
         if (files != null && files.size() > 0) 
         {
-
-        	
             for (MultipartFile multipartFile : files) {
             	
             	String newFileName = amazonClient.uploadFile(multipartFile);
-				if(count == 1) {
-					product.setCoverImageName(newFileName);
-					productImageName = newFileName;
-					count++;
-					}else {
-
-						productImageName = productImageName+","+newFileName;
-					}
-
-					}
-					
-
-            }
- 
-        
+            	productImageName = productImageName+","+newFileName;
+			}
+         }
         product.setProductImagesName(productImageName);
         productService.save(product);
-		
-
-		
 		return "redirect:productList";
 	}
 	
@@ -190,131 +183,50 @@ public class ProductController {
 	
 	@RequestMapping(value="/updateProduct", method=RequestMethod.POST)
 	public String updateProductPost(
-			@Valid @ModelAttribute("product") Product product, BindingResult result, @ModelAttribute("removefile") boolean removefile, @ModelAttribute("removeCover") boolean removeCover, HttpServletRequest request) {
+			@Valid @ModelAttribute("product") Product product, BindingResult result, @ModelAttribute("removefile") boolean removefile, HttpServletRequest request) {
 		String productImageName = null;
-
-		String fileUrl ="";
-
-		if(removefile){
-			String getProductImagesName = product.getProductImagesName();
+		//@ModelAttribute("removeCover") boolean removeCover,
+		boolean removeCover = false;
+		//////////////////
+		MultipartFile coverImage = product.getProductCoverImage();
+		String coverImageName = product.getCoverImageName();
+		if(coverImage == null || coverImage.isEmpty()) {
+			product.setCoverImageName(coverImageName);
+		}else {
+			coverImageName = amazonClient.uploadFile(coverImage);
+			product.setCoverImageName(coverImageName);
+			removeCover = true;
+		}
+		productImageName = coverImageName;
+		String getProductImagesName = product.getProductImagesName();
+		if(removefile) {
+    		
 			List<String> imageList = Arrays.asList(getProductImagesName.split("\\s*,\\s*"));
-		//	int numberOfImage = imageList.size();
-
-			/*String PATHS = "src/main/resources/static/image/product/";
-		    
-			String folderNames =  PATHS.concat(Long.toString(product.getId()));
-			File folder = new File(folderNames);*/
+			Collection c = new ArrayList(imageList);
+			//int count = imageList.size();
 			for(String image : imageList) {
-				if(!removeCover && product.getCoverImageName().equalsIgnoreCase(image)) {
+				if(!removeCover && coverImageName.equalsIgnoreCase(image)) {
 					System.out.println("Removing All Images except Cover Image "+image);
 				}else {
-					 fileUrl = endpointUrl + "/" + bucketName + "/" + image;
-					 amazonClient.deleteFileFromS3Bucket(fileUrl);
-					 System.out.println("Removing All Images "+fileUrl);
-
-
+					amazonClient.deleteFileFromS3BucketByFilename(image);
+					c.remove(image);
+					System.out.println("Removing All Images "+image);
 				}
-
-				}
+				//count++;
 				
 			}
-		
-		productService.save(product);
-		
-		int count =1;
-		List<MultipartFile> files = product.getProductImage();
-		//MultipartFile productImage = product.getProductImage();
-		
-		if (null != files && files.size() > 0 && !files.isEmpty()) 
+			getProductImagesName = c.toString();
+    	}
+        List<MultipartFile> files = product.getProductImage();
+        if (files != null || files.size() > 0) 
         {
-			String imagesName =null;
-            for (MultipartFile multipartFile : files) {
-            	
-            	try {
-					byte[] bytes = multipartFile.getBytes();
-					
-					//To generate random number 50 is max and 10 is min
-					Random rand = new Random();
-					int  newrandom = rand.nextInt(50) + 10;
-					
-					/*Using Product Id with Time Stamp and Random Number for File name so we can 
-					  have unique file always within product id folder*/
-					Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-					String newFileName = product.getId()+timestamp.getTime()+newrandom+".png";
-					
-					//
-
-					if(count == 1) {
-						if(!removefile) {
-							if(product.getCoverImageName().equalsIgnoreCase(newFileName) && !removeCover) {
-
-								if(productImageName != null) {
-									productImageName = product.getCoverImageName()+","+productImageName;
-								}else {
-									productImageName = product.getCoverImageName();
-								}
-								
-
-							}else {
-								productImageName = product.getProductImagesName()+","+newFileName;
-							}
-						if(removeCover) {
-							product.setCoverImageName(newFileName);
-						}else {
-							newFileName = product.getCoverImageName();
-							product.setCoverImageName(newFileName);
-						}
-
-		
-						}else {
-							if(product.getCoverImageName().equalsIgnoreCase(newFileName) && !removeCover) {
-								productImageName = product.getCoverImageName();
-							}else {
-								productImageName = newFileName;
-							}
-							
-						}
-
-					count++;
-					}else {
-						if(!removefile) {
-							if(product.getCoverImageName().equalsIgnoreCase(newFileName) && !removeCover) {
-							//	productImageName = product.getCoverImageName();
-								imagesName = imagesName+newFileName+",";
-								productImageName = productImageName+","+newFileName;
-							}else {
-								imagesName = imagesName+newFileName+",";
-								productImageName = productImageName+","+newFileName;
-							}
-							
-						}
-						
-					}
-			
-					String PATH = "src/main/resources/static/image/product/";
-				    
-					String folderName =  PATH.concat(Long.toString(product.getId()));
-					
-					//Create Folder with product ID as name
-					File directory = new File(folderName);
-				    if (! directory.exists()){
-				        directory.mkdir();     
-				    }
-					 
-					 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(folderName+"/"+newFileName)));
-					 stream.write(bytes);
-					 stream.close();
-					 
-            	} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+	            for (MultipartFile multipartFile : files) {
+	            	
+	            	String newFileName = amazonClient.uploadFile(multipartFile);
+	            	productImageName = getProductImagesName+","+newFileName;
 				}
-            }
+        	
         }
-		
-
-		
-	//	product.setCoverImageName(product.getCoverImageName());
 		product.setProductImagesName(productImageName);
 		productService.save(product);
 		return "redirect:/product/productInfo?id="+product.getId();
