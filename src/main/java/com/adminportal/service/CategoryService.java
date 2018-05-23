@@ -18,4 +18,8 @@ public interface CategoryService {
 	List<SubSubCategory> findAllSubSubCategories();
 	List<SubCategory> findAllSubCategoriesByCategory(Category category);
 	List<SubSubCategory> findAllSubSubCategoriesBySubCategory(SubCategory subCategory);
+
+	Long categoryCount();
+	Long subCategoryCount();
+	Long subSubCategoryCount();
 }

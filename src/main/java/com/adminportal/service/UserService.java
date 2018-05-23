@@ -18,6 +18,7 @@ public interface UserService {
 	User findByEmail(String email);
 	
 	User findById(Long id);
+	Long countUser();
 	/*void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 	
 	void updateUserShipping(UserShipping userShipping, User user);

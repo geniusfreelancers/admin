@@ -1,12 +1,19 @@
 package com.adminportal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.adminportal.domain.Order;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
+import com.adminportal.service.CategoryService;
+import com.adminportal.service.OrderService;
+import com.adminportal.service.ProductService;
 import com.adminportal.service.SiteSettingService;
 import com.adminportal.service.UserService;
 
@@ -18,7 +25,13 @@ public class HomeController {
 	
 	@Autowired
 	private SiteSettingService siteSettingService;
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private ProductService productService;
 	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -30,8 +43,29 @@ public class HomeController {
 		User user = userService.findByUsername(activeUser.getUsername());
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
-
         model.addAttribute("user", user);
+        
+		List<Order> ordersList = orderService.findAllByOrderDateDesc();
+		model.addAttribute("ordersList", ordersList);
+		if(ordersList == null) {
+			model.addAttribute("emptyOrder", true);
+		}else {
+			model.addAttribute("emptyOrder", false);
+		}
+		Long userCount = userService.countUser();
+		Long orderCount = orderService.orderCount();
+		Long productCount = productService.productCount();
+		Long categoryCount = categoryService.categoryCount();
+		Long subCategoryCount = categoryService.subCategoryCount();
+		Long subSubCategoryCount = categoryService.subSubCategoryCount();
+		
+		model.addAttribute("userCount",userCount);
+		model.addAttribute("productCount",productCount);
+		model.addAttribute("orderCount",orderCount);
+		model.addAttribute("categoryCount",categoryCount);
+		model.addAttribute("subCategoryCount",subCategoryCount);
+		model.addAttribute("subSubCategoryCount",subSubCategoryCount);
+		
 		return "home";
 	}
 	

@@ -34,6 +34,8 @@ public class ProductServiceImpl implements ProductService{
 		productRepository.delete(id);
 	}
 	
-	
-
+	public Long productCount() {
+		return productRepository.count();
+		
+	}
 }

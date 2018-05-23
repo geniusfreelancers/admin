@@ -84,4 +84,8 @@ public class OrderServiceImpl implements OrderService{
 	public List<Order> findAllByOrderDateDesc(){
 		return orderRepository.findAllByOrderByOrderDateDesc();
 	}
+	
+	public Long orderCount() {
+		return orderRepository.count();
+	}
 }

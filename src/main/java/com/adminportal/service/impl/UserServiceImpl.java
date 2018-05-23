@@ -26,7 +26,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 
-
+	public Long countUser() {
+		return userRepository.count();
+	}
 	
 	
 	@Override

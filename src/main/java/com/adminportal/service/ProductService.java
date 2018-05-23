@@ -2,8 +2,6 @@ package com.adminportal.service;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.adminportal.domain.Product;
 
 public interface ProductService {
@@ -16,5 +14,5 @@ public interface ProductService {
 	
 	void removeOne(Long id);
 	
-
+	Long productCount();
 }

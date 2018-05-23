@@ -20,4 +20,5 @@ public interface OrderService {
 	List<Order> findAll();
 	List<Order> findByUser(User user);
 	List<Order> findAllByOrderDateDesc();
+	Long orderCount();
 }

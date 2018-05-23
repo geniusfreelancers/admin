@@ -69,5 +69,15 @@ public class CategoryServiceImpl implements  CategoryService{
 		return (List<SubSubCategory>) subSubCategoryRepository.findBySubCategory(subCategory);
 	}
 	
+	public Long categoryCount() {
+		return categoryRepository.count();
+	}
 	
+	public Long subCategoryCount() {
+		return subCategoryRepository.count();
+	}
+	
+	public Long subSubCategoryCount() {
+		return subSubCategoryRepository.count();
+	}
 }

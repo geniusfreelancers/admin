@@ -23,7 +23,7 @@
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box blue-bg">
                 <a th:href="@{/admin/customer}"><i class="fa fa-cloud-download"></i>
-                    <div class="count">6.674</div>
+                    <div class="count"><span th:text="${userCount}"></span></div>
                     <div class="title">Registered Customers</div></a>
             </div><!--/.info-box-->
         </div><!--/.col-->
@@ -31,8 +31,8 @@
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box brown-bg">
                 <a th:href="@{/admin/productInventory}"><i class="fa fa-shopping-cart"></i>
-                    <div class="count">7.538</div>
-                    <div class="title">Products <span class="text-primary">In <strong> 50 </strong></span> Categories</div></a>
+                    <div class="count"><span th:text="${productCount}"></span></div>
+                    <div class="title">Products <span class="text-primary">In <strong> <span th:text="${categoryCount}"></span> </strong></span> Categories</div></a>
             </div><!--/.info-box-->
         </div><!--/.col-->
 
@@ -47,7 +47,7 @@
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box green-bg">
                 <i class="fa fa-cubes"></i>
-                <div class="count">1.426</div>
+                <div class="count"><span th:text="${orderCount}"></span></div>
                 <div class="title">Order</div>
             </div><!--/.info-box-->
         </div><!--/.col-->

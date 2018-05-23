@@ -35,6 +35,12 @@ public class CustomerController {
 		User user = userService.findByUsername(activeUser.getUsername());
         model.addAttribute("user", user);
         User customer = userService.findById(id);
+        if(customer == null) {
+        	List<User> userList = userService.findAll();
+            model.addAttribute("userList", userList);
+
+            return "customers";
+        }
         model.addAttribute("customer", customer);
 
         return "customerdetails";
