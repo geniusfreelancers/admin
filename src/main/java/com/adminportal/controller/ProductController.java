@@ -1,19 +1,11 @@
 package com.adminportal.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -28,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.adminportal.domain.Category;
@@ -41,8 +32,6 @@ import com.adminportal.service.ProductService;
 import com.adminportal.service.UserService;
 
 import com.adminportal.service.impl.AmazonClient;
-import com.amazonaws.services.s3.AmazonS3;
-
 
 @Controller
 @RequestMapping("/product")
@@ -84,21 +73,7 @@ public class ProductController {
 		return "addProduct";
 	}
 	
-	@RequestMapping(value="/getsubcategories", method=RequestMethod.GET)
-	public @ResponseBody
-	List<SubCategory> getsubcategories(@RequestParam(value= "id", required = true) Long id,Model model){
-		Category category = categoryService.findOne(id);
-		List<SubCategory> subcategories =  categoryService.findAllSubCategoriesByCategory(category);
-		return subcategories;
-	}
-	
-	@RequestMapping(value="/getsubsubcategories", method=RequestMethod.GET)
-	public @ResponseBody
-	List<SubSubCategory> getsubsubcategories(@RequestParam(value= "id", required = true) Long id,Model model){
-		SubCategory subCategory = categoryService.findOneSub(id);
-		List<SubSubCategory> subsubcategories =  categoryService.findAllSubSubCategoriesBySubCategory(subCategory);
-		return subsubcategories;
-	}
+
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addProductPost(

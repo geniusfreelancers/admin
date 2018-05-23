@@ -37,38 +37,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-th-each="user : ${userList}">
+					<tr data-th-each="customer : ${userList}">
 						<td class="col-md-1">
-						<input hidden="hidden" name="id" th:value="${user.id}"/>
-						<input th:id="'selected'+${user.id}" class="checkboxProduct" type="checkbox" />
+						<input hidden="hidden" name="id" th:value="${customer.id}"/>
+						<input th:id="'selected'+${customer.id}" class="checkboxProduct" type="checkbox" />
 						</td>
-						<td class="col-md-4">
-								<a th:href="@{/customer/customerInfo(id=${user.id})}">
-									<span th:text="${user.firstName}"></span> 
-									<span th:text="${user.lastName}"></span>
+						<td class="col-md-4"> 
+								<a th:href="@{/customer/customerInfo?id=}+${customer.id}">
+									<span th:text="${customer.firstName}"></span> 
+									<span th:text="${customer.lastName}"></span>
 								</a><br/>
-								<strong>Joined: </strong> <span th:text="${user.email}"></span>
+								<!--strong>Joined: </strong> <span th:text="${customer.joinedDate}"></span>
+								<br/>
+								<strong>Last Updated: </strong> <span th:text="${customer.updatedDate}"></span-->
 						</td>
 						
 						<td class="col-md-2">
-							<strong>Email: </strong> <span th:text="${user.email}"></span><br/>
-							<strong>Phone: </strong> <span th:text="${user.phone}"></span>
+							<strong>Email: </strong> <span th:text="${customer.email}"></span><br/>
+							<strong>Phone: </strong> <span th:text="${customer.phone}"></span>
 						</td>
-						<td th:text="${user.username}" class="col-md-1"></td>
+						<td th:text="${customer.username}" class="col-md-1"></td>
 						<td class="col-md-1">
-							<strong><span th:text="${user.userType}"></span></strong>
-							
-							
+							<strong><span style="transformaton:uppercase;" th:text="${customer.userType}"></span></strong>
 						</td>
 						<td class="col-md-1">
-							<strong><span th:text="${user.accountStatus}"></span></strong><br/>
-							<strong><span th:text="${user.enabled}"></span></strong>
+							<strong><span th:text="${customer.accountStatus}"></span></strong><br/>
+							<strong><span th:text="${customer.enabled}"></span></strong>
 						</td>
 						<td class="col-md-2">
-							<input hidden="hidden" name="id" th:value="${user.id}"/>
-							<a class="btn btn-primary btn-xs edit-product" th:href="@{/product/updateProduct?id=}+${user.id}">
+							<input hidden="hidden" name="id" th:value="${customer.id}"/>
+							<a class="btn btn-primary btn-xs edit-product" th:href="@{/customer/updateCustomer?id=}+${customer.id}">
 							<span class="fa fa-pencil-square-o"></span> Edit</a>
-							<button th:id="'oneProduct-'+${user.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete">
+							<button th:id="'oneProduct-'+${customer.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete">
 							<span class="fa fa-times"></span> Delete</button>		
 						</td>
 					</tr>
