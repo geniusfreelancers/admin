@@ -46,10 +46,8 @@
 		<div class="col-md-7 col-md-offset-2">
 				<!-- Start -->
 				
-					<div th:if="${duplicatepromo}" class="alert alert-danger">
-						Duplicate Coupon Code. Please change the coupon code or edit  
-						<a th:href="@{/coupons/edit/}+${existingpromo.id}"><span class="uppercase" th:text="${existingpromo.couponCode}"></span></a> 
-						coupon
+					<div th:if="${success}" class="alert alert-success">
+						User profile updated
 					</div>
 					<input hidden="hidden" name="id" th:value="${customer.id}"/>
 

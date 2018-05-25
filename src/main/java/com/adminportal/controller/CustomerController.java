@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +69,7 @@ public class CustomerController {
     }
 	
 	@RequestMapping(value="/updateCustomer", method=RequestMethod.POST)
-    public String updateCustomerPost(@ModelAttribute("user") User customer,Model model,@AuthenticationPrincipal User activeUser){
+    public String updateCustomerPost(@ModelAttribute("customer") User customer,BindingResult bindingResult,Model model,@AuthenticationPrincipal User activeUser){
 		User user = userService.findByUsername(activeUser.getUsername());
         model.addAttribute("user", user);
         userService.save(customer);
@@ -79,6 +80,8 @@ public class CustomerController {
 		List<String> countryList = CountryConstants.listOfCountryName;
 		Collections.sort(countryList);
 		model.addAttribute("countryList", countryList);
+
+        model.addAttribute("success", true);
         return "editcustomer";
     }
 	
@@ -101,6 +104,7 @@ public class CustomerController {
         }
         userService.save(customer);
         model.addAttribute("customer", customer);
+        model.addAttribute("success", true);
 
         return "customerdetails";
     }
