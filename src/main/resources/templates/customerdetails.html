@@ -45,6 +45,9 @@
 	</h3>
 </div>
 <br/><br/>
+<div th:if="${success}" class="col-md-12 alert alert-success">
+	User profile <span th:if="${customer.enabled}">activated</span><span th:if="!${customer.enabled}">deactivated</span>
+</div>
 <div class="col-md-6">
 <p><strong>User #<span th:text="${customer.id}"></span></strong></p>
 <p><strong>User Role:</strong> <span id="orderedDate" th:text="${customer.userType}"></span></p>

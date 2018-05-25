@@ -22,7 +22,7 @@
     </div>
   <div class="col-md-12 border-all">  
 <div class="col-md-6">
-	<a th:href="@{/customer/customerInfo?id=}+${customer.id}" style="float: left;" class="btn btn-danger">Cancel</a>
+	<a th:href="@{/customer/customerInfo?id=}+${customer.id}" style="float: left;" class="btn btn-danger">Back</a>
 </div>
 <div class="col-md-6">
 	<a th:href="@{/customer/deactivateCustomer?id=}+${customer.id}" style="float: right;" class="btn btn-default"><span th:if="${customer.enabled}">Deactivate</span><span th:if="!${customer.enabled}">Activate</span></a>
