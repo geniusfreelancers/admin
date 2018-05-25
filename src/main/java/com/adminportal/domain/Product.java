@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -63,6 +64,8 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name="sub_sub_category_id")
 	private SubSubCategory mainSubCategory;
+	@OneToOne
+	private SoldProducts soldProducts;
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "product")
 	@JsonIgnore
@@ -305,6 +308,14 @@ public class Product {
 		this.mainSubCategory = mainSubCategory;
 	}
 
+	public SoldProducts getSoldProducts() {
+		return soldProducts;
+	}
+
+	public void setSoldProducts(SoldProducts soldProducts) {
+		this.soldProducts = soldProducts;
+	}
+
 	public List<MultipartFile> getProductImage() {
 		return productImage;
 	}
@@ -346,7 +357,6 @@ public class Product {
 	public void setProductAttribute(List<ProductAttribute> productAttribute) {
 		this.productAttribute = productAttribute;
 	}
-
 	
 
 }

@@ -88,4 +88,8 @@ public class OrderServiceImpl implements OrderService{
 	public Long orderCount() {
 		return orderRepository.count();
 	}
+	
+	public List<Order> findTop10ByOrderByIdDesc(){
+		return orderRepository.findTop14ByOrderByIdDesc();
+	}
 }

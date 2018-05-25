@@ -1,5 +1,6 @@
 package com.adminportal.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adminportal.domain.User;
 import com.adminportal.service.UserService;
+import com.adminportal.utility.CountryConstants;
+import com.adminportal.utility.USConstants;
 
 @Controller
 @RequestMapping("/customer")
@@ -53,7 +56,12 @@ public class CustomerController {
         model.addAttribute("user", user);
         User customer = userService.findById(id);
         model.addAttribute("customer", customer);
-
+        List<String> stateList = USConstants.listOfUSStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+		List<String> countryList = CountryConstants.listOfCountryName;
+		Collections.sort(countryList);
+		model.addAttribute("countryList", countryList);
         return "editcustomer";
     }
 }

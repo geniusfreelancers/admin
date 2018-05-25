@@ -172,6 +172,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 		return promoCodes;
 		
 	}
+
+	@Override
+	public List<ShoppingCart> findTop10ByOrderByUpdatedDateDesc() {
+		List<ShoppingCart> shoppingCartList = shoppingCartRepository.findTop10ByOrderByUpdatedDateDesc();
+		return shoppingCartList;
+	}
+
+	@Override
+	public ShoppingCart findOne(Long id) {
+		return shoppingCartRepository.findOne(id);
+	}
 	
 
 

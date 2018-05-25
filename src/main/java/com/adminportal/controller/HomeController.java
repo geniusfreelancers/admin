@@ -9,11 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.adminportal.domain.Order;
+import com.adminportal.domain.ShoppingCart;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
 import com.adminportal.service.CategoryService;
+import com.adminportal.service.NewsletterService;
 import com.adminportal.service.OrderService;
 import com.adminportal.service.ProductService;
+import com.adminportal.service.ShoppingCartService;
 import com.adminportal.service.SiteSettingService;
 import com.adminportal.service.UserService;
 
@@ -32,6 +35,11 @@ public class HomeController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private NewsletterService newsletterService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -45,12 +53,18 @@ public class HomeController {
 		model.addAttribute("siteSettings",siteSettings);
         model.addAttribute("user", user);
         
-		List<Order> ordersList = orderService.findAllByOrderDateDesc();
-		model.addAttribute("ordersList", ordersList);
+        List<Order> ordersList = orderService.findTop10ByOrderByIdDesc();
+		
+        List<ShoppingCart> shoppingCartList = shoppingCartService.findTop10ByOrderByUpdatedDateDesc();
 		if(ordersList == null) {
 			model.addAttribute("emptyOrder", true);
 		}else {
 			model.addAttribute("emptyOrder", false);
+		}
+		if(shoppingCartList == null) {
+			model.addAttribute("emptyCart", true);
+		}else {
+			model.addAttribute("emptyCart", false);
 		}
 		Long userCount = userService.countUser();
 		Long orderCount = orderService.orderCount();
@@ -58,14 +72,18 @@ public class HomeController {
 		Long categoryCount = categoryService.categoryCount();
 		Long subCategoryCount = categoryService.subCategoryCount();
 		Long subSubCategoryCount = categoryService.subSubCategoryCount();
-		
+		Long soldProductsCount = productService.soldProductsCount();
+		Long subscribersCount = newsletterService.subscribersCount();
+		model.addAttribute("shoppingCartList", shoppingCartList);
+		model.addAttribute("ordersList", ordersList);
 		model.addAttribute("userCount",userCount);
 		model.addAttribute("productCount",productCount);
 		model.addAttribute("orderCount",orderCount);
 		model.addAttribute("categoryCount",categoryCount);
 		model.addAttribute("subCategoryCount",subCategoryCount);
 		model.addAttribute("subSubCategoryCount",subSubCategoryCount);
-		
+		model.addAttribute("soldProductsCount",soldProductsCount);
+		model.addAttribute("subscribersCount",subscribersCount);
 		return "home";
 	}
 	

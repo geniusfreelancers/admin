@@ -17,4 +17,8 @@ public class NewsletterServiceImpl implements NewsletterService{
 		return newsletterRepository.findAllByOrderByIdDesc();
 	}
 	
+	public Long subscribersCount() {
+		return newsletterRepository.count();
+	}
+	
 }

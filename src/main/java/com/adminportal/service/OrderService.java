@@ -21,4 +21,5 @@ public interface OrderService {
 	List<Order> findByUser(User user);
 	List<Order> findAllByOrderDateDesc();
 	Long orderCount();
+	List<Order> findTop10ByOrderByIdDesc();
 }

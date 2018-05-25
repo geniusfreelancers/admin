@@ -119,6 +119,12 @@ public class ProductController {
 
 		String productImages = product.getProductImagesName();
 		List<String> productImageList = Arrays.asList(productImages.split("\\s*,\\s*"));
+		
+		if(product.getSoldProducts() != null){
+			model.addAttribute("soldProduct", true);
+		}else {
+			model.addAttribute("soldProduct", false);
+		}
 		model.addAttribute("sizeList", sizeList);
 		model.addAttribute("productImageList", productImageList);
 		model.addAttribute("product", product);
@@ -250,6 +256,20 @@ public class ProductController {
 		model.addAttribute("fileUrl", fileUrl);
 
 		return "productList";
+		
+	}
+	
+	@RequestMapping("/soldInventory")
+	public String soldInventory(Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
+		List<Product> productList = productService.findSoldInventory();
+		String fileUrl = endpointUrl + "/" + bucketName + "/";
+		// Only get published products need to implement that logic here
+		model.addAttribute("productList", productList);
+		model.addAttribute("fileUrl", fileUrl);
+
+		return "soldInventory";
 		
 	}
 	

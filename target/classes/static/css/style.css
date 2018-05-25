@@ -1898,7 +1898,7 @@ div[data-role="editor-toolbar"] {
 }
 
 .info-box .count {
-
+  	
   margin-top: 20px;
 
   font-size: 34px;
@@ -1906,7 +1906,18 @@ div[data-role="editor-toolbar"] {
   font-weight: 700;
 
 }
-
+.info-box{
+	text-align:center;
+}
+/* .bg-{
+	background: #ffffff;
+	border: 2px solid #71cf33;
+    border-radius: 10%;
+}
+.soldCount{
+	background: url(../image/icons/checkout-dark-small.png);
+	text-align: center;
+} */
 .info-box .title {
 
   font-size: 12px;

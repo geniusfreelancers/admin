@@ -3,7 +3,37 @@
             CUSTOM STYLE
 
 ******************************************/
-
+.user-bar{
+	background: #ffffff;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #5e8eb9;
+}
+.progress-bar-created{
+	background-color: #3486e6;
+	width:40%;
+}
+.progress-bar-shipped{
+	background-color: #43a264;
+	width:75%;
+}
+.progress-bar-processing{
+	background-color: #64dade;
+	width:60%;
+}
+.progress-bar-cancel{
+	background-color: #e22f09;
+	width:100%;
+}
+.progress-bar-intransit{
+	background-color: #56e272;
+	width:90%;
+}
+.progress-bar-delivered{
+	background-color: #09e234;
+	width:100%;
+}
 .slider-container {
     border: 1px solid black;
     padding-top:5px;
@@ -173,8 +203,8 @@ h1 {color: #222; margin-bottom:30px; margin-top: 10px; font-size: 32px; font-wei
 h2 {color: #222; font-size:15px; margin-top: 0px; margin-bottom:15px; padding:3px 0px 5px 0px; border-bottom: 1px solid #ddd; text-transform: uppercase; font-weight:normal; }
 h4 {color: #222; font-size:13px; margin-top: 0px; margin-bottom:10px; padding:3px 0px 5px 0px; font-weight:bold; }
 p {margin-top: 0px; margin-bottom: 20px; line-height:20px;}
-a, a:visited, a b { color:#222; text-decoration: none; cursor: pointer;}
-a:hover {text-decoration:none; color:#000;}
+a, a:visited, a b {  text-decoration: none; cursor: pointer;}
+a:hover {text-decoration:none; color:#e0dada;}
 a img { border: none; }
 .clear{clear:both;}
 form { padding:0; margin:0; display:inline;}

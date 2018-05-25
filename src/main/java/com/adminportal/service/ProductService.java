@@ -15,4 +15,7 @@ public interface ProductService {
 	void removeOne(Long id);
 	
 	Long productCount();
+	Long soldProductsCount();
+	
+	List<Product> findSoldInventory();
 }

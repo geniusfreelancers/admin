@@ -103,9 +103,9 @@
 				    <span class="text-danger"><b>Availability:</b></span>
 				       <b><span th:text="${product.inStockNumber}"></span></b> In Stock
 				    </div>
-				    <div id="option-226" class="option">
+				    <div id="option-226" th:if="${soldProduct}" class="option">
 				    <span class="text-primary"><b>Sold:</b></span>
-				       <b><span th:text="${product.inStockNumber}"></span></b> Sold
+				       <b><span th:text="${product.soldProducts.soldQty}"></span></b> Sold
 				    </div>
 				    
                 </div>

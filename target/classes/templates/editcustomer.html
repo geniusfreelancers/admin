@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="common/head :: common-header"/>
 <body>
+
 <section id="container" class="">
 	<div th:replace="common/head :: navbar" />
 	<div th:replace="common/head :: sibebar" />
@@ -11,204 +12,248 @@
 <!-- Main Section Starts -->
 	    <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> EDIT COUPON</h3>
+            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> EDIT USER</h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/coupons/allcoupons/all}">All Coupons</a></li>
-                <li><i class="fa fa-file" aria-hidden="true"></i>Edit Coupon</li>
+                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/customer/customerInfo?id=}+${customer.id}" th:text="${customer.username}"></a></li>
+                <li><i class="fa fa-file" aria-hidden="true"></i>Edit User</li>
             </ol>
         </div>
     </div>
 
 
-	<form class="form-horizontal" th:action="@{/coupons/edit}"
+	<form class="form-horizontal" th:action="@{/customer/updateCustomer}"
 				method="post" enctype="multipart/form-data">
 				<fieldset>
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-7 col-md-offset-2">
 				<!-- Start -->
-				<h3 class="text"><strong>Edit Coupon</strong></h3>
+				<h3 class="text"><strong>Edit User</strong></h3>
 					<div th:if="${duplicatepromo}" class="alert alert-danger">
 						Duplicate Coupon Code. Please change the coupon code or edit  
 						<a th:href="@{/coupons/edit/}+${existingpromo.id}"><span class="uppercase" th:text="${existingpromo.couponCode}"></span></a> 
 						coupon
 					</div>
-					<input hidden="hidden" name="id" th:value="${promoCodes.id}"/>
-					<!-- title -->
+					<input hidden="hidden" name="id" th:value="${customer.id}"/>
+
 					<div class="form-group">
 					<div class="row">
-					<div class="col-md-8">
-						<label for="couponCode">Coupon Code</label>
+					<div class="col-md-12">
+						<p><strong>User #<span th:text="${customer.id}"></span></strong></p>
+					</div>
+					<div class="col-md-6">
+						<label for="couponCode">First Name</label>
 						
-							<input type="text" name="couponCode" class="form-control" id="couponCode"
-								th:value="${promoCodes.couponCode}" required="required"
-								placeholder="Coupon Code" /> 
+							<input type="text" name="firstName" class="form-control" id="firstName"
+								th:value="${customer.firstName}" required="required"
+								placeholder="First Name" /> 
 						
 					</div>
-						<!-- Promo Use Count -->
-					<div class="col-md-4">
-						<label for="promoUseCount">Promo Use Count</label>
-							<input type="number" name="promoUseCount" class="form-control" id="promoUseCount" step="1"
-								th:value="${promoCodes.promoUseCount}" required="required"
-								placeholder="Promo Use Count" /> 
+						
+					<div class="col-md-6">
+						<label for="lastName">Last Name</label>
+							<input type="text" name="lastName" class="form-control" id="lastName"
+								th:value="${customer.lastName}" required="required"
+								placeholder="Last Name" /> 
 						
 					</div>
 					
 					
 					</div>
 					</div>
-					<!-- Start Expiry Dates -->
+					<!-- DOB -->
 					<div class="form-group">
 					<div class="row">
 					<div class="col-md-6">
-						<label for="startDate">Start Date</label>
-							<input type="text" name="startDate" class="form-control" id="startDate"
-								th:value="${promoCodes.startDate}" required="required" th:field="*{promoCodes.startDate}"
-								placeholder="Start Date" /> 
+						<label for="Dob">Birthday</label>
+							<input type="text" name="Dob" class="form-control" id="Dob"
+								th:value="${customer.Dob}" required="required" th:field="*{customer.Dob}"
+								placeholder="Birthday" /> 
 						
-					</div>
+					</div>		
 					
-					<!-- Expiry -->
 					<div class="col-md-6">
-						<label for="expiryDate">Expiry Date</label>
-							<input type="text" name="expiryDate" class="form-control" id="expiryDate"
-								th:value="${promoCodes.expiryDate}" required="required" th:field="*{promoCodes.expiryDate}"
-								placeholder="Expiry Date" /> 				
-					</div>
-					
-				
-				
-					</div>
-					</div>
-					
-					<!-- Coupon Value and Type -->
-					<div class="form-group">
-					<div class="row">
-					<div class="col-md-4">
-						<label for="promoValue">Coupon Value</label>
-							<input type="number" name="promoValue" class="form-control" id="promoValue"
-								th:value="${promoCodes.promoValue}" required="required"
-								placeholder="Coupon Value" /> 
 						
-					</div>
-					
-					<!-- Status -->
-					<div class="col-md-4">
-						<div class="form-group">
-						<label for="PercentOrDollar">Percent Or Dollar</label>
+						<label for="gender">Gender</label>
 						
-							<select th:value="${promoCodes.PercentOrDollar}" id="PercentOrDollar"
-								name="PercentOrDollar" class="form-control">
+							<select th:value="${customer.gender}" id="gender"
+								name="gender" class="form-control">
 								<option value="" selected="selected" disabled="disabled">Please
 									select an option...</option>
-								<option value="dollar" th:selected="(${promoCodes.PercentOrDollar} == 'dollar')">Dollar</option>
-								<option value="percent" th:selected="(${promoCodes.PercentOrDollar} == 'percent')">Percent</option>
+								<option value="male" th:selected="(${customer.gender} == 'male')">Male</option>
+								<option value="female" th:selected="(${customer.gender} == 'female')">Female</option>
 								
 							</select>
-						
-						</div>			
-					</div>
-					
-					<div class="col-md-4">
-						<label for="promoType">Promo Type</label>
-							<input type="text" name="promoType" class="form-control" id="promoType"
-								th:value="${promoCodes.promoType}" required="required"
-								placeholder="Promo Type" /> 
-						
-					</div>
-				
+		
+					</div>	
 					</div>
 					</div>
 					
-					<!-- Cart Total and Cart Item Minimum-->
 					<div class="form-group">
 					<div class="row">
-					<div class="col-md-4">
-						<label for="cartTotal">Minimum Cart Total</label>
-							<input type="number" name="cartTotal" class="form-control" id="cartTotal" step="0.01"
-								th:value="${promoCodes.cartTotal}" required="required"
-								placeholder="Minimum Cart Total" /> 
+					<div class="col-md-6">
+						<label for="username">Username</label>
+							<input type="text" name="username" class="form-control" id="username"
+								th:value="${customer.username}" required="required"
+								placeholder="Username" /> 
 						
 					</div>
 					
-					<div class="col-md-4">
-						<label for="cartItemQty">Minimum Cart Items</label>
-							<input type="number" name="cartItemQty" class="form-control" id="cartItemQty" step="1"
-								th:value="${promoCodes.cartItemQty}" required="required"
-								placeholder="Minimum Cart Items" /> 
-						
-					</div>
-					
-					<!-- Status -->
-					<div class="col-md-4">
-					<div class="form-group">
-						<label for="promoStatus">Status</label>
-						
-							<select th:value="${promoCodes.promoStatus}" id="promoStatus"
-								name="promoStatus" class="form-control">
+					<div class="col-md-6">
+						<label for="userType">User Role</label>
+							<select th:value="${customer.userType}" id="userType"
+								name="userType" class="form-control">
 								<option value="" selected="selected" disabled="disabled">Please
 									select an option...</option>
-								<option value="true" th:selected="${promoCodes.promoStatus}">Active</option>
-								<option value="false" th:selected="!${promoCodes.promoStatus}">Inactive</option>
+								<option value="Admin" th:selected="(${customer.userType} == 'Admin')">Admin</option>
+								<option value="Customer" th:selected="(${customer.userType} == 'Customer')">Customer</option>
 								
-							</select>
-						
-					</div>					
+							</select> 
 					</div>
 				
 					</div>
 					</div>
 					
-					<!-- Cart Total and Cart Item Minimum-->
 					<div class="form-group">
 					<div class="row">
 					<div class="col-md-6">
-						<label for="addedBy">Added By</label>
-							<input type="text" name="addedBy" class="form-control" id="addedBy"
-								th:value="${promoCodes.addedBy}" required="required" th:field="*{promoCodes.addedBy}"
-								placeholder="Added By" disabled="disabled"/> 
+						<label for="email">Email</label>
+							<input type="text" name="email" class="form-control" id="email"
+								th:value="${customer.email}" required="required"
+								placeholder="Email" /> 
+						
+					</div>
+					<div class="col-md-6">
+						<label for="phone">Phone</label>
+							<input type="text" name="phone" class="form-control" id="phone"
+								th:value="${customer.phone}" required="required"
+								placeholder="Phone" /> 
+						
+					</div>
+					</div>
+					</div>
+					
+					<div class="form-group">
+					<div class="row">
+					<div class="col-md-6">
+						<label for="mailingStreet1">Street Address</label>
+							<input type="text" name="mailingStreet1" class="form-control" id="mailingStreet1"
+								th:value="${customer.mailingStreet1}" required="required"
+								placeholder="Street Address" /> 
+						
+					</div>
+					<div class="col-md-6">
+						<label for="mailingStreet2">Street Address 2</label>
+							<input type="text" name="mailingStreet2" class="form-control" id="mailingStreet2"
+								th:value="${customer.mailingStreet2}" required="required"
+								placeholder="Street Address 2" /> 
+						
+					</div>
+					</div>
+					</div>
+					
+					<div class="form-group">
+					<div class="row">
+					<div class="col-md-6">
+						<label for="mailingCity">City</label>
+							<input type="text" name="mailingCity" class="form-control" id="mailingCity"
+								th:value="${customer.mailingCity}" required="required"
+								placeholder="City" /> 
+						
+					</div>
+					<div class="col-xs-6">
+					       <label for="mailingState">State</label> 
+					       <select
+								id="mailingState" class="form-control"
+								th:name="mailingState"
+								th:value="${customer.mailingState}"
+								required="required">
+								<option value="" disabled="disabled">Please select
+										an option</option>
+								<option th:each="state : ${stateList}" th:text="${state}"
+										th:value="${state}" 
+										th:selected="(${customer.mailingState}==${state})"></option>
+						  </select>
+																
+					</div>
+					</div>
+					</div>
+					
+					<div class="form-group">
+					<div class="row">
+					<div class="col-md-6">
+						<label for="mailingZipcode">Zipcode</label>
+							<input type="text" name="mailingZipcode" class="form-control" id="mailingZipcode"
+								th:value="${customer.mailingZipcode}" required="required"
+								placeholder="Zipcode" /> 
 						
 					</div>
 					
-					<div class="col-md-6">
-						<label for="addedOn">Added On</label>
-							<input type="text" name="addedOn" class="form-control" id="addedOn"
-								th:value="${promoCodes.addedOn}" required="required" th:field="*{promoCodes.addedOn}"
-								placeholder="Added On" disabled="disabled"/> 
-						
+					<div class="col-xs-6">
+					       <label for="mailingCountry">Country</label> 
+					       <select
+								id="mailingCountry" class="form-control"
+								th:name="mailingCountry"
+								th:value="${customer.mailingCountry}"
+								required="required">
+								<option value="" disabled="disabled">Please select
+										an option</option>
+								<option th:each="country : ${countryList}" th:text="${country}"
+										th:value="${country}" 
+										th:selected="(${customer.mailingCountry}==${country})"></option>
+						  </select>
+																
 					</div>
-				
 					</div>
 					</div>
-					<!-- Main Content -->
+					
 					<div class="form-group">
-						<label for="couponPolicy">Coupon Conditions &amp; Policy</label>
+					<div class="row">
+						<div class="col-md-4">
+						<label for="enabled">Status</label>
 						
-							<textarea class="form-control" id="couponPolicy" th:text="${promoCodes.couponPolicy}"
-								name="couponPolicy" rows="5" th:value="${promoCodes.couponPolicy}"
-								placeholder="Coupon Condition &amp; Policy"></textarea>						
+							<select th:value="${customer.enabled}" id="enabled"
+								name="enabled" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option value="true" th:selected="${customer.enabled}">Active</option>
+								<option value="false" th:selected="!${customer.enabled}">Inactive</option>
+								
+							</select>				
+					</div>
+					<div class="col-md-4">
+						<label for="accountStatus">Account Status</label>
+						
+							<select th:value="${customer.accountStatus}" id="accountStatus"
+								name="accountStatus" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option value="true" th:selected="${customer.accountStatus}">Active</option>
+								<option value="false" th:selected="${customer.accountStatus}">Inactive</option>
+								
+							</select>				
+					</div>
+					<div class="col-md-4">
+						<label for="userPreferences">Preferences</label>
+						
+							<select th:value="${customer.userPreferences}" id="userPreferences"
+								name="userPreferences" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option value="true" th:selected="${customer.userPreferences}">Active</option>
+								<option value="false" th:selected="!${customer.userPreferences}">Inactive</option>
+								
+							</select>				
+					</div>
+					</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-2"></div>
 						<div class="col-md-8 text-center">
 							<button type="submit" class="btn btn-success">Save</button>
-							<a class="btn btn-danger" th:href="@{/coupons/allcoupons}">Cancel</a>
+							<a class="btn btn-danger" th:href="@{/customer/customerInfo?id=}+${customer.id}">Cancel</a>
 						</div>
 					</div>	
-					
-					<!-- Main Content 
-					<div class="form-group">
-						<label for="maincontent">Page Main Content</label>
-						
-							<textarea class="form-control" id="maincontent" th:text="${promoCodes.maincontent}"
-								name="maincontent" rows="5" th:value="${promoCodes.maincontent}"
-								placeholder="Main Content"></textarea>						
-					</div>
-					-->
-							
-					
-				
-					
-		</div>
+</div>
 		
 		</fieldset>
 		</form>

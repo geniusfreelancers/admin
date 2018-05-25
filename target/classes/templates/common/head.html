@@ -44,7 +44,8 @@
 <link th:href="@{/css/datatables.bootstrap.min.css}" rel="stylesheet"/>
 
 <!-- Font Awesome icons -->
-<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
+<!--link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" /-->
 
 <link rel="icon" href="/image/logo-icon.png"/>
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
@@ -504,7 +505,9 @@
   $("#expiryDate").datepicker({
 		inline: true
 	});
-  
+  $("#Dob").datepicker({
+		inline: true
+	});
   
   $( "#dialog-link, #icons li" ).hover(
 			function() {

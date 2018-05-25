@@ -6,4 +6,5 @@ import com.adminportal.domain.Newsletter;
 
 public interface NewsletterService {
 	List<Newsletter> findAllByOrderByIdDesc();
+	Long subscribersCount();
 }

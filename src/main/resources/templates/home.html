@@ -26,43 +26,64 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <div class="info-box blue-bg">
-                <a th:href="@{/admin/customer}"><i class="fa fa-cloud-download"></i>
+                <a th:href="@{/customer/customers}"><i class="fas fa-users"></i>
                     <div class="count"><span th:text="${userCount}"></span></div>
-                    <div class="title">Registered Customers</div></a>
+                    <div class="title"><br/><span>Users</span></div></a>
             </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="info-box dark-bg"> 
+            <a th:href="@{/category/categories}"><i class="fas fa-sitemap"></i>
+                <div class="count"><span th:text="${categoryCount}"></span></div>  
+                <div class="title"><br/><span>Categories</span></div>
+                </a>
+            </div><!--/.info-box-->
+        </div><!--/.col-->
+        
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <div class="info-box brown-bg">
-                <a th:href="@{/admin/productInventory}"><i class="fa fa-shopping-cart"></i>
+                <a th:href="@{/product/productList}"><i class="fas fa-box-open"></i>
                     <div class="count"><span th:text="${productCount}"></span></div>
-                    <div class="title">Products <span class="text-primary">In <strong> <span th:text="${categoryCount}"></span> </strong></span> Categories</div></a>
+                    <div class="title"><br/><span>Products </span> </div>
+                </a>
             </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box dark-bg">
-                <i class="fa fa-thumbs-o-up"></i>
-                <div class="count">4.362</div>
-                <div class="title">Sold</div>
-            </div><!--/.info-box-->
-        </div><!--/.col-->
-
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <div class="info-box green-bg">
-                <i class="fa fa-cubes"></i>
+                <a th:href="@{/order/orderList}"><i class="fa fa-cubes"></i>
                 <div class="count"><span th:text="${orderCount}"></span></div>
-                <div class="title">Order</div>
+                <div class="title"><br/><span>Order</span></div>
+                </a>
+            </div><!--/.info-box-->
+        </div><!--/.col-->
+
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="info-box bg-primary">
+            <a th:href="@{/product/soldInventory}"><i class="fas fa-people-carry"></i>
+                <div class="count"><span th:text="${soldProductsCount}"></span></div>  
+                <div class="title"><br/><span>Sold</span></div>
+                </a>
+            </div><!--/.info-box-->
+        </div><!--/.col-->
+                
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="info-box dark-bg">
+            <a th:href="@{/subscriberlists}"><i class="fas fa-user-secret"></i> 
+                <div class="count"><span th:text="${subscribersCount}"></span></div>  
+                <div class="title"><br/><span>Subscribers</span></div>
+                </a>
             </div><!--/.info-box-->
         </div><!--/.col-->
 
     </div><!--/.row-->
 
 
-    <div class="row">
-        <div class="col-lg-9 col-md-12 hide-me">
+    <div class="row hide-me">
+        <div class="col-lg-9 col-md-12">
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -79,34 +100,7 @@
 
             </div>
         </div>
-        <div class="col-md-3">
-            <!-- List starts -->
-            <ul class="today-datas">
-                <!-- List #1 -->
-                <li>
-                    <!-- Graph -->
-                    <div><span id="todayspark1" class="spark"></span></div>
-                    <!-- Text -->
-                    <div class="datas-text">11,500 visitors/day</div>
-                </li>
-                <li>
-                    <div><span id="todayspark2" class="spark"></span></div>
-                    <div class="datas-text">15,000 Pageviews</div>
-                </li>
-                <li>
-                    <div><span id="todayspark3" class="spark"></span></div>
-                    <div class="datas-text">30.55% Bounce Rate</div>
-                </li>
-                <li>
-                    <div><span id="todayspark4" class="spark"></span></div>
-                    <div class="datas-text">$16,00 Revenue/Day</div>
-                </li>
-                <li>
-                    <div><span id="todayspark5" class="spark"></span></div>
-                    <div class="datas-text">12,000000 visitors every Month</div>
-                </li>
-            </ul>
-        </div>
+       
 
 
     </div>
@@ -133,7 +127,7 @@
                         <thead>
                         <tr>
                             <th>Order No</th>
-                            <th>Customer Name</th>
+                            <th>Custome Name</th>
                             <th>Phone</th>
                             <th>Order Total</th>
                             <th>Status</th>
@@ -160,13 +154,14 @@
 								<strong>$</strong> <span th:text="${order.orderTotal}"></span>
 							</td>
                             <td>
-                                <div class="progress thin">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                                <div class="progress thin">   <!--  progress-bar-success -->
+                                    <div th:text="${order.orderStatus}" class="progress-bar" th:classappend="'progress-bar-' +${order.orderStatus}" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" >
+                                    
                                     </div>
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                    </div>
+                                  
+                                   
                                 </div>
-                                <span class="sr-only">73%</span>
+                                
                             </td>
                         </tr>
 
@@ -177,10 +172,40 @@
             </div>
 
         </div><!--/col-->
-        <div class="col-md-3">
+        
+         <div class="col-md-3">
+            <!-- List starts -->
+            <ul class="today-datas">
+                <!-- List #1 -->
+                <li>
+                    <!-- Graph -->
+                    <div><span id="todayspark1" class="spark"></span></div>
+                    <!-- Text -->
+                    <div class="datas-text">11,500 visitors/day</div>
+                </li>
+                <li>
+                    <div><span id="todayspark2" class="spark"></span></div>
+                    <div class="datas-text">15,000 Pageviews</div>
+                </li>
+                <li>
+                    <div><span id="todayspark3" class="spark"></span></div>
+                    <div class="datas-text">30.55% Bounce Rate</div>
+                </li>
+                <li>
+                    <div><span id="todayspark4" class="spark"></span></div>
+                    <div class="datas-text">$16,00 Revenue/Day</div>
+                </li>
+                <li>
+                    <div><span id="todayspark5" class="spark"></span></div>
+                    <div class="datas-text">12,000000 visitors every Month</div>
+                </li>
+            </ul>
+        
+        
+        <div class="col-md-12">
 
             <div class="social-box facebook">
-                <i class="fa fa-facebook"></i>
+                <i class="fab fa-facebook"></i>
                 <ul>
                     <li>
                         <strong>256k</strong>
@@ -193,10 +218,10 @@
                 </ul>
             </div><!--/social-box-->
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
 
             <div class="social-box google-plus">
-                <i class="fa fa-google-plus"></i>
+                <i class="fab fa-google-plus-square"></i>
                 <ul>
                     <li>
                         <strong>962</strong>
@@ -210,10 +235,10 @@
             </div><!--/social-box-->
 
         </div><!--/col-->
-        <div class="col-md-3">
+        <div class="col-md-12">
 
             <div class="social-box twitter">
-                <i class="fa fa-twitter"></i>
+                <i class="fab fa-twitter-square"></i>
                 <ul>
                     <li>
                         <strong>1562k</strong>
@@ -227,7 +252,7 @@
             </div><!--/social-box-->
 
         </div><!--/col-->
-
+	</div>
     </div>
 
 
@@ -345,8 +370,9 @@
                         </div>
                         <div class="col-lg-4">
                                 <span class="profile-ava pull-right">
+                                	<a th:href="@{/shoppingCarts}">
                                         <img alt="" class="simple" th:src="@{/image/avatar1_small.jpg}"/>
-                                        Jenifer smith
+                                        View Carts</a>
                                 </span>
                         </div>
                     </div>
@@ -354,107 +380,45 @@
                 <table class="table table-hover personal-task">
                     <tbody>
                     <tr>
-                        <td>Cart Id</td>
+                        <td><strong>Cart Id</strong></td>
                         <td>
-                            Customer Name
+                            <strong>Last Updated</strong>
                         </td>
                         <td>
-                            Cart Total
+                            <strong>Cart Total</strong>
                         </td>
                         <td>
-                                    <span class="profile-ava">
-                                        <img alt="" class="simple" th:src="@{/image/avatar1_small.jpg}"/>
-                                    </span>
+                            <strong>Status</strong>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Yesterday</td>
+                    <tr th:if="${emptyOrder}">
+							<td><strong>No cart to dispaly</strong></td>
+					</tr>
+                    
+                    <tr th:if="!${emptyCart}" data-th-each="cart : ${shoppingCartList}">
+                        <td><a th:href="@{/shoppingCart/}+${cart.id}"><span th:text="${cart.bagId}"></span>
+                        </a>
+                        </td>
+                        <td th:text="${cart.updatedDate}"></td>
                         <td>
-                            Project Design Task
+                            <span class="text-primary"><strong>Sub total:</strong> </span>
+                            <span>$<span id="grandTotal"
+								th:text="${cart.grandTotal}"></span></span><br/>
+							<span class="text-success"><strong>Discount:</strong> </span>
+                            <span>$<span id="discountedAmount"
+								th:text="${cart.discountedAmount}"></span></span><br/>
+							<span class="text-warning"><strong>Shipping:</strong> </span>
+                            <span>$<span id="shippingCost"
+								th:text="${cart.shippingCost}"></span></span><br/>	
+							<span class="text-danger"><strong>Grand total:</strong> </span>
+                            <span>$<span id="orderTotal"
+								th:text="${cart.orderTotal}"></span></span>		
                         </td>
                         <td>
                             <span class="badge bg-success">Task</span>
                         </td>
-                        <td>
-                            <div id="work-progress2"></div>
-                        </td>
                     </tr>
-                    <tr>
-                        <td>21-10-14</td>
-                        <td>
-                            Generate Invoice
-                        </td>
-                        <td>
-                            <span class="badge bg-success">Task</span>
-                        </td>
-                        <td>
-                            <div id="work-progress3"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>22-10-14</td>
-                        <td>
-                            Project Testing
-                        </td>
-                        <td>
-                            <span class="badge bg-primary">To-Do</span>
-                        </td>
-                        <td>
-                                      <span class="profile-ava">
-                                        <img alt="" class="simple" th:src="@{/image/avatar1_small.jpg}"/>
-                                      </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>24-10-14</td>
-                        <td>
-                            Project Release Date
-                        </td>
-                        <td>
-                            <span class="badge bg-info">Milestone</span>
-                        </td>
-                        <td>
-                            <div id="work-progress4"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>28-10-14</td>
-                        <td>
-                            Project Release Date
-                        </td>
-                        <td>
-                            <span class="badge bg-primary">To-Do</span>
-                        </td>
-                        <td>
-                            <div id="work-progress5"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Last week</td>
-                        <td>
-                            Project Release Date
-                        </td>
-                        <td>
-                            <span class="badge bg-primary">To-Do</span>
-                        </td>
-                        <td>
-                            <div id="work-progress1"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>last month</td>
-                        <td>
-                            Project Release Date
-                        </td>
-                        <td>
-                            <span class="badge bg-success">To-Do</span>
-                        </td>
-                        <td>
-                                      <span class="profile-ava">
-                                        <img alt="" class="simple" th:src="@{/image/avatar1_small.jpg}"/>
-                                      </span>
-                        </td>
-                    </tr>
+                    
                     </tbody>
                 </table>
             </section>

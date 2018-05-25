@@ -2,6 +2,7 @@ package com.adminportal.service;
 
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.adminportal.domain.PromoCodes;
 import com.adminportal.domain.ShoppingCart;
@@ -20,4 +21,8 @@ public interface ShoppingCartService {
 /*	GuestShoppingCart updateGuestShoppingCart(GuestShoppingCart guestShoppingCart);
 	
 	GuestShoppingCart findByGuestShoppingCartId(String id);*/
+
+	List<ShoppingCart> findTop10ByOrderByUpdatedDateDesc();
+
+	ShoppingCart findOne(Long id);
 }
