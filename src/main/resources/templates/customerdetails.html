@@ -33,7 +33,7 @@
 	<a th:href="@{/customer/updateCustomer?id=}+${customer.id}" style="float: left;" class="btn btn-default">Edit User</a>
 </div>
 <div class="col-md-6">
-	<a href="/productshelf" style="float: right;" class="btn btn-default">Deactivate</a>
+	<a th:href="@{/customer/deactivateCustomer?id=}+${customer.id}" style="float: right;" class="btn btn-default"><span th:if="${customer.enabled}">Deactivate</span><span th:if="!${customer.enabled}">Activate</span></a>
 </div>
 <div class="col-md-12 text-center user-bar">
 	<h3>

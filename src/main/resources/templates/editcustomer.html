@@ -20,14 +20,32 @@
             </ol>
         </div>
     </div>
-
-
+  <div class="col-md-12 border-all">  
+<div class="col-md-6">
+	<a th:href="@{/customer/customerInfo?id=}+${customer.id}" style="float: left;" class="btn btn-danger">Cancel</a>
+</div>
+<div class="col-md-6">
+	<a th:href="@{/customer/deactivateCustomer?id=}+${customer.id}" style="float: right;" class="btn btn-default"><span th:if="${customer.enabled}">Deactivate</span><span th:if="!${customer.enabled}">Activate</span></a>
+</div>
+<div class="col-md-7 col-md-offset-2 text-center user-bar">
+	
+	<h3>
+	<i class="fas fa-user-astronaut" style="color:#337ab7;"></i>
+	<strong><span>Edit </span>
+	<span id="orderedDate" th:text="${customer.firstName}"></span> 
+	<span id="orderedDate" th:text="${customer.lastName}"></span>'s
+	<span>Profile</span>
+	</strong>
+	</h3>
+</div>
+</div>
+<div class="col-md-12 border-all">
 	<form class="form-horizontal" th:action="@{/customer/updateCustomer}"
 				method="post" enctype="multipart/form-data">
 				<fieldset>
 		<div class="col-md-7 col-md-offset-2">
 				<!-- Start -->
-				<h3 class="text"><strong>Edit User</strong></h3>
+				
 					<div th:if="${duplicatepromo}" class="alert alert-danger">
 						Duplicate Coupon Code. Please change the coupon code or edit  
 						<a th:href="@{/coupons/edit/}+${existingpromo.id}"><span class="uppercase" th:text="${existingpromo.couponCode}"></span></a> 
@@ -258,6 +276,7 @@
 		</fieldset>
 		</form>
 
+</div>
 <!-- End -->
 </section>
 
