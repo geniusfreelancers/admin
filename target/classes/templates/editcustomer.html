@@ -12,19 +12,22 @@
 <!-- Main Section Starts -->
 	    <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> EDIT USER</h3>
+            <h3 class="page-header"><i class="far fa-edit" aria-hidden="true"></i> EDIT USER</h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/customer/customerInfo?id=}+${customer.id}" th:text="${customer.username}"></a></li>
-                <li><i class="fa fa-file" aria-hidden="true"></i>Edit User</li>
+                <li><i class="fas fa-user-astronaut" aria-hidden="true"></i><a th:href="@{/customer/customerInfo?id=}+${customer.id}" th:text="${customer.username}"></a></li>
+                <li><i class="far fa-edit" aria-hidden="true"></i>Edit User</li>
             </ol>
         </div>
     </div>
   <div class="col-md-12 border-all">  
-<div class="col-md-6">
-	<a th:href="@{/customer/customerInfo?id=}+${customer.id}" style="float: left;" class="btn btn-danger">Back</a>
+<div class="col-md-4">
+	<a th:href="@{/customer/customerInfo?id=}+${customer.id}" style="float: left;" class="btn btn-primary">Back</a>
 </div>
-<div class="col-md-6">
+<div class="col-md-4">
+	<a th:href="@{/customer/updatePassword?id=}+${customer.id}" style="float: center;" class="btn btn-danger">Change Password</a>
+</div>
+<div class="col-md-4">
 	<a th:href="@{/customer/deactivateCustomer?id=}+${customer.id}" style="float: right;" class="btn btn-default"><span th:if="${customer.enabled}">Deactivate</span><span th:if="!${customer.enabled}">Activate</span></a>
 </div>
 <div class="col-md-7 col-md-offset-2 text-center user-bar">
@@ -244,7 +247,7 @@
 								<option value="" selected="selected" disabled="disabled">Please
 									select an option...</option>
 								<option value="true" th:selected="${customer.accountStatus}">Active</option>
-								<option value="false" th:selected="${customer.accountStatus}">Inactive</option>
+								<option value="false" th:selected="!${customer.accountStatus}">Inactive</option>
 								
 							</select>				
 					</div>

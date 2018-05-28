@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <div class="info-box blue-bg">
-                <a th:href="@{/customer/customers}"><i class="fas fa-users"></i>
+                <a th:href="@{/customer/customers?type=all}"><i class="fas fa-users"></i>
                     <div class="count"><span th:text="${userCount}"></span></div>
                     <div class="title"><br/><span>Users</span></div></a>
             </div><!--/.info-box-->
@@ -268,7 +268,7 @@
             <!-- Widget -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="pull-left">Product Reviews</div>
+                    <div class="pull-left">New Inquiries</div>
                     <div class="widget-icons pull-right">
                         <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                         <a href="#" class="wclose"><i class="fa fa-times"></i></a>
@@ -283,66 +283,41 @@
                         <ul class="chats">
 
                             <!-- Chat by us. Use the class "by-me". -->
-                            <li class="by-me">
+                            <li class="by-me"  data-th-each="contact : ${contactList}">
                                 <!-- Use the class "pull-left" in avatar -->
                                 <div class="avatar pull-left">
                                     <img th:src="@{/image/user.jpg}" alt=""/>
                                 </div>
-
+								<a th:href="@{/contactdetails/}+${contact.id}">
                                 <div class="chat-content">
                                     <!-- In meta area, first include "name" and then "time" -->
-                                    <div class="chat-meta">John Smith <span class="pull-right">3 hours ago</span></div>
-                                    Vivamus diam elit diam, consectetur dapibus adipiscing elit.
-                                    <div class="chat-meta"><span class="pull-right">Product Name</span></div>
+                                    <div class="chat-meta"><span th:text="${contact.fullName}"></span> <span class="pull-right" th:text="${contact.contactDate}"></span></div>
+                                    <span th:text="${contact.reason}"></span>
+                                    <div class="chat-meta"><span th:text="${contact.email}"></span> <span class="pull-right" th:text="${contact.orderNumber}"></span></div>
                                     <div class="clearfix"></div>
                                 </div>
+                                </a>
                             </li>
 
-                            <!-- Chat by other. Use the class "by-other". -->
+                            <!-- Chat by other. Use the class "by-other". >
                             <li class="by-other">
-                                <!-- Use the class "pull-right" in avatar -->
+                                
                                 <div class="avatar pull-right">
                                     <img th:src="@{/image/user22.png}" alt=""/>
                                 </div>
 
                                 <div class="chat-content">
-                                    <!-- In the chat meta, first include "time" then "name" -->
+                                   
                                     <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
                                     Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
                                     <div class="clearfix"></div>
                                 </div>
-                            </li>
-
-                            <li class="by-me">
-                                <div class="avatar pull-left">
-                                    <img th:src="@{/image/user.jpg}" alt=""/>
-                                </div>
-
-                                <div class="chat-content">
-                                    <div class="chat-meta">John Smith <span class="pull-right">4 hours ago</span></div>
-                                    Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
-
-                            <li class="by-other">
-                                <!-- Use the class "pull-right" in avatar -->
-                                <div class="avatar pull-right">
-                                    <img th:src="@{/image/user22.png}" alt=""/>
-                                </div>
-
-                                <div class="chat-content">
-                                    <!-- In the chat meta, first include "time" then "name" -->
-                                    <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
-                                    Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
+                            </li-->
 
                         </ul>
 
                     </div>
-                    <!-- Widget footer -->
+                    <!-- Widget footer >
                     <div class="widget-foot">
 
                         <form class="form-inline">
@@ -353,7 +328,7 @@
                         </form>
 
 
-                    </div>
+                    </div-->
                 </div>
 
 

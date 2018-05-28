@@ -2,7 +2,7 @@
 $(function() {
 	$('#category').change(
 	        function() {
-	            $.getJSON("/adminportal/product/getsubcategories", {
+	            $.getJSON("/adminportal/category/getsubcategories", {
 	                id : $(this).val(),
 	                ajax : 'true'
 	            }, function(data) {
@@ -29,7 +29,7 @@ $(function() {
 $(function() {
 	$('#subCategory').change(
 	        function() {
-	            $.getJSON("/adminportal/product/getsubsubcategories", {
+	            $.getJSON("/adminportal/category/getsubsubcategories", {
 	                id : $(this).val(),
 	                ajax : 'true'
 	            }, function(data) {

@@ -22,4 +22,5 @@ public interface CategoryService {
 	Long categoryCount();
 	Long subCategoryCount();
 	Long subSubCategoryCount();
+	Long countProductsInCategory(Category category);
 }

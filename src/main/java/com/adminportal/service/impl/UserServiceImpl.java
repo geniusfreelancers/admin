@@ -71,4 +71,32 @@ public class UserServiceImpl implements UserService {
 	public User findByEmail(String email){
 		return userRepository.findByEmail(email);
 	}
+
+
+	@Override
+	public List<User> findByUserType(String userType) {
+		return userRepository.findByUserType(userType);
+	}
+
+   
+	
+	public List<User> searchUsers(String keyword) {
+		List<User> userList = userRepository.findByPhone(keyword);
+		
+		if(userList == null || userList.size() == 0) {
+			userList = userRepository.findByFirstName(keyword);
+		}
+		if(userList == null || userList.size() == 0) {
+			userList = userRepository.findByLastName(keyword);
+		}
+		
+		if(userList == null || userList.size() == 0) {
+			userList =  userRepository.findByMailingZipcode(keyword);
+		}
+		return userList;
+	}
+
+
+	
+
 }

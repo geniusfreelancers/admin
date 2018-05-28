@@ -119,6 +119,7 @@ public class ProductController {
 
 		String productImages = product.getProductImagesName();
 		List<String> productImageList = Arrays.asList(productImages.split("\\s*,\\s*"));
+	
 		
 		if(product.getSoldProducts() != null){
 			model.addAttribute("soldProduct", true);
@@ -171,6 +172,7 @@ public class ProductController {
 		//////////////////
 		MultipartFile coverImage = product.getProductCoverImage();
 		String coverImageName = product.getCoverImageName();
+		String coverImageRemove = product.getCoverImageName();
 		if(coverImage == null || coverImage.isEmpty()) {
 			product.setCoverImageName(coverImageName);
 		}else {
@@ -180,26 +182,37 @@ public class ProductController {
 		}
 		productImageName = coverImageName;
 		String getProductImagesName = product.getProductImagesName();
+		List<String> imageList = Arrays.asList(getProductImagesName.split("\\s*,\\s*"));
+		Collection<String> c = new ArrayList<String>(imageList);
+		
 		if(removefile) {
-    		
-			List<String> imageList = Arrays.asList(getProductImagesName.split("\\s*,\\s*"));
-			Collection c = new ArrayList(imageList);
 			//int count = imageList.size();
 			for(String image : imageList) {
-				if(!removeCover && coverImageName.equalsIgnoreCase(image)) {
-					System.out.println("Removing All Images except Cover Image "+image);
-				}else {
-					amazonClient.deleteFileFromS3BucketByFilename(image);
-					c.remove(image);
-					System.out.println("Removing All Images "+image);
-				}
-				//count++;
+				
+					if(!removeCover && coverImageRemove.equalsIgnoreCase(image)) {
+						c.remove(image);
+						System.out.println("Removing All Images except Cover Image "+image);
+					
+					}else {
+						amazonClient.deleteFileFromS3BucketByFilename(image);
+						c.remove(image);
+						System.out.println("Removing All Images "+image);
+					}
 				
 			}
-			getProductImagesName = c.toString();
+			
     	}
+		if(coverImageName.equalsIgnoreCase(coverImageRemove)) {
+			
+		}else {
+			getProductImagesName = coverImageName+","+c.toString();
+		}
+		
+		getProductImagesName = getProductImagesName.replace("[", "");
+		getProductImagesName = getProductImagesName.replace("]", "");
+		productService.save(product);
         List<MultipartFile> files = product.getProductImage();
-        if (files != null || files.size() > 0) 
+        if (files != null && files.size() > 0 && !files.isEmpty()) 
         {
 	            for (MultipartFile multipartFile : files) {
 	            	
@@ -208,6 +221,7 @@ public class ProductController {
 				}
         	
         }
+        productImageName = productImageName.replace(",,", ",");
 		product.setProductImagesName(productImageName);
 		productService.save(product);
 		return "redirect:/product/productInfo?id="+product.getId();

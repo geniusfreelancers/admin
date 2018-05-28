@@ -49,12 +49,13 @@ public class ContactController {
 	
 	@RequestMapping("/contactdetails/{id}")
 	public String contactDetails(@PathVariable Long id, Model model,@AuthenticationPrincipal User activeUser) {
-		StaticPage staticpage = staticPageService.findById(id);
+		Contact contact = contactService.findById(id);
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
         model.addAttribute("siteSettings",siteSettings);
         User user = userService.findByUsername(activeUser.getUsername());
         model.addAttribute("user", user);
-        model.addAttribute("staticpage",staticpage);
-        return "editpage";
+        
+        model.addAttribute("contact",contact);
+        return "contactdetails";
 	}
 }

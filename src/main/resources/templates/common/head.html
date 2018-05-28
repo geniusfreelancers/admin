@@ -77,8 +77,24 @@
             <!--  search form start -->
             <ul class="nav top-menu">
                 <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text"/>
+                    <form class="navbar-form" th:action="@{/search/searchBytype}"
+				method="post">
+                    	<select id="searchType" style="background:#ffffff;"
+								name="searchType" class="form-control">
+								<option value="products" th:selected="(${searchType} == 'products')">Products</option>
+								<option value="users" th:selected="(${searchType} == 'users')">Users</option>
+								<option value="orders" th:selected="(${searchType} == 'orders')">Orders</option>
+								<option value="cart" th:selected="(${searchType} == 'cart')">Shopping Cart</option>
+								<option value="pages" th:selected="(${searchType} == 'pages')">Pages</option>
+								<option value="coupons" th:selected="(${searchType} == 'coupons')">Coupons</option>
+								<option value="inquiry" th:selected="(${searchType} == 'inquiry')">Inquiry</option>
+								<option value="subscribers" th:selected="(${searchType} == 'subscribers')">Subscribers</option>
+							</select> 
+                        
+                         <input id="keyword" name="keyword"
+                          class="form-control" placeholder="Search" type="text" th:value="${keyword}"/>
+                         
+                         <button type="submit" class="btn btn-success">Search</button>
                     </form>
                 </li>
             </ul>
@@ -335,24 +351,24 @@
             <ul class="sidebar-menu">
                 <li class="active">
                     <a class="" th:href="@{/}">
-                        <i class="icon_house_alt"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
+                        <i class="fas fa-user-astronaut"></i>
                         <span>Users</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/customer/customers}">Customers</a></li>
-                        <li><a class="" href="form_validation.html">Employees</a></li>
+                        <li><a class="" th:href="@{/customer/customers?type=members}">Customers</a></li>
+                        <li><a class="" th:href="@{/customer/customers?type=employees}">Employees</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_desktop"></i>
+                        <i class="fas fa-list-ul"></i>
                         <span>Products</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
@@ -363,20 +379,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="" href="widgets.html">
-                        <i class="icon_genius"></i>
-                        <span>Widgets</span>
-                    </a>
-                </li>
-                <li>
                     <a class="" th:href="@{/order/orderList}">
-                        <i class="icon_genius"></i>
+                        <i class="fa fa-cubes"></i>
                         <span>Orders</span>
                     </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_documents_alt"></i>
+                        <i class="icon_table"></i>
                         <span>Coupons</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
@@ -389,7 +399,7 @@
                 </li>
                 <li>
                     <a class="" href="#">
-                        <i class="icon_piechart"></i>
+                        <i class="far fa-comments"></i>
                         <span>Reviews</span>
 
                     </a>
@@ -397,7 +407,7 @@
                 </li>
 				<li>
                     <a class="" th:href="@{/contactlists}">
-                        <i class="icon_piechart"></i>
+                        <i class="fas fa-comment"></i>
                         <span>Inquiry</span>
 
                     </a>
@@ -405,7 +415,7 @@
                 </li>
                 <li>
                     <a class="" th:href="@{/subscriberlists}">
-                        <i class="icon_piechart"></i>
+                        <i class="fas fa-users"></i>
                         <span>Subscribers</span>
 
                     </a>
@@ -413,7 +423,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
+                        <i class="fas fa-cogs"></i>
                         <span>Site Settings</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
@@ -438,7 +448,7 @@
                 </li>
                 <li>
                     <a class="" th:href="@{/logout}">
-                        <i class="icon_key_alt"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <span>Log Out</span>
                     </a>
 

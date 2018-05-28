@@ -18,4 +18,5 @@ public interface ProductService {
 	Long soldProductsCount();
 	
 	List<Product> findSoldInventory();
+	List<Product> searchProducts(String keyword);
 }

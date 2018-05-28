@@ -26,4 +26,7 @@ public interface UserService {
 	void setUserDefaultPayment(Long userPaymentId, User user);
 	
 	void setUserDefaultShipping(Long userShippingId, User user);*/
+	List<User> findByUserType(String userType);
+	List<User> searchUsers(String keyword);
+	
 }

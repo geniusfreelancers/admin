@@ -11,10 +11,10 @@
 <!-- Main Section Starts -->
 	    <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>Product Inventory Information</strong></h3>
+            <h3 class="page-header"><i class="fas fa-list-ul"></i> <strong>Product Inventory Information</strong></h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-laptop"></i>All Products</li>
+                <li><i class="fas fa-list-ul"></i>All Products</li>
             </ol>
         </div>
     </div>
@@ -62,9 +62,9 @@
 						</td>
 						
 						<td class="col-md-1">
-							<i class="fa fa-folder" aria-hidden="true" style="margin-right:5px;"></i><span th:text="${product.category.categoryName}" ></span><br/>
-							<i class="fa fa-folder-open" aria-hidden="true" style="margin-left:5px; margin-right:5px;"></i><span th:text="${product.subCategory.subCategoryName}" ></span><br/>
-							<i class="fa fa-folder-open-o" aria-hidden="true" style="margin-left:10px; margin-right:5px;"></i><span th:text="${product.mainSubCategory.subSubCategoryName}" ></span><br/>
+							<i class="fas fa-sitemap" aria-hidden="true" style="margin-right:5px;"></i><span th:text="${product.category.categoryName}" ></span><br/>
+							<i class="fa fa-folder" aria-hidden="true" style="margin-left:5px; margin-right:5px;"></i><span th:text="${product.subCategory.subCategoryName}" ></span><br/>
+							<i class="fa fa-folder-open" aria-hidden="true" style="margin-left:10px; margin-right:5px;"></i><span th:text="${product.mainSubCategory.subSubCategoryName}" ></span><br/>
 						</td>
 						<td th:text="${product.inStockNumber}" class="col-md-1"></td>
 						<td class="col-md-2">
@@ -72,11 +72,14 @@
 							<strong>List Price: </strong> <span th:text="${product.listPrice}"></span>
 							
 						</td>
-						<td th:text="${product.active}" class="col-md-1"></td>
+						<td class="col-md-1">
+							<span th:if="${product.active}">Active</span>
+							<span th:if="!${product.active}">Inactive</span>
+						</td>
 						<td class="col-md-2">
 							<input hidden="hidden" name="id" th:value="${product.id}"/>
 							<a class="btn btn-primary btn-xs edit-product" th:href="@{/product/updateProduct?id=}+${product.id}">
-							<span class="fa fa-pencil-square-o"></span> Edit</a>
+							<i class="far fa-edit"></i> Edit</a>
 							<button th:id="'oneProduct-'+${product.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete">
 							<span class="fa fa-times"></span> Delete</button>		
 						</td>

@@ -25,4 +25,8 @@ public interface ShoppingCartService {
 	List<ShoppingCart> findTop10ByOrderByUpdatedDateDesc();
 
 	ShoppingCart findOne(Long id);
+
+	ShoppingCart searchCarts(String keyword);
+
+	List<ShoppingCart> findAllByOrderDateDesc();
 }

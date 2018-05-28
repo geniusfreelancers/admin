@@ -12,4 +12,6 @@ public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Lon
 	ShoppingCart findByBagId(String bagId);
 
 	List<ShoppingCart> findTop10ByOrderByUpdatedDateDesc();
+
+	List<ShoppingCart> findAllByOrderByUpdatedDateDesc();
 }

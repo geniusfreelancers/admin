@@ -1,7 +1,6 @@
 package com.adminportal.service.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.adminportal.domain.Product;
 import com.adminportal.domain.SoldProducts;
+import com.adminportal.repository.CategoryRepository;
 import com.adminportal.repository.ProductRepository;
 import com.adminportal.repository.SoldProductsRepository;
+import com.adminportal.repository.SubCategoryRepository;
+import com.adminportal.repository.SubSubCategoryRepository;
 import com.adminportal.service.ProductService;
 
 @Service
@@ -20,6 +22,12 @@ public class ProductServiceImpl implements ProductService{
 	private ProductRepository productRepository;
 	@Autowired
 	private SoldProductsRepository soldProductsRepository;
+	@Autowired 
+	public CategoryRepository categoryRepository;
+	@Autowired 
+	public SubCategoryRepository subCategoryRepository;
+	@Autowired 
+	public SubSubCategoryRepository subSubCategoryRepository;
 	
 	public Product save(Product product){
 		return productRepository.save(product);
@@ -68,4 +76,18 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return productList;
 	}
+
+	
+	
+	public List<Product> searchProducts(String keyword) {
+		List<Product> productList = productRepository.findBySku(keyword);
+		if (productList.size() == 0){
+			productList = productRepository.findByTitleContaining(keyword);
+		}
+		if (productList.size() == 0){
+			productList = productRepository.findByDescriptionContaining(keyword);
+		}
+		return productList;
+	}
+	
 }

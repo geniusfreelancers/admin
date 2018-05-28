@@ -47,6 +47,7 @@ public class Order {
 	private BigDecimal orderTotal;
 	private String shippingCarrier;
 	private String trackingNumber;
+	private Date estimatedDeliveryDate;
 	
 	@OneToMany(mappedBy = "order", cascade=CascadeType.ALL)
 	private List<CartItem> cartItemList;
@@ -272,6 +273,14 @@ public class Order {
 
 	public void setTrackingNumber(String trackingNumber) {
 		this.trackingNumber = trackingNumber;
+	}
+
+	public Date getEstimatedDeliveryDate() {
+		return estimatedDeliveryDate;
+	}
+
+	public void setEstimatedDeliveryDate(Date estimatedDeliveryDate) {
+		this.estimatedDeliveryDate = estimatedDeliveryDate;
 	}
 	
 	

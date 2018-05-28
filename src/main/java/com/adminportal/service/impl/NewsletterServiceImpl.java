@@ -20,5 +20,10 @@ public class NewsletterServiceImpl implements NewsletterService{
 	public Long subscribersCount() {
 		return newsletterRepository.count();
 	}
+
+	public List<Newsletter> searchSubscribers(String keyword) {
+		List<Newsletter> subscriberList = newsletterRepository.findByEmail(keyword);
+		return subscriberList;
+	}
 	
 }

@@ -2,8 +2,10 @@ package com.adminportal.controller;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,9 +25,11 @@ import com.adminportal.repository.OrderRepository;
 import com.adminportal.service.OrderLogService;
 import com.adminportal.service.OrderService;
 import com.adminportal.service.UserService;
+import com.adminportal.service.impl.AmazonClient;
 import com.adminportal.service.impl.StripeService;
 import com.adminportal.utility.MailConstructor;
 import com.stripe.model.Charge;
+import com.stripe.model.Refund;
 
 @Controller
 @RequestMapping("/order")
@@ -34,7 +38,21 @@ public class OrderController {
 	private StripeService paymentsService;
 	@Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey;
+	private AmazonClient amazonClient;
 	
+
+    @Value("${amazonProperties.endpointUrl}")
+    private String endpointUrl;
+    @Value("${amazonProperties.bucketName}")
+    private String bucketName;
+    @Value("${amazonProperties.accessKey}")
+    private String accessKey;
+    @Value("${amazonProperties.secretKey}")
+    private String secretKey;
+    @Autowired
+    OrderController(AmazonClient amazonClient) {
+        this.amazonClient = amazonClient;
+    }
 	@Autowired
 	private OrderLogRepository orderLogRepository;
 	@Autowired
@@ -66,7 +84,7 @@ public class OrderController {
 		
 	}
 	
-	@RequestMapping(value = "/orderdetails/{orderId}")
+		@RequestMapping(value = "/orderdetails/{orderId}")
 	   public String orderDetailsPage(@PathVariable Long orderId, Model model,@AuthenticationPrincipal User activeUser) {
 			User user = userService.findByUsername(activeUser.getUsername());
 	        model.addAttribute("user", user);
@@ -84,14 +102,7 @@ public class OrderController {
 
 	       model.addAttribute("isSuccess", charge.getStatus());
 	       model.addAttribute("transaction", charge);
-	   		LocalDate today = LocalDate.now();
-	   		LocalDate estimatedDeliveryDate;
 	   		
-	   		if(order.getShippingMethod().equals("groundShipping")){
-	   			estimatedDeliveryDate = today.plusDays(5);
-	   		}else{
-	   			estimatedDeliveryDate = today.plusDays(3);
-	   		}
 	   		model.addAttribute("creditMethod",true);
 	   		int currentStatus = 1;
 	   		if(order.getOrderStatus().equalsIgnoreCase("created")) {
@@ -105,9 +116,9 @@ public class OrderController {
 	   		}else if (order.getOrderStatus().equalsIgnoreCase("delivered")) {
 	   			currentStatus = 6;
 	   		}else {
-	   			currentStatus = 2;
+	   			currentStatus = 0;
 	   		}
-	   		model.addAttribute("estimatedDeliveryDate",estimatedDeliveryDate);
+	   		model.addAttribute("estimatedDeliveryDate",order.getEstimatedDeliveryDate());
 	   		model.addAttribute("order",order);
 	   		model.addAttribute("currentStatus",currentStatus);
 	   		model.addAttribute("cartItemList", order.getCartItemList());
@@ -118,7 +129,8 @@ public class OrderController {
 	   			model.addAttribute("emptyLog",false);
 	   			model.addAttribute("orderLogList",orderLogList);
 	   		}
-	   		
+	   		String fileUrl = endpointUrl + "/" + bucketName + "/";
+			model.addAttribute("fileUrl", fileUrl);
 	       return "orderdetails";
 	   }
 	
@@ -140,14 +152,7 @@ public class OrderController {
 
 	       model.addAttribute("isSuccess", charge.getStatus());
 	       model.addAttribute("transaction", charge);
-	   		LocalDate today = LocalDate.now();
-	   		LocalDate estimatedDeliveryDate;
 	   		
-	   		if(order.getShippingMethod().equals("groundShipping")){
-	   			estimatedDeliveryDate = today.plusDays(5);
-	   		}else{
-	   			estimatedDeliveryDate = today.plusDays(3);
-	   		}
 	   		model.addAttribute("creditMethod",true);
 	   		int currentStatus = 2;
 	   		if(takeAction.equalsIgnoreCase("processing")) {
@@ -176,6 +181,7 @@ public class OrderController {
 		   		orderLog.setUpdatedDate(Calendar.getInstance().getTime());
 		   		orderLog.setProcessingStatus(takeAction);
 		   		orderLog.setUserReason("Order shipped via "+ carrier + " and tracking number "+trackingId);
+		   		
 		   		orderLogRepository.save(orderLog);
 		   	//Sending Confirmation Email to customer
 			//    mailSender.send(mailConstructor.constructGuestOrderConfirmationEmail(order,Locale.ENGLISH));
@@ -218,7 +224,7 @@ public class OrderController {
 		   	//process for refund
 	   			currentStatus = 0;
 	   		}
-	   		model.addAttribute("estimatedDeliveryDate",estimatedDeliveryDate);
+	   		model.addAttribute("estimatedDeliveryDate",order.getEstimatedDeliveryDate());
 	   		model.addAttribute("order",order);
 	   		model.addAttribute("currentStatus",currentStatus);
 	   		model.addAttribute("cartItemList", order.getCartItemList());
@@ -233,5 +239,99 @@ public class OrderController {
 	       return "orderdetails";
 	   }
 	
+	@RequestMapping(value = "/cancelOrder/{orderId}")
+	   public String cancelOrder(@PathVariable Long orderId, Model model,@AuthenticationPrincipal User activeUser) {
+			User user = userService.findByUsername(activeUser.getUsername());
+	        model.addAttribute("user", user);
+	       
+	       Order order;
+	       Refund refund;
+	       try {
+	    	   order = orderService.findOne(orderId);
+	    	   String transactionId = order.getPaymentConfirm(); 
+	           //Full refund created
+	           Map<String, Object> params = new HashMap<>();
+	           params.put("charge", transactionId);
+	           refund = Refund.create(params);  
+	       } catch (Exception e) {
+	           System.out.println("Exception: " + e);
+	           return "badRequestPage";
+	       }
+	       model.addAttribute("isSuccess", refund.getStatus());
+	       if(refund.getStatus().equalsIgnoreCase("succeeded")) {
+	    	   model.addAttribute("status",true); 
+	    	   order.setOrderStatus("cancel");
+	    	 //Sending Confirmation Email to customer
+			 // mailSender.send(mailConstructor.constructGuestOrderConfirmationEmail(order,Locale.ENGLISH));
+	    	   OrderLog orderLog = new OrderLog();
+		   		orderLog.setOrder(order);
+		   		orderLog.setUpdatedBy(user.getFirstName()+ " " + user.getLastName());
+		   		orderLog.setUpdatedDate(Calendar.getInstance().getTime());
+		   		orderLog.setProcessingStatus("cancel");
+		   		orderLog.setUserReason("Order cancelled and full refunded provided");
+		   		orderLogRepository.save(orderLog);
+	       }else {
+	    	   model.addAttribute("status",false);  
+	       }
+	   		model.addAttribute("order",order);
+	   		List<OrderLog> orderLogList = orderLogService.findByOrderByOrderByIdDesc(order);
+	   		if(orderLogList.isEmpty()) {
+	   			model.addAttribute("emptyLog",true);
+	   		}else {
+	   			model.addAttribute("emptyLog",false);
+	   			model.addAttribute("orderLogList",orderLogList);
+	   		}
+	   		
+	       return "orderCancelled";
+	   }
 	
+	@RequestMapping(value = "/editOrder/{orderId}")
+	   public String editOrder(@PathVariable Long orderId, Model model,@AuthenticationPrincipal User activeUser) {
+			User user = userService.findByUsername(activeUser.getUsername());
+	        model.addAttribute("user", user);
+	        Charge charge;
+	       Order order;
+	       try {
+	    	   order = orderService.findOne(orderId);
+	    	   String transactionId = order.getPaymentConfirm();
+	           charge = Charge.retrieve(transactionId);
+	          
+	       } catch (Exception e) {
+	           System.out.println("Exception: " + e);
+	           return "badRequestPage";
+	       }
+
+	       model.addAttribute("isSuccess", charge.getStatus());
+	       model.addAttribute("transaction", charge);
+	   		
+	   		model.addAttribute("creditMethod",true);
+	   		int currentStatus = 1;
+	   		if(order.getOrderStatus().equalsIgnoreCase("created")) {
+	   			currentStatus = 2;
+	   		}else if (order.getOrderStatus().equalsIgnoreCase("processing")) {
+	   			currentStatus = 3;
+	   		}else if (order.getOrderStatus().equalsIgnoreCase("shipped")) {
+	   			currentStatus = 4;
+	   		}else if (order.getOrderStatus().equalsIgnoreCase("intransit")) {
+	   			currentStatus = 5;
+	   		}else if (order.getOrderStatus().equalsIgnoreCase("delivered")) {
+	   			currentStatus = 6;
+	   		}else {
+	   			currentStatus = 0;
+	   		}
+	   		model.addAttribute("estimatedDeliveryDate",order.getEstimatedDeliveryDate());
+	   		model.addAttribute("order",order);
+	   		model.addAttribute("currentStatus",currentStatus);
+	   		model.addAttribute("cartItemList", order.getCartItemList());
+	   		List<OrderLog> orderLogList = orderLogService.findByOrderByOrderByIdDesc(order);
+	   		if(orderLogList.isEmpty()) {
+	   			model.addAttribute("emptyLog",true);
+	   		}else {
+	   			model.addAttribute("emptyLog",false);
+	   			model.addAttribute("orderLogList",orderLogList);
+	   		}
+	   		String fileUrl = endpointUrl + "/" + bucketName + "/";
+			model.addAttribute("fileUrl", fileUrl);
+	       return "editorder";
+	   }
 }

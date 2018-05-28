@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.adminportal.domain.Contact;
 import com.adminportal.domain.Order;
 import com.adminportal.domain.ShoppingCart;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
 import com.adminportal.service.CategoryService;
+import com.adminportal.service.ContactService;
 import com.adminportal.service.NewsletterService;
 import com.adminportal.service.OrderService;
 import com.adminportal.service.ProductService;
@@ -40,6 +42,8 @@ public class HomeController {
 	
 	@Autowired
 	private ShoppingCartService shoppingCartService;
+	@Autowired
+	private ContactService contactService;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -52,7 +56,7 @@ public class HomeController {
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
         model.addAttribute("user", user);
-        
+        List<Contact> contactList = contactService.findTop10ByOrderByIdDesc();
         List<Order> ordersList = orderService.findTop10ByOrderByIdDesc();
 		
         List<ShoppingCart> shoppingCartList = shoppingCartService.findTop10ByOrderByUpdatedDateDesc();
@@ -74,6 +78,7 @@ public class HomeController {
 		Long subSubCategoryCount = categoryService.subSubCategoryCount();
 		Long soldProductsCount = productService.soldProductsCount();
 		Long subscribersCount = newsletterService.subscribersCount();
+		 model.addAttribute("contactList", contactList);
 		model.addAttribute("shoppingCartList", shoppingCartList);
 		model.addAttribute("ordersList", ordersList);
 		model.addAttribute("userCount",userCount);

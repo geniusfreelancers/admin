@@ -73,7 +73,7 @@ public class CategoryController {
 		return newcategoryList;
 	}
 	
-	@RequestMapping(value="/product/getsubcategories", method=RequestMethod.GET)
+	@RequestMapping(value="/getsubcategories", method=RequestMethod.GET)
 	public @ResponseBody
 	List<SubCategory> getsubcategories(@RequestParam(value= "id", required = true) Long id,Model model){
 		Category category = categoryService.findOne(id);
@@ -91,7 +91,7 @@ public class CategoryController {
 		return subcategory;
 	}
 		
-	@RequestMapping(value="/product/getsubsubcategories", method=RequestMethod.GET)
+	@RequestMapping(value="/getsubsubcategories", method=RequestMethod.GET)
 	public @ResponseBody
 	List<SubSubCategory> getsubsubcategories(@RequestParam(value= "id", required = true) Long id,Model model){
 		SubCategory subCategory = categoryService.findOneSub(id);

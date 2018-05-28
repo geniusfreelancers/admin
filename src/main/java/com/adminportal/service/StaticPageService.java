@@ -10,5 +10,6 @@ public interface StaticPageService {
 	StaticPage findByPagename(String pagename);
 	List<StaticPage> findAll();
 	StaticPage findById(Long id);
+	List<StaticPage> searchPages(String keyword);
 	
 }

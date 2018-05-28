@@ -9,5 +9,7 @@ import com.adminportal.domain.Newsletter;
 public interface NewsletterRepository extends CrudRepository<Newsletter, Long>{
 	List<Newsletter> findAllByOrderByIdDesc();
 
+	List<Newsletter> findByEmail(String keyword);
+
 }
 

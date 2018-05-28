@@ -2589,7 +2589,7 @@ div[data-role="editor-toolbar"] {
 	background:#fff;
 
 	border: 1px solid #ccc;
-
+    border-radius: 100px;
 }
 
 

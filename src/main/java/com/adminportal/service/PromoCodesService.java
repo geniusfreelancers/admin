@@ -13,4 +13,6 @@ public interface PromoCodesService {
 	List<PromoCodes> findAll();
 	
 	void removeOne(Long id);
+
+	List<PromoCodes> searchCoupons(String keyword);
 }

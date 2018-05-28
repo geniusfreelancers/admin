@@ -6,4 +6,6 @@ import com.adminportal.domain.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, Long>{
 
+	Category findByCategoryName(String keyword);
+
 }

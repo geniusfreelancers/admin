@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.adminportal.domain.CartItem;
+import com.adminportal.domain.Order;
 import com.adminportal.domain.ShoppingCart;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
@@ -37,6 +38,22 @@ public class ShoppingCartController {
 	private SiteSettingService siteSettingService;
 	@Autowired
 	private CartItemRepository cartItemRepository;
+	
+	@RequestMapping("/shoppingCarts")
+	public String shoppingCartsList(Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
+		List<ShoppingCart> cartList = shoppingCartService.findAllByOrderDateDesc();
+		model.addAttribute("shoppingCartList", cartList);
+		if(cartList == null) {
+			model.addAttribute("emptyOrder", true);
+			return "shoppingCartList";
+		}else {
+			model.addAttribute("emptyOrder", false);
+		}
+		return "shoppingCartList";
+		
+	}
 	
 	@RequestMapping("/shoppingCart/{cartId}")
 	public String shoppingCart(@PathVariable(value = "cartId") int cartId, Model model,@AuthenticationPrincipal User activeUser){

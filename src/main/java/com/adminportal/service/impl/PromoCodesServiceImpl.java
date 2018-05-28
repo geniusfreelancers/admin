@@ -31,4 +31,12 @@ public class PromoCodesServiceImpl implements PromoCodesService {
 	public void removeOne(Long id){
 		promoCodesRepository.delete(id);
 	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<PromoCodes> searchCoupons(String keyword) {
+		List<PromoCodes> promoCodesList = (List<PromoCodes>) promoCodesRepository.findByCouponCode(keyword);
+		
+		return promoCodesList;
+	}
 }

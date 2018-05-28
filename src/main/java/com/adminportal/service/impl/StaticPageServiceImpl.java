@@ -32,4 +32,17 @@ public class StaticPageServiceImpl implements StaticPageService{
 	public StaticPage findById(Long id) {
 		return staticPageRepository.findOne(id);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<StaticPage> searchPages(String keyword) {
+		List<StaticPage> staticPageList = (List<StaticPage>) staticPageRepository.findByTitle(keyword);
+		
+		if(staticPageList == null || staticPageList.size() == 0) {
+			staticPageList = (List<StaticPage>) staticPageRepository.findByPagename(keyword);
+		}
+		if(staticPageList == null || staticPageList.size() == 0) {
+			staticPageList = staticPageRepository.findByTitleContaining(keyword);
+		}
+		return staticPageList;
+	}
 }

@@ -22,4 +22,8 @@ public interface OrderService {
 	List<Order> findAllByOrderDateDesc();
 	Long orderCount();
 	List<Order> findTop10ByOrderByIdDesc();
+
+	List<Order> searchOrders(String keyword);
+
+	Order findByTrackingNumber(String keyword);
 }

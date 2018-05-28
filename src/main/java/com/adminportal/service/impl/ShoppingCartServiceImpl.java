@@ -183,6 +183,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	public ShoppingCart findOne(Long id) {
 		return shoppingCartRepository.findOne(id);
 	}
+
+	
+	public ShoppingCart searchCarts(String keyword) {
+		ShoppingCart shoppingCart = shoppingCartRepository.findByBagId(keyword);
+		
+		return shoppingCart;
+	}
+
+	@Override
+	public List<ShoppingCart> findAllByOrderDateDesc() {
+		return shoppingCartRepository.findAllByOrderByUpdatedDateDesc();
+	}
 	
 
 

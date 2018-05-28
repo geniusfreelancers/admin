@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> NO RESULT</h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-file" aria-hidden="true"></i>No Result Found</li>
+            </ol>
+        </div>
+    </div>
+  
+<div class="col-md-12 border-all">
+					<div class="col-md-12 alert alert-danger">
+						<span>No record found for </span><strong><span th:text="${keyword}"></span></strong><a th:href="@{/}"> Go back to dashboard</a>
+					</div>
+</div>
+<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+</body>
+</html>
+ 

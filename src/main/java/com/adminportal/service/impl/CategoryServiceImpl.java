@@ -9,6 +9,7 @@ import com.adminportal.domain.Category;
 import com.adminportal.domain.SubCategory;
 import com.adminportal.domain.SubSubCategory;
 import com.adminportal.repository.CategoryRepository;
+import com.adminportal.repository.ProductRepository;
 import com.adminportal.repository.SubCategoryRepository;
 import com.adminportal.repository.SubSubCategoryRepository;
 import com.adminportal.service.CategoryService;
@@ -24,6 +25,8 @@ public class CategoryServiceImpl implements  CategoryService{
 	
 	@Autowired
 	private SubSubCategoryRepository subSubCategoryRepository;
+	@Autowired
+	private ProductRepository productRepository;
 	
 	public Category save(Category category) {
 		return categoryRepository.save(category);
@@ -79,5 +82,10 @@ public class CategoryServiceImpl implements  CategoryService{
 	
 	public Long subSubCategoryCount() {
 		return subSubCategoryRepository.count();
+	}
+	
+	public Long countProductsInCategory(Category category) {
+		
+		return productRepository.countByCategory(category);
 	}
 }

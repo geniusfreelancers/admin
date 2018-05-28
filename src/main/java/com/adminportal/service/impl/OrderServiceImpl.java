@@ -92,4 +92,26 @@ public class OrderServiceImpl implements OrderService{
 	public List<Order> findTop10ByOrderByIdDesc(){
 		return orderRepository.findTop14ByOrderByIdDesc();
 	}
+
+	
+	public List<Order> searchOrders(String keyword) {
+		List<Order> orderList = orderRepository.findByOrderEmail(keyword);
+		
+		if(orderList.size() == 0) {
+			orderList = orderRepository.findByOrderPhone(keyword);
+		}     
+		if(orderList.size() == 0) {
+			orderList = orderRepository.findByCustomerLname(keyword);
+		}
+		if(orderList.size() == 0) {
+			orderList = orderRepository.findByCustomerFname(keyword);
+		}
+		
+		return orderList;
+	}
+
+	@Override
+	public Order findByTrackingNumber(String keyword) {
+		return orderRepository.findByTrackingNumber(keyword);
+	}
 }

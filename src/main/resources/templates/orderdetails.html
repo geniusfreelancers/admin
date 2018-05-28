@@ -12,11 +12,11 @@
 <!-- Main Section Starts -->
 	    <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>Order Details</strong></h3>
+            <h3 class="page-header"><i class="fas fa-gavel"></i> <strong>Order Details</strong></h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-home"></i><a th:href="@{/order/orderList}">All Orders</a></li>
-                <li><i class="fa fa-file-text-o" aria-hidden="true"></i>Order Details</li>
+                <li><i class="fa fa-cubes"></i><a th:href="@{/order/orderList}">All Orders</a></li>
+                <li><i class="fas fa-gavel" aria-hidden="true"></i>Order Details</li>
             </ol>
         </div>
     </div>
@@ -30,10 +30,10 @@
 <div class="col-md-12 border-all">
 
 <div class="col-md-6">
-	<a href="/productshelf" style="float: left;" class="btn btn-default">Edit Order</a>
+	<a th:href="@{/order/editOrder/}+${order.id}" style="float: left;" class="btn btn-default">Edit Order</a>
 </div>
 <div class="col-md-6">
-	<a href="/productshelf" style="float: right;" class="btn btn-default">Cancel Order</a>
+	<a th:href="@{/order/cancelOrder/}+${order.id}" style="float: right;" class="btn btn-default">Cancel Order</a>
 </div>
 <div class="col-md-12">
 	<h3><i class="fa fa-check" aria-hidden="true" style="color:limegreen;"></i> 
@@ -101,25 +101,25 @@
     
     <p><strong>Shipped Via:</strong> <span id="shippedVia" th:text="${order.shippingCarrier}"></span></p>
 </div>
-<div class="col-md-12">
+<div class="col-md-12" th:if="${currentStatus} != 0" >
 
 	<p>Action</p>
 	<form class="form-horizontal" th:action="@{/order/takeaction/}+${order.id}"
 				method="post">
 	<input th:value="${order.id}" name="orderId" type="hidden"/>			
 	<select name="takeAction" id="takeAction" class="">
-		<option value="processing">Processing</option>
-		<option value="shipped">Ship Now</option>
-		<option value="intransit">Intransit</option>
-		<option value="cancel">Cancel</option>
-		<option value="delivered">Delivered</option>
+		<option value="processing" th:selected="(${order.orderStatus}=='processing')">Processing</option>
+		<option value="shipped" th:selected="(${order.orderStatus}=='shipped')">Ship Now</option>
+		<option value="intransit" th:selected="(${order.orderStatus}=='intransit')">Intransit</option>
+		<option value="cancel" th:selected="(${order.orderStatus}=='cancel')">Cancel</option>
+		<option value="delivered" th:selected="(${order.orderStatus}=='delivered')">Delivered</option>
 	</select>
 	<br/>
 	<br/>
-	<input type="text" name="carrier" id="carrier" placeholder="Carrier"/>
+	<input type="text" name="carrier" id="carrier" th:value="${order.shippingCarrier}" placeholder="Carrier"/>
 	<br/>
 	<br/>
-	<input type="text" name="trackingId" id="trackingId" placeholder="Tracking Number"/>
+	<input type="text" name="trackingId" id="trackingId" th:value="${order.trackingNumber}" placeholder="Tracking Number"/>
 	<br/>
 	<br/>
 	<input type="submit" id="takeActionSubmit" value="Submit"/>
@@ -130,7 +130,7 @@
 
 </div>
 <div class="col-md-12 text-center">
-<p><strong>Estimated Delivery Date:</strong> <span class="text-success" th:text="${estimatedDeliveryDate}"></span></p>
+<p><strong>Estimated Delivery Date:</strong> <span class="text-success" th:text="${order.estimatedDeliveryDate}"></span></p>
 </div>
 </div>
 </div>
@@ -160,13 +160,13 @@
 						
 						<hr/>
 						<div class="col-xs-2">
-						<a th:href="@{/productDetail(id=${cartItem.product.id})}">
-						<img class="img-responsive shelf-product" th:src="@{/image/product/}+${cartItem.product.id}+'/'+${cartItem.product.coverImageName}" style="width:70px;" />
+						<a th:href="@{/product/productInfo(id=${cartItem.product.id})}">
+						<img class="img-responsive shelf-product" th:src="${fileUrl}+${cartItem.product.coverImageName}" style="width:70px;" />
 						</a>
 						</div>
 						<div class="col-xs-4">
 							<div style="margin-left:50px;">	
-							<a th:href="@{/productDetail?id=}+${cartItem.product.id}"><h4 th:text="${cartItem.product.title}"></h4></a>
+							<a th:href="@{/product/productInfo?id=}+${cartItem.product.id}"><h4 th:text="${cartItem.product.title}"></h4></a>
 								<span>Size: </span><span th:text="${cartItem.productSize}"></span> | <span>Web ID: </span><span th:text="${cartItem.product.sku}"></span>
 							</div>
 							</div>
