@@ -3,6 +3,8 @@ package com.adminportal.domain;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -48,6 +50,40 @@ public class HomePage {
 	private String offerFourImg;
 	private String offerFourUrl;
 	private Date updatedDate;
+	@Transient
+	private MultipartFile slideOneImage;
+	@Transient
+	private MultipartFile slideTwoImage;
+	@Transient
+	private MultipartFile slideThreeImage;
+	@Transient
+	private MultipartFile categoryOneImage;
+	@Transient
+	private MultipartFile categoryTwoImage;
+	@Transient
+	private MultipartFile categoryThreeImage;
+	@Transient
+	private MultipartFile categoryFourImage;
+	@Transient
+	private MultipartFile bannerOneImage;
+	@Transient
+	private MultipartFile bannerTwoImage;
+	@Transient
+	private MultipartFile bannerThreeImage;
+	@Transient
+	private MultipartFile bannerFourImage;
+	@Transient
+	private MultipartFile bannerFiveImage;
+	@Transient
+	private MultipartFile bannerSixImage;
+	@Transient
+	private MultipartFile offerOneImage;
+	@Transient
+	private MultipartFile offerTwoImage;
+	@Transient
+	private MultipartFile offerThreeImage;
+	@Transient
+	private MultipartFile offerFourImage;
 	
 	public Long getId() {
 		return id;
@@ -288,6 +324,108 @@ public class HomePage {
 	}
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+	public MultipartFile getSlideOneImage() {
+		return slideOneImage;
+	}
+	public void setSlideOneImage(MultipartFile slideOneImage) {
+		this.slideOneImage = slideOneImage;
+	}
+	public MultipartFile getSlideTwoImage() {
+		return slideTwoImage;
+	}
+	public void setSlideTwoImage(MultipartFile slideTwoImage) {
+		this.slideTwoImage = slideTwoImage;
+	}
+	public MultipartFile getSlideThreeImage() {
+		return slideThreeImage;
+	}
+	public void setSlideThreeImage(MultipartFile slideThreeImage) {
+		this.slideThreeImage = slideThreeImage;
+	}
+	public MultipartFile getCategoryOneImage() {
+		return categoryOneImage;
+	}
+	public void setCategoryOneImage(MultipartFile categoryOneImage) {
+		this.categoryOneImage = categoryOneImage;
+	}
+	public MultipartFile getCategoryTwoImage() {
+		return categoryTwoImage;
+	}
+	public void setCategoryTwoImage(MultipartFile categoryTwoImage) {
+		this.categoryTwoImage = categoryTwoImage;
+	}
+	public MultipartFile getCategoryThreeImage() {
+		return categoryThreeImage;
+	}
+	public void setCategoryThreeImage(MultipartFile categoryThreeImage) {
+		this.categoryThreeImage = categoryThreeImage;
+	}
+	public MultipartFile getCategoryFourImage() {
+		return categoryFourImage;
+	}
+	public void setCategoryFourImage(MultipartFile categoryFourImage) {
+		this.categoryFourImage = categoryFourImage;
+	}
+	public MultipartFile getBannerOneImage() {
+		return bannerOneImage;
+	}
+	public void setBannerOneImage(MultipartFile bannerOneImage) {
+		this.bannerOneImage = bannerOneImage;
+	}
+	public MultipartFile getBannerTwoImage() {
+		return bannerTwoImage;
+	}
+	public void setBannerTwoImage(MultipartFile bannerTwoImage) {
+		this.bannerTwoImage = bannerTwoImage;
+	}
+	public MultipartFile getBannerThreeImage() {
+		return bannerThreeImage;
+	}
+	public void setBannerThreeImage(MultipartFile bannerThreeImage) {
+		this.bannerThreeImage = bannerThreeImage;
+	}
+	public MultipartFile getBannerFourImage() {
+		return bannerFourImage;
+	}
+	public void setBannerFourImage(MultipartFile bannerFourImage) {
+		this.bannerFourImage = bannerFourImage;
+	}
+	public MultipartFile getBannerFiveImage() {
+		return bannerFiveImage;
+	}
+	public void setBannerFiveImage(MultipartFile bannerFiveImage) {
+		this.bannerFiveImage = bannerFiveImage;
+	}
+	public MultipartFile getBannerSixImage() {
+		return bannerSixImage;
+	}
+	public void setBannerSixImage(MultipartFile bannerSixImage) {
+		this.bannerSixImage = bannerSixImage;
+	}
+	public MultipartFile getOfferOneImage() {
+		return offerOneImage;
+	}
+	public void setOfferOneImage(MultipartFile offerOneImage) {
+		this.offerOneImage = offerOneImage;
+	}
+	public MultipartFile getOfferTwoImage() {
+		return offerTwoImage;
+	}
+	public void setOfferTwoImage(MultipartFile offerTwoImage) {
+		this.offerTwoImage = offerTwoImage;
+	}
+	public MultipartFile getOfferThreeImage() {
+		return offerThreeImage;
+	}
+	public void setOfferThreeImage(MultipartFile offerThreeImage) {
+		this.offerThreeImage = offerThreeImage;
+	}
+	public MultipartFile getOfferFourImage() {
+		return offerFourImage;
+	}
+	public void setOfferFourImage(MultipartFile offerFourImage) {
+		this.offerFourImage = offerFourImage;
 	}
 	
 	

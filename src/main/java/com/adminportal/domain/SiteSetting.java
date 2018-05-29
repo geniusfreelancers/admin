@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class SiteSetting {
@@ -14,8 +17,15 @@ public class SiteSetting {
 	private BigDecimal shippingCost;
 	private BigDecimal premiumShippingCost;
 	private String siteLogo;
+	
+	@Transient
+	private MultipartFile siteLogoImage;
 	private String shopOfferBanner;
+	@Transient
+	private MultipartFile shopOfferBannerImage;
 	private String cartOfferBanner;
+	@Transient
+	private MultipartFile cartOfferBannerImage;
 	private String storeAddress1;
 	private String storeAddress2;
 	private String storeAddressCity;
@@ -43,6 +53,18 @@ public class SiteSetting {
 	private String bottomOfferTickerRight;
 	private String bottomOfferTickerRightUrl;
 	
+	public MultipartFile getShopOfferBannerImage() {
+		return shopOfferBannerImage;
+	}
+	public void setShopOfferBannerImage(MultipartFile shopOfferBannerImage) {
+		this.shopOfferBannerImage = shopOfferBannerImage;
+	}
+	public MultipartFile getCartOfferBannerImage() {
+		return cartOfferBannerImage;
+	}
+	public void setCartOfferBannerImage(MultipartFile cartOfferBannerImage) {
+		this.cartOfferBannerImage = cartOfferBannerImage;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -76,6 +98,12 @@ public class SiteSetting {
 		this.siteLogo = siteLogo;
 	}
 
+	public MultipartFile getSiteLogoImage() {
+		return siteLogoImage;
+	}
+	public void setSiteLogoImage(MultipartFile siteLogoImage) {
+		this.siteLogoImage = siteLogoImage;
+	}
 	public String getShopOfferBanner() {
 		return shopOfferBanner;
 	}

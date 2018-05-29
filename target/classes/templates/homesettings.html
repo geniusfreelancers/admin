@@ -14,7 +14,7 @@
             <h3 class="page-header"><i class="fa fa-laptop"></i> <strong>Home Page Settings</strong></h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-folder"></i><a th:href="@{/}">Settings</a></li>
+                <li><i class="fas fa-cogs"></i><a th:href="@{/}">Settings</a></li>
                 <li><i class="fa fa-laptop"></i>Home Page Settings</li>
             </ol>
         </div>
@@ -26,14 +26,18 @@
 <!-- Panel Start -->
 <div class="row">
 
-<form th:action="@{/settings/update}" method="post" id="payment-form" enctype="multipart/form-data">
+<form th:action="@{/homesettings/update}" method="post" id="payment-form" enctype="multipart/form-data">
 <div class="col-md-11 text-right">
 					<div class="form-group">
-							<button type="submit" id="updatesettings" class="btn btn-success">Save</button>
+							<button type="submit" id="updatesettings" class="btn btn-success"><i class="far fa-save"></i> Save</button>
 							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
 					</div>	
 </div>
-				
+	<div class="col-md-12">
+	<div th:if="${saved}" class="alert alert-success col-md-8 col-md-offset-2">
+		Home Page settings updated successfully
+	</div>
+</div>			
 <div class="col-md-6">
 			<div class="col-md-12">
 				<div class="panel-group" id="accordion">
@@ -50,11 +54,11 @@
 							</div>
 							<div id="generalInfo" class="panel-collapse collapse">
 								<div class="panel-body">
-								
+						<div class="row">		
 		<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-12">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideOneImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.slideOneImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -67,21 +71,23 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="slideOneImg">Slider One</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="slideOneImg"
-								name="slideOneImg" th:value="${homePage.slideOneImg}"/>
+							<input type="hidden" name="slideOneImg" class="form-control" id="slideOneImg"
+								th:value="${homePage.slideOneImg}" required="required"
+								/>
+							<label for="slideOneImage">Slider One</label>
+						
+							<input type="file" class="form-control" id="slideOneImage"
+								name="slideOneImage" />
 						<span class="help-block">Add Banner for Slider One</span>
-						</div>
+					
 
 					</div>	
 					</div>
-														
+													
 			<!-- Slider Two Image -->
+			<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideTwoImg}" /><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.slideTwoImg}" /><br/>
 					</div>
 					<!-- Url-->
 
@@ -94,20 +100,22 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="slideTwoImg">Slider Two</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="slideTwoImg"
-								name="slideTwoImg" th:value="${homePage.slideTwoImg}"/>
+							<input type="hidden" name="slideTwoImg" class="form-control" id="slideTwoImg"
+								th:value="${homePage.slideTwoImg}" required="required"
+								/>
+							<label for="slideTwoImage">Slider Two</label>
+						
+							<input type="file" class="form-control" id="slideTwoImage"
+								name="slideTwoImage" th:value="${homePage.slideTwoImage}"/>
 						<span class="help-block">Add Banner for Slider Two</span>
-						</div>
+					
 
 					</div>	
-					
+					</div>
 			<!-- Slider Three Image -->
+			<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideThreeImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.slideThreeImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -120,17 +128,19 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="slideThreeImg">Slider Three</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="slideThreeImg"
-								name="slideThreeImg" th:value="${homePage.slideThreeImg}"/>
+							<input type="hidden" name="slideThreeImg" class="form-control" id="slideThreeImg"
+								th:value="${homePage.slideThreeImg}" required="required"
+								/>
+							<label for="slideThreeImage">Slider Three</label>
+						
+							<input type="file" class="form-control" id="slideThreeImage"
+								name="slideThreeImage" th:value="${homePage.slideThreeImage}"/>
 						<span class="help-block">Add Banner for Slider Three</span>
-						</div>
+					
 
 					</div>	
-							
+						</div>	
+						</div>
 						</div>
 					</div>
 					</div>
@@ -149,24 +159,11 @@
 								<div class="panel-body">						
 									<div class="row">
 										
-										<!--div class="col-xs-6">
-											<div class="form-group">
-												<label for="storeAddressState">* State</label> <select
-													id="storeAddressState" class="form-control"
-													th:name="storeAddressState"
-													th:value="${siteSettings.storeAddressState}"
-													required="required">
-													<option value="" disabled="disabled">Please select
-														an option</option>
-													<option th:each="state : ${stateList}" th:text="${state}"
-														th:selected="(${siteSettings.storeAddressState}==${state})"></option>
-												</select>
-											</div>
-										</div-->
+									
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerOneImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerOneImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -179,22 +176,23 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="bannerOneImg">Banner One</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="bannerOneImg"
-								name="bannerOneImg" th:value="${homePage.bannerOneImg}"/>
+							<input type="hidden" name="bannerOneImg" class="form-control" id="bannerOneImg"
+								th:value="${homePage.bannerOneImg}" required="required"
+								/>
+							<label for="bannerOneImage">Banner One</label>
+						
+							<input type="file" class="form-control" id="bannerOneImage"
+								name="bannerOneImage" th:value="${homePage.bannerOneImage}"/>
 						<span class="help-block">Add Image for Banner One</span>
-						</div>
+						
 
 					</div>	
 					</div>
 					
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerTwoImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerTwoImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -207,22 +205,23 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="bannerTwoImg">Banner Two</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="bannerTwoImg"
-								name="bannerTwoImg" th:value="${homePage.bannerTwoImg}"/>
+							<input type="hidden" name="bannerTwoImg" class="form-control" id="bannerTwoImg"
+								th:value="${homePage.bannerTwoImg}" required="required"
+								/>
+							<label for="bannerTwoImage">Banner Two</label>
+						
+							<input type="file" class="form-control" id="bannerTwoImage"
+								name="bannerTwoImage" th:value="${homePage.bannerTwoImage}"/>
 						<span class="help-block">Add Image for Banner Two</span>
-						</div>
+					
 
 					</div>	
 					</div>
 					
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerThreeImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerThreeImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -235,22 +234,23 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="bannerThreeImg">Banner Three</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="bannerThreeImg"
-								name="bannerThreeImg" th:value="${homePage.bannerThreeImg}"/>
+							<input type="hidden" name="bannerThreeImg" class="form-control" id="bannerThreeImg"
+								th:value="${homePage.bannerThreeImg}" required="required"
+								/>
+							<label for="bannerThreeImage">Banner Three</label>
+					
+							<input type="file" class="form-control" id="bannerThreeImage"
+								name="bannerThreeImage" th:value="${homePage.bannerThreeImage}"/>
 						<span class="help-block">Add Image for Banner Three</span>
-						</div>
+						
 
 					</div>	
 					</div>
 					
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/banners/}+${homePage.bannerFourImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerFourImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -263,77 +263,19 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="bannerFourImg">Banner Four</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="bannerFourImg"
-								name="bannerFourImg" th:value="${homePage.bannerFourImg}"/>
+							<input type="hidden" name="bannerFourImg" class="form-control" id="bannerFourImg"
+								th:value="${homePage.bannerFourImg}" required="required"
+								/>
+							<label for="bannerFourImage">Banner Four</label>
+						
+							<input type="file" class="form-control" id="bannerFourImage"
+								name="bannerFourImage" th:value="${homePage.bannerFourImage}"/>
 						<span class="help-block">Add Image for Banner Four</span>
-						</div>
+						
 
 					</div>	
-					</div>
-					
-					<!-- Slider One Image -->
-				<div class="slider-container">
-					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideOneImg}"/><br/>
-					</div>
-					<!-- Url-->
-
-					<div class="form-group">
-						<label for="slideOneUrl">Slider One Link</label>
-						
-							<input type="text" name="slideOneUrl" class="form-control" id="slideOneUrl"
-								th:value="${homePage.slideOneUrl}" required="required"
-								placeholder="Slider One Link" /> 
-						
-					</div>
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="slideOneImg">Slider One</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="slideOneImg"
-								name="slideOneImg" th:value="${homePage.slideOneImg}"/>
-						<span class="help-block">Add Banner for Slider One</span>
-						</div>
-
-					</div>	
-					</div>
-					
-					<!-- Slider One Image -->
-				<div class="slider-container">
-					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/slider/}+${homePage.slideOneImg}"/><br/>
-					</div>
-					<!-- Url-->
-
-					<div class="form-group">
-						<label for="slideOneUrl">Slider One Link</label>
-						
-							<input type="text" name="slideOneUrl" class="form-control" id="slideOneUrl"
-								th:value="${homePage.slideOneUrl}" required="required"
-								placeholder="Slider One Link" /> 
-						
-					</div>
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="slideOneImg">Slider One</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="slideOneImg"
-								name="slideOneImg" th:value="${homePage.slideOneImg}"/>
-						<span class="help-block">Add Banner for Slider One</span>
-						</div>
-
-					</div>	
-					</div>				
-					
-						
-										
-									</div>
+					</div>								
+</div>
 </div>
 </div>
 </div>
@@ -359,11 +301,11 @@
 					<!-- Category One Image -->
 					<div class="col-md-6 slider-container">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryOneImg}" /><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.categoryOneImg}" /><br/>
 					</div>
 					<!-- Url-->
 					<div class="form-group">
-						<label for="slideTwoUrl">Category One Label</label>
+						<label for="categoryOneLable">Category One Label</label>
 						
 							<input type="text" name="categoryOneLable" class="form-control" id="categoryOneLable"
 								th:value="${homePage.categoryOneLable}" required="required"
@@ -371,7 +313,7 @@
 						
 					</div>
 					<div class="form-group">
-						<label for="slideTwoUrl">Category One Link</label>
+						<label for="categoryOneUrl">Category One Link</label>
 						
 							<input type="text" name="categoryOneUrl" class="form-control" id="categoryOneUrl"
 								th:value="${homePage.categoryOneUrl}" required="required"
@@ -379,11 +321,13 @@
 						
 					</div>
 					<div class="form-group">
+							<input type="hidden" name="categoryOneImg" class="form-control" id="categoryOneImg"
+								th:value="${homePage.categoryOneImg}" required="required"
+								/>
+							<label for="categoryOneImage">Category One</label>
 						
-							<label for="slideTwoImg">Category One</label>
-						
-							<input type="file" class="form-control" id="categoryOneImg"
-								name="categoryOneImg" th:value="${homePage.categoryOneImg}"/>
+							<input type="file" class="form-control" id="categoryOneImage"
+								name="categoryOneImage" th:value="${homePage.categoryOneImage}"/>
 						<span class="help-block">Add Image for Category One</span>
 						
 
@@ -393,7 +337,7 @@
 					<!-- Category Two Image -->
 					<div class="col-md-6 slider-container">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryTwoImg}" /><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.categoryTwoImg}" /><br/>
 					</div>
 					<!-- Url-->
 					<div class="form-group">
@@ -413,11 +357,13 @@
 						
 					</div>
 					<div class="form-group">
+							<input type="hidden" name="categoryTwoImg" class="form-control" id="categoryTwoImg"
+								th:value="${homePage.categoryTwoImg}" required="required"
+								/>
+							<label for="categoryTwoImage">Category Two</label>
 						
-							<label for="categoryTwoImg">Category Two</label>
-						
-							<input type="file" class="form-control" id="categoryTwoImg"
-								name="categoryTwoImg" th:value="${homePage.categoryTwoImg}"/>
+							<input type="file" class="form-control" id="categoryTwoImage"
+								name="categoryTwoImage" th:value="${homePage.categoryTwoImage}"/>
 						<span class="help-block">Add Image for Category Two</span>
 						
 
@@ -427,7 +373,7 @@
 					<!-- Category Three Image -->
 					<div class="col-md-6 slider-container">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryThreeImg}" /><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.categoryThreeImg}" /><br/>
 					</div>
 					<!-- Url-->
 					<div class="form-group">
@@ -447,11 +393,13 @@
 						
 					</div>
 					<div class="form-group">
+							<input type="hidden" name="categoryThreeImg" class="form-control" id="categoryThreeImg"
+								th:value="${homePage.categoryThreeImg}" required="required"
+								/>
+							<label for="categoryThreeImage">Category Three</label>
 						
-							<label for="categoryThreeImg">Category Three</label>
-						
-							<input type="file" class="form-control" id="categoryThreeImg"
-								name="categoryThreeImg" th:value="${homePage.categoryThreeImg}"/>
+							<input type="file" class="form-control" id="categoryThreeImage"
+								name="categoryThreeImage" th:value="${homePage.categoryThreeImage}"/>
 						<span class="help-block">Add Image for Category Three</span>
 						
 
@@ -461,7 +409,7 @@
 					<!-- Category Four Image -->
 					<div class="col-md-6 slider-container">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.categoryFourImg}" /><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.categoryFourImg}" /><br/>
 					</div>
 					<!-- Url-->
 					<div class="form-group">
@@ -481,11 +429,13 @@
 						
 					</div>
 					<div class="form-group">
+							<input type="hidden" name="categoryFourImg" class="form-control" id="categoryFourImg"
+								th:value="${homePage.categoryFourImg}" required="required"
+								/>
+							<label for="categoryFourImage">Category Four</label>
 						
-							<label for="categoryFourImg">Category Four</label>
-						
-							<input type="file" class="form-control" id="categoryFourImg"
-								name="categoryFourImg" th:value="${homePage.categoryFourImg}"/>
+							<input type="file" class="form-control" id="categoryFourImage"
+								name="categoryFourImage" th:value="${homePage.categoryFourImage}"/>
 						<span class="help-block">Add Image for Category Four</span>
 						
 
@@ -511,29 +461,15 @@
 								<div class="panel-body">						
 									<div class="row">
 										
-										<!--div class="col-xs-6">
-											<div class="form-group">
-												<label for="storeAddressState">* State</label> <select
-													id="storeAddressState" class="form-control"
-													th:name="storeAddressState"
-													th:value="${siteSettings.storeAddressState}"
-													required="required">
-													<option value="" disabled="disabled">Please select
-														an option</option>
-													<option th:each="state : ${stateList}" th:text="${state}"
-														th:selected="(${siteSettings.storeAddressState}==${state})"></option>
-												</select>
-											</div>
-										</div-->
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.offerOneImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerOneImg}"/><br/>
 					</div>
 					<!-- Url-->
 
 					<div class="form-group">
-						<label for="slideOneUrl">Offer One Link</label>
+						<label for="offerOneUrl">Offer One Link</label>
 						
 							<input type="text" name="offerOneUrl" class="form-control" id="offerOneUrl"
 								th:value="${homePage.offerOneUrl}" required="required"
@@ -541,27 +477,28 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="offerOneImg">Offer One</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="offerOneImg"
-								name="offerOneImg" th:value="${homePage.slideOneImg}"/>
+							<input type="hidden" name="offerOneImg" class="form-control" id="offerOneImg"
+								th:value="${homePage.offerOneImg}" required="required"
+								/>
+							<label for="offerOneImage">Offer One</label>
+						
+							<input type="file" class="form-control" id="offerOneImage"
+								name="offerOneImage" th:value="${homePage.slideOneImage}"/>
 						<span class="help-block">Add Image for Offer One</span>
-						</div>
+						
 
 					</div>	
 					</div>
 					
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.offerTwoImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerTwoImg}"/><br/>
 					</div>
 					<!-- Url-->
 
 					<div class="form-group">
-						<label for="slideOneUrl">Offer Two Link</label>
+						<label for="offerTwoUrl">Offer Two Link</label>
 						
 							<input type="text" name="offerTwoUrl" class="form-control" id="offerTwoUrl"
 								th:value="${homePage.offerTwoUrl}" required="required"
@@ -569,22 +506,23 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="offerTwoImg">Offer Two</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="offerTwoImg"
-								name="offerTwoImg" th:value="${homePage.offerTwoImg}"/>
+							<input type="hidden" name="offerTwoImg" class="form-control" id="offerTwoImg"
+								th:value="${homePage.offerTwoImg}" required="required"
+								/>
+							<label for="offerTwoImage">Offer Two</label>
+						
+							<input type="file" class="form-control" id="offerTwoImage"
+								name="offerTwoImage" th:value="${homePage.offerTwoImage}"/>
 						<span class="help-block">Add Image for Offer Two</span>
-						</div>
+						
 
 					</div>	
 					</div>
 					
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.offerThreeImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerThreeImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -597,22 +535,23 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="slideOneImg">Offer Three</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="offerThreeImg"
-								name="offerThreeImg" th:value="${homePage.offerThreeImg}"/>
+							<input type="hidden" name="offerThreeImg" class="form-control" id="offerThreeImg"
+								th:value="${homePage.offerThreeImg}" required="required"
+								/>
+							<label for="offerThreeImage">Offer Three</label>
+						
+							<input type="file" class="form-control" id="offerThreeImage"
+								name="offerThreeImage" th:value="${homePage.offerThreeImage}"/>
 						<span class="help-block">Add Image for Offer Three</span>
-						</div>
+						
 
 					</div>	
 					</div>
 					
 					<!-- Slider One Image -->
-				<div class="slider-container">
+				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="@{/image/}+${homePage.offerFourImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerFourImg}"/><br/>
 					</div>
 					<!-- Url-->
 
@@ -625,46 +564,28 @@
 						
 					</div>
 					<div class="form-group">
-						<div class="col-md-4">
-							<label for="offerFourImg">Offer Four</label>
-						</div>
-						<div class="col-md-8">
-							<input type="file" class="form-control" id="offerFourImg"
-								name="offerFourImg" th:value="${homePage.offerFourImg}"/>
+							<input type="hidden" name="offerFourImg" class="form-control" id="offerFourImg"
+								th:value="${homePage.offerFourImg}" required="required"
+								/>
+							<label for="offerFourImage">Offer Four</label>
+					
+							<input type="file" class="form-control" id="offerFourImage"
+								name="offerFourImage" th:value="${homePage.offerFourImage}"/>
 						<span class="help-block">Add Image for Offer Four</span>
-						</div>
-
 					</div>	
-					</div>
-					
-					
-					
-					
-					
-						
-										
-									</div>
+					</div>								
+		</div>
 </div>
 </div>
 </div>
-</div>
-
-								
-
-					
-					
-					</div>
+</div>	
+	</div>
 									
 	</form>
 					</div>
 <!-- Panel End -->
 
-	
-
-		</div>
-		
-
-	
+		</div>	
 	
 	<!-- End -->
 </section>
