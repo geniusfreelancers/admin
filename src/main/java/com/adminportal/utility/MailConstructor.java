@@ -15,6 +15,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import com.adminportal.domain.Order;
+import com.adminportal.domain.Product;
 import com.adminportal.domain.User;
 
 @Component
@@ -73,6 +74,26 @@ public class MailConstructor {
 				email.setSubject("Order Confirmation - "+order.getId());
 				email.setText(text,true);
 				email.setFrom(new InternetAddress("andyjainson@gmail.com"));
+			}
+		};
+		return messagePreparator;
+	}
+	
+	public MimeMessagePreparator constructMarkettingEmail(String templateName,String emailAddress,
+								String subject,	String senderEmail,Product product, Locale locale){
+		Context context = new Context();
+		context.setVariable("product", product);
+		context.setVariable("emailAddress", emailAddress);
+		String text = templateEngine.process(templateName, context);
+		
+		MimeMessagePreparator messagePreparator = new MimeMessagePreparator(){
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception{
+				MimeMessageHelper email = new MimeMessageHelper(mimeMessage);
+				email.setTo(emailAddress);
+				email.setSubject(subject);
+				email.setText(text,true);
+				email.setFrom(new InternetAddress(senderEmail));
 			}
 		};
 		return messagePreparator;

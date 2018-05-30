@@ -7,15 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.adminportal.domain.User;
 import com.adminportal.domain.security.Role;
 import com.adminportal.domain.security.UserRole;
+import com.adminportal.service.StorageService;
 import com.adminportal.service.UserService;
+import com.adminportal.service.impl.StorageProperties;
 import com.adminportal.utility.SecurityUtility;
 
 @SpringBootApplication
+@EnableConfigurationProperties(StorageProperties.class)
 @ComponentScan({ "com.adminportal", "controller" })
 public class AdminportalApplication implements CommandLineRunner {
 	@Autowired
@@ -55,6 +60,14 @@ public class AdminportalApplication implements CommandLineRunner {
 			
 			userService.createUser(user1, userRoles);
 		}
+	 
+	 @Bean
+	    CommandLineRunner init(StorageService storageService) {
+	        return (args) -> {
+	      //      storageService.deleteAll();
+	            storageService.init();
+	        };
+	    }
 
 /*
 import com.braintreegateway.BraintreeGateway;

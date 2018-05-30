@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+
+	<div>
+		<form method="post" th:action="@{/templates}" th:object="${emailTemplate}" enctype="multipart/form-data">
+			<table>
+				<tr><td>Title:</td><td><input type="text" th:value="${emailTemplate.title}" name="title" id="title" required="required"/></td></tr>
+				<tr><td>FileName:</td><td><input type="text" th:value="${emailTemplate.fileName}" name="fileName" id="fileName" required="required"/></td></tr>
+				<tr><td>TemplateType:</td><td><input type="text" th:value="${emailTemplate.emailType}" name="emailType" id="emailType" required="required"/></td></tr>
+				<tr><td>Added By:</td><td><input type="text" th:value="${emailTemplate.addedBy}" name="addedBy" id="addedBy" required="required"/></td></tr>
+				<tr><td>File to upload:</td><td><input type="file" th:value="${emailTemplate.templateFile}" name="templateFile" id="templateFile" required="required"/></td></tr>
+				
+				<tr><td></td><td><button type="submit" class="btn btn-success">Add
+								Template</button></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div>
+		<ul>
+			<!--li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}" />
+			</li-->
+		</ul>
+	</div>
+
+</body>
+</html>
