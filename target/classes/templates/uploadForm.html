@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
 <body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
 
-	<div th:if="${message}">
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> ADD PAGE</h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/pages}">All Pages</a></li>
+                <li><i class="fa fa-file" aria-hidden="true"></i>Add Page</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+<h3 class="text"><strong>Add New Page</strong></h3>
+
+<div th:if="${message}">
 		<h2 th:text="${message}"/>
 	</div>
+	<form class="form-horizontal" th:action="@{/templates}"
+				method="post" enctype="multipart/form-data">
+				<fieldset>
+		<div class="col-md-12">
 
-	<div>
-		<form method="post" th:action="@{/templates}" th:object="${emailTemplate}" enctype="multipart/form-data">
 			<table>
 				<tr><td>Title:</td><td><input type="text" th:value="${emailTemplate.title}" name="title" id="title" required="required"/></td></tr>
 				<tr><td>FileName:</td><td><input type="text" th:value="${emailTemplate.fileName}" name="fileName" id="fileName" required="required"/></td></tr>
@@ -18,16 +40,16 @@
 				<tr><td></td><td><button type="submit" class="btn btn-success">Add
 								Template</button></td></tr>
 			</table>
+		
+		</div>
+		</fieldset>
 		</form>
-	</div>
 
-	<div>
-		<ul>
-			<!--li th:each="file : ${files}">
-				<a th:href="${file}" th:text="${file}" />
-			</li-->
-		</ul>
-	</div>
+<!-- End -->
+</section>
 
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
 </body>
 </html>
+ 
