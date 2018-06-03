@@ -12,13 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
@@ -40,6 +37,7 @@ public class TemplateUploadController {
     public TemplateUploadController(StorageService storageService) {
         this.storageService = storageService;
     }
+    
     @Autowired
     private UserService userService;
     
@@ -49,10 +47,10 @@ public class TemplateUploadController {
         model.addAttribute("user", user);
     	EmailTemplate emailTemplate = new EmailTemplate();
     	 model.addAttribute("emailTemplate",emailTemplate);
-       /* model.addAttribute("files", storageService.loadAll().map(
+       model.addAttribute("files", storageService.loadAll().map(
                 path -> MvcUriComponentsBuilder.fromMethodName(TemplateUploadController.class,
                         "serveFile", path.getFileName().toString()).build().toString())
-                .collect(Collectors.toList()));*/
+                .collect(Collectors.toList()));
 
         return "uploadForm";
     }
@@ -70,12 +68,13 @@ public class TemplateUploadController {
     
     @RequestMapping(value="/templates", method=RequestMethod.POST)
     public String handleFileUpload(@ModelAttribute("emailTemplate") EmailTemplate emailTemplate,BindingResult result,
-            RedirectAttributes redirectAttributes,@AuthenticationPrincipal User activeUser,Model model) {
+    		RedirectAttributes redirectAttributes,@AuthenticationPrincipal User activeUser,Model model) {
+    	
     	User user = userService.findByUsername(activeUser.getUsername());
         model.addAttribute("user", user);
     	MultipartFile file = emailTemplate.getTemplateFile();
         storageService.emailTemplateUpload(file);
-        redirectAttributes.addFlashAttribute("message",
+       redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
         return "redirect:/templates";

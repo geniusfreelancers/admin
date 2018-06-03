@@ -11,31 +11,31 @@
 <!-- Main Section Starts -->
 	    <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file" aria-hidden="true"></i> ADD PAGE</h3>
+            <h3 class="page-header"><i class="fas fa-envelope"></i> ADD NEW EMAIL TEMPLATE</h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
-                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/pages}">All Pages</a></li>
-                <li><i class="fa fa-file" aria-hidden="true"></i>Add Page</li>
+                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/}">All Email Templates</a></li>
+                <li><i class="fas fa-envelope"></i>Add New Email Template</li>
             </ol>
         </div>
     </div>
 <!-- Start -->
-<h3 class="text"><strong>Add New Page</strong></h3>
+<h3 class="text"><strong>Add New Email Template</strong></h3>
 
 <div th:if="${message}">
 		<h2 th:text="${message}"/>
 	</div>
-	<form class="form-horizontal" th:action="@{/templates}"
+	<form class="form-horizontal" th:action="@{/templates}" th:object="${emailTemplate}"
 				method="post" enctype="multipart/form-data">
 				<fieldset>
 		<div class="col-md-12">
 
 			<table>
-				<tr><td>Title:</td><td><input type="text" th:value="${emailTemplate.title}" name="title" id="title" required="required"/></td></tr>
-				<tr><td>FileName:</td><td><input type="text" th:value="${emailTemplate.fileName}" name="fileName" id="fileName" required="required"/></td></tr>
-				<tr><td>TemplateType:</td><td><input type="text" th:value="${emailTemplate.emailType}" name="emailType" id="emailType" required="required"/></td></tr>
-				<tr><td>Added By:</td><td><input type="text" th:value="${emailTemplate.addedBy}" name="addedBy" id="addedBy" required="required"/></td></tr>
-				<tr><td>File to upload:</td><td><input type="file" th:value="${emailTemplate.templateFile}" name="templateFile" id="templateFile" required="required"/></td></tr>
+				<tr><td>Title:</td><td><input type="text"  name="title" id="title" th:field="*{title}" required="required"/></td></tr>
+				<tr><td>FileName:</td><td><input type="text"  name="fileName" id="fileName" th:field="*{fileName}" required="required"/></td></tr>
+				<tr><td>TemplateType:</td><td><input type="text"  name="emailType" id="emailType" th:field="*{emailType}" required="required"/></td></tr>
+				<tr><td>Added By:</td><td><input type="text" name="addedBy" id="addedBy" th:field="*{addedBy}" required="required"/></td></tr>
+				<tr><td>File to upload:</td><td><input type="file"  name="templateFile" id="templateFile" th:field="*{templateFile}" required="required"/></td></tr>
 				
 				<tr><td></td><td><button type="submit" class="btn btn-success">Add
 								Template</button></td></tr>

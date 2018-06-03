@@ -23,6 +23,7 @@ import com.adminportal.utility.SecurityUtility;
 @EnableConfigurationProperties(StorageProperties.class)
 @ComponentScan({ "com.adminportal", "controller" })
 public class AdminportalApplication implements CommandLineRunner {
+
 	@Autowired
 	private UserService userService;
 	
@@ -46,7 +47,7 @@ public class AdminportalApplication implements CommandLineRunner {
 			userService.createUser(user1, userRoles);
 	        return builder.sources(AdminportalApplication.class);
 	    }*/
-	 @Override	 
+     @Override	 
 	 public void run(String... args) throws Exception{
 			User user1 = new User();
 			user1.setUsername("admins");
@@ -64,10 +65,12 @@ public class AdminportalApplication implements CommandLineRunner {
 	 @Bean
 	    CommandLineRunner init(StorageService storageService) {
 	        return (args) -> {
-	      //      storageService.deleteAll();
+	           storageService.deleteAll();
 	            storageService.init();
 	        };
 	    }
+
+
 
 /*
 import com.braintreegateway.BraintreeGateway;
