@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.web.multipart.MultipartFile;
 import com.adminportal.domain.HomePage;
+import com.adminportal.domain.HomePageAdditional;
+import com.adminportal.repository.HomePageAdditionalRepository;
 import com.adminportal.repository.HomePageRepository;
 import com.adminportal.service.HomePageService;
 @Service
@@ -27,6 +29,8 @@ public class HomePageServiceImpl implements HomePageService{
 	    }
 	@Autowired
 	private HomePageRepository homePageRepository;
+	@Autowired
+	private HomePageAdditionalRepository homePageAdditionalRepository;
 	
 	public HomePage updateHomePage(HomePage homePage) {
 		return homePageRepository.save(homePage);	
@@ -51,5 +55,15 @@ public class HomePageServiceImpl implements HomePageService{
 			imageName = amazonClient.uploadFile(image);	
 		}
 		return imageName;
+	}
+
+	@Override
+	public HomePageAdditional findAdditionalHomePage(Long id) {
+		
+		return homePageAdditionalRepository.findOne(id);
+	}
+	
+	public void saveAdditionalHomePage(HomePageAdditional homePageAdditional) {
+		homePageAdditionalRepository.save(homePageAdditional);
 	}
 }

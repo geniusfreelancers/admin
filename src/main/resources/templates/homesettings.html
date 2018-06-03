@@ -38,7 +38,7 @@
 		Home Page settings updated successfully
 	</div>
 </div>			
-<div class="col-md-6">
+
 			<div class="col-md-12">
 				<div class="panel-group" id="accordion">
 					
@@ -146,13 +146,287 @@
 					</div>
 					</div>
 					</div>
-					
+					<!-- Special Banners -->
 					<div class="col-md-12">
 					<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#bannersCon">Banners</a>
+										href="#bannersCons">Special Banner</a>
+								</h4>
+							</div>
+							<div id="bannersCons" class="panel-collapse collapse">
+								<div class="panel-body">						
+									<div class="row">
+										
+									
+					<!-- Special Banner One Image -->
+				<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.specialOneImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="specialOneLable">Special Banner One Label</label>
+						
+							<input type="text" name="specialOneLable" class="form-control" id="specialOneLable"
+								th:value="${homePageAdditional.specialOneLable}" required="required"
+								placeholder="Special Banner One Label" /> 
+							<input type="text" name="specialOneLable2" class="form-control" id="specialOneLable2"
+								th:value="${homePageAdditional.specialOneLable2}" required="required"
+								placeholder="Special Banner One Label Two" /> 	
+							<input type="text" name="specialOneLable3" class="form-control" id="specialOneLable3"
+								th:value="${homePageAdditional.specialOneLable3}" required="required"
+								placeholder="Special Banner One Label Three" /> 
+					</div>
+					
+					<div class="form-group">
+						<label for="specialOneUrl">Special Banner One Link</label>
+						
+							<input type="text" name="specialOneUrl" class="form-control" id="specialOneUrl"
+								th:value="${homePageAdditional.specialOneUrl}" required="required"
+								placeholder="Special Banner One Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="specialOneText">Special Banner One Text</label>
+						
+							<input type="text" name="specialOneText" class="form-control" id="specialOneText"
+								th:value="${homePageAdditional.specialOneText}" required="required"
+								placeholder="Special Banner One Text" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="specialOneImg" class="form-control" id="specialOneImg"
+								th:value="${homePageAdditional.specialOneImg}" required="required"
+								/>
+							<label for="specialOneImage">Special Banner One</label>
+						
+							<input type="file" class="form-control" id="specialOneImage"
+								name="specialOneImage" th:value="${homePageAdditional.specialOneImage}"/>
+						<span class="help-block">Add Image for Special Banner One</span>
+						
+
+					</div>	
+					</div>
+					
+					<!-- Special Banner Two Image -->
+				<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.specialTwoImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="specialTwoLable">Special Banner Two Label</label>
+						
+							<input type="text" name="specialTwoLable" class="form-control" id="specialTwoLable"
+								th:value="${homePageAdditional.specialTwoLable}" required="required"
+								placeholder="Special Banner Two Label" /> 
+							<input type="text" name="specialTwoLable2" class="form-control" id="specialTwoLable2"
+								th:value="${homePageAdditional.specialTwoLable2}" required="required"
+								placeholder="Special Banner Two Label Two" /> 	
+							
+					</div>
+					<div class="form-group">
+						<label for="specialTwoUrl">Special Banner Two Link</label>
+						
+							<input type="text" name="specialTwoUrl" class="form-control" id="specialTwoUrl"
+								th:value="${homePageAdditional.specialTwoUrl}" required="required"
+								placeholder="Special Banner Two Link" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="specialTwoImg" class="form-control" id="specialTwoImg"
+								th:value="${homePageAdditional.specialTwoImg}" required="required"
+								/>
+							<label for="specialTwoImage">Special Banner Two</label>
+						
+							<input type="file" class="form-control" id="specialTwoImage"
+								name="specialTwoImage" th:value="${homePageAdditional.specialTwoImage}"/>
+						<span class="help-block">Add Image for Special Banner Two</span>
+					
+
+					</div>	
+					</div>
+					
+					<!-- Special Banner Three Image -->
+				<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.specialThreeImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="specialThreeLable">Special Banner Three Label</label>
+						
+							<input type="text" name="specialThreeLable" class="form-control" id="specialThreeLable"
+								th:value="${homePageAdditional.specialThreeLable}" required="required"
+								placeholder="Special Banner Three Label" /> 
+							<input type="text" name="specialThreeLable2" class="form-control" id="specialThreeLable2"
+								th:value="${homePageAdditional.specialThreeLable2}" required="required"
+								placeholder="Special Banner Three Label Two" /> 	
+						
+					</div>
+					<div class="form-group">
+						<label for="specialThreeUrl">Special Banner Three Link</label>
+						
+							<input type="text" name="specialThreeUrl" class="form-control" id="specialThreeUrl"
+								th:value="${homePageAdditional.specialThreeUrl}" required="required"
+								placeholder="Special Banner Three Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="specialThreeText">Special Banner Three Text</label>
+						
+							<input type="text" name="specialThreeText" class="form-control" id="specialThreeText"
+								th:value="${homePageAdditional.specialThreeText}" required="required"
+								placeholder="Special Banner Three Text" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="specialThreeImg" class="form-control" id="specialThreeImg"
+								th:value="${homePageAdditional.specialThreeImg}" required="required"
+								/>
+							<label for="specialThreeImage">Special Banner Three</label>
+					
+							<input type="file" class="form-control" id="specialThreeImage"
+								name="specialThreeImage" th:value="${homePageAdditional.specialThreeImage}"/>
+						<span class="help-block">Add Image for Special Banner Three</span>
+						
+
+					</div>	
+					</div>
+					
+					<!-- Special Banner Four Image -->
+				<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.specialFourImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="specialFourLable">Special Banner Four Label</label>
+						
+							<input type="text" name="specialFourLable" class="form-control" id="specialFourLable"
+								th:value="${homePageAdditional.specialFourLable}" required="required"
+								placeholder="Special Banner Four Label" /> 
+								
+							
+					</div>
+					<div class="form-group">
+						<label for="specialFourText">Special Banner Four Text</label>
+						
+							<input type="text" name="specialFourText" class="form-control" id="specialFourText"
+								th:value="${homePageAdditional.specialFourText}" required="required"
+								placeholder="Special Banner Four Text" /> 
+								
+							
+					</div>
+					<div class="form-group">
+						<label for="specialFourUrl">Special Banner Four Link</label>
+						
+							<input type="text" name="specialFourUrl" class="form-control" id="specialFourUrl"
+								th:value="${homePageAdditional.specialFourUrl}" required="required"
+								placeholder="Special Banner Four Link" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="specialFourImg" class="form-control" id="specialFourImg"
+								th:value="${homePageAdditional.specialFourImg}" required="required"
+								/>
+							<label for="specialFourImage">Special Banner Four</label>
+						
+							<input type="file" class="form-control" id="specialFourImage"
+								name="specialFourImage" th:value="${homePageAdditional.specialFourImage}"/>
+						<span class="help-block">Add Image for Special Banner Four</span>
+					
+
+					</div>	
+					</div>
+				
+				<!-- Special Banner Five Image -->
+				<div class="slider-container col-md-6">
+					
+					<!-- Url-->
+					<div class="form-group">
+						<label for="specialFiveLable">Special Banner Five Label</label>
+						
+							<input type="text" name="specialFiveLable" class="form-control" id="specialFiveLable"
+								th:value="${homePageAdditional.specialFiveLable}" required="required"
+								placeholder="Special Banner Five Label" /> 
+					</div>
+					<div class="form-group">
+						<label for="specialFiveUrl">Special Banner Five Link</label>
+						
+							<input type="text" name="specialFiveUrl" class="form-control" id="specialFiveUrl"
+								th:value="${homePageAdditional.specialFiveUrl}" required="required"
+								placeholder="Special Banner Five Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="specialFiveText">Special Banner Five Text</label>
+						
+							<input type="text" name="specialFiveText" class="form-control" id="specialFiveText"
+								th:value="${homePageAdditional.specialFiveText}" required="required"
+								placeholder="Special Banner Five Text" /> 
+						
+					</div>
+					
+					</div>
+				<!-- Special Banner Six Image -->	
+				<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.specialSixImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="specialSixLable">Special Banner Six Label</label>
+						
+							<input type="text" name="specialSixLable" class="form-control" id="specialSixLable"
+								th:value="${homePageAdditional.specialSixLable}" required="required"
+								placeholder="Special Banner Six Label" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="specialSixUrl">Special Banner Six Link</label>
+						
+							<input type="text" name="specialSixUrl" class="form-control" id="specialSixUrl"
+								th:value="${homePageAdditional.specialSixUrl}" required="required"
+								placeholder="Special Banner Six Link" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="specialSixText">Special Banner Six Text</label>
+						
+							<input type="text" name="specialSixText" class="form-control" id="specialSixText"
+								th:value="${homePageAdditional.specialSixText}" required="required"
+								placeholder="Special Banner Six Text" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="specialSixImg" class="form-control" id="specialSixImg"
+								th:value="${homePageAdditional.specialSixImg}" required="required"
+								/>
+							<label for="specialSixImage">Special Banner Six</label>
+						
+							<input type="file" class="form-control" id="specialSixImage"
+								name="specialSixImage" th:value="${homePageAdditional.specialSixImage}"/>
+						<span class="help-block">Add Image for Special Banner Six</span>
+						
+
+					</div>	
+					</div>								
+</div>
+</div>
+</div>
+</div>
+					</div>
+					
+					<!-- Special Discount -->
+					<div class="col-md-12">
+					<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#bannersCon">Special Discounts</a>
 								</h4>
 							</div>
 							<div id="bannersCon" class="panel-collapse collapse">
@@ -163,26 +437,37 @@
 					<!-- Slider One Image -->
 				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerOneImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.bannerOneImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="bannerOneLable">Banner One Label</label>
+						
+							<input type="text" name="bannerOneLable" class="form-control" id="bannerOneLable"
+								th:value="${homePageAdditional.bannerOneLable}" required="required"
+								placeholder="Banner One Label" /> 
+							<input type="text" name="bannerOneLable2" class="form-control" id="bannerOneLable2"
+								th:value="${homePageAdditional.bannerOneLable2}" required="required"
+								placeholder="Banner One Label Two" /> 	
+						
+					</div>
+					
 					<div class="form-group">
 						<label for="bannerOneUrl">Banner One Link</label>
 						
 							<input type="text" name="bannerOneUrl" class="form-control" id="bannerOneUrl"
-								th:value="${homePage.bannerOneUrl}" required="required"
+								th:value="${homePageAdditional.bannerOneUrl}" required="required"
 								placeholder="Banner One Link" /> 
 						
 					</div>
 					<div class="form-group">
 							<input type="hidden" name="bannerOneImg" class="form-control" id="bannerOneImg"
-								th:value="${homePage.bannerOneImg}" required="required"
+								th:value="${homePageAdditional.bannerOneImg}" required="required"
 								/>
 							<label for="bannerOneImage">Banner One</label>
 						
 							<input type="file" class="form-control" id="bannerOneImage"
-								name="bannerOneImage" th:value="${homePage.bannerOneImage}"/>
+								name="bannerOneImage" th:value="${homePageAdditional.bannerOneImage}"/>
 						<span class="help-block">Add Image for Banner One</span>
 						
 
@@ -192,26 +477,36 @@
 					<!-- Slider One Image -->
 				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerTwoImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.bannerTwoImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="bannerTwoLable">Banner Two Label</label>
+						
+							<input type="text" name="bannerTwoLable" class="form-control" id="bannerTwoLable"
+								th:value="${homePageAdditional.bannerTwoLable}" required="required"
+								placeholder="Banner Two Label" /> 
+							<input type="text" name="bannerTwoLable2" class="form-control" id="bannerTwoLable2"
+								th:value="${homePageAdditional.bannerTwoLable2}" required="required"
+								placeholder="Banner Two Label Two" /> 	
+						
+					</div>
 					<div class="form-group">
 						<label for="bannerTwoUrl">Banner Two Link</label>
 						
 							<input type="text" name="bannerTwoUrl" class="form-control" id="bannerTwoUrl"
-								th:value="${homePage.bannerTwoUrl}" required="required"
+								th:value="${homePageAdditional.bannerTwoUrl}" required="required"
 								placeholder="Banner Two Link" /> 
 						
 					</div>
 					<div class="form-group">
 							<input type="hidden" name="bannerTwoImg" class="form-control" id="bannerTwoImg"
-								th:value="${homePage.bannerTwoImg}" required="required"
+								th:value="${homePageAdditional.bannerTwoImg}" required="required"
 								/>
 							<label for="bannerTwoImage">Banner Two</label>
 						
 							<input type="file" class="form-control" id="bannerTwoImage"
-								name="bannerTwoImage" th:value="${homePage.bannerTwoImage}"/>
+								name="bannerTwoImage" th:value="${homePageAdditional.bannerTwoImage}"/>
 						<span class="help-block">Add Image for Banner Two</span>
 					
 
@@ -221,26 +516,36 @@
 					<!-- Slider One Image -->
 				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerThreeImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.bannerThreeImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="bannerThreeLable">Banner Three Label</label>
+						
+							<input type="text" name="bannerThreeLable" class="form-control" id="bannerThreeLable"
+								th:value="${homePageAdditional.bannerThreeLable}" required="required"
+								placeholder="Banner Three Label" /> 
+							<input type="text" name="bannerThreeLable2" class="form-control" id="bannerThreeLable2"
+								th:value="${homePageAdditional.bannerThreeLable2}" required="required"
+								placeholder="Banner Three Label Two" /> 	
+						
+					</div>
 					<div class="form-group">
 						<label for="bannerThreeUrl">Banner Three Link</label>
 						
 							<input type="text" name="bannerThreeUrl" class="form-control" id="bannerThreeUrl"
-								th:value="${homePage.bannerThreeUrl}" required="required"
+								th:value="${homePageAdditional.bannerThreeUrl}" required="required"
 								placeholder="Banner Three Link" /> 
 						
 					</div>
 					<div class="form-group">
 							<input type="hidden" name="bannerThreeImg" class="form-control" id="bannerThreeImg"
-								th:value="${homePage.bannerThreeImg}" required="required"
+								th:value="${homePageAdditional.bannerThreeImg}" required="required"
 								/>
 							<label for="bannerThreeImage">Banner Three</label>
 					
 							<input type="file" class="form-control" id="bannerThreeImage"
-								name="bannerThreeImage" th:value="${homePage.bannerThreeImage}"/>
+								name="bannerThreeImage" th:value="${homePageAdditional.bannerThreeImage}"/>
 						<span class="help-block">Add Image for Banner Three</span>
 						
 
@@ -250,26 +555,36 @@
 					<!-- Slider One Image -->
 				<div class="slider-container col-md-6">
 					<div class="col-md-12">
-						<img class="img-responsive" th:src="${fileUrl}+${homePage.bannerFourImg}"/><br/>
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.bannerFourImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="bannerFourLable">Banner Four Label</label>
+						
+							<input type="text" name="bannerFourLable" class="form-control" id="bannerFourLable"
+								th:value="${homePageAdditional.bannerFourLable}" required="required"
+								placeholder="Banner Four Label" /> 
+							<input type="text" name="bannerFourLable2" class="form-control" id="bannerFourLable2"
+								th:value="${homePageAdditional.bannerFourLable2}" required="required"
+								placeholder="Banner Four Label Two" /> 	
+						
+					</div>
 					<div class="form-group">
 						<label for="bannerFourUrl">Banner Four Link</label>
 						
 							<input type="text" name="bannerFourUrl" class="form-control" id="bannerFourUrl"
-								th:value="${homePage.bannerFourUrl}" required="required"
+								th:value="${homePageAdditional.bannerFourUrl}" required="required"
 								placeholder="Banner Four Link" /> 
 						
 					</div>
 					<div class="form-group">
 							<input type="hidden" name="bannerFourImg" class="form-control" id="bannerFourImg"
-								th:value="${homePage.bannerFourImg}" required="required"
+								th:value="${homePageAdditional.bannerFourImg}" required="required"
 								/>
 							<label for="bannerFourImage">Banner Four</label>
 						
 							<input type="file" class="form-control" id="bannerFourImage"
-								name="bannerFourImage" th:value="${homePage.bannerFourImage}"/>
+								name="bannerFourImage" th:value="${homePageAdditional.bannerFourImage}"/>
 						<span class="help-block">Add Image for Banner Four</span>
 						
 
@@ -279,13 +594,14 @@
 </div>
 </div>
 </div>
-</div>
-					
 					</div>
 					
 					
-					<div class="col-md-6">
-					<!-- Store Address Settings -->
+		
+					
+					
+					
+					<!-- Category Banners -->
 					
 					<div class="col-md-12">
 					<div class="panel panel-default">
@@ -310,6 +626,9 @@
 							<input type="text" name="categoryOneLable" class="form-control" id="categoryOneLable"
 								th:value="${homePage.categoryOneLable}" required="required"
 								placeholder="Category One Label" /> 
+							<input type="text" name="categoryOneLable2" class="form-control" id="categoryOneLable2"
+								th:value="${homePage.categoryOneLable2}" required="required"
+								placeholder="Category One Label Two" /> 	
 						
 					</div>
 					<div class="form-group">
@@ -346,7 +665,9 @@
 							<input type="text" name="categoryTwoLable" class="form-control" id="categoryTwoLable"
 								th:value="${homePage.categoryTwoLable}" required="required"
 								placeholder="Category Two Label" /> 
-						
+							<input type="text" name="categoryTwoLable2" class="form-control" id="categoryTwoLable2"
+									th:value="${homePage.categoryTwoLable2}" required="required"
+									placeholder="Category Two Label Two" /> 
 					</div>
 					<div class="form-group">
 						<label for="categoryTwoUrl">Category Two Link</label>
@@ -382,7 +703,9 @@
 							<input type="text" name="categoryThreeLable" class="form-control" id="categoryThreeLable"
 								th:value="${homePage.categoryThreeLable}" required="required"
 								placeholder="Category Three Label" /> 
-						
+						   <input type="text" name="categoryThreeLable2" class="form-control" id="categoryThreeLable2"
+								th:value="${homePage.categoryThreeLable2}" required="required"
+								placeholder="Category Three Label Two" /> 
 					</div>
 					<div class="form-group">
 						<label for="categoryThreeUrl">Category Three Link</label>
@@ -418,7 +741,9 @@
 							<input type="text" name="categoryFourLable" class="form-control" id="categoryFourLable"
 								th:value="${homePage.categoryFourLable}" required="required"
 								placeholder="Category Four Label" /> 
-						
+						    <input type="text" name="categoryFourLable2" class="form-control" id="categoryFourLable2"
+								th:value="${homePage.categoryFourLable2}" required="required"
+								placeholder="Category Four Label Two" /> 
 					</div>
 					<div class="form-group">
 						<label for="categoryFourUrl">Category Four Link</label>
@@ -447,7 +772,115 @@
 						</div>
 					</div>
 				
-					<!-- Store Address Settings -->
+					
+					<!-- Promotional Banners -->
+					<div class="col-md-12">
+					<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#storeLocationInfos">Promotional Banners</a>
+								</h4>
+							</div>
+							<div id="storeLocationInfos" class="panel-collapse collapse">
+								<div class="panel-body">
+					<div class="row">	
+					<!-- Promotional One-->
+					<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.promotionOneImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="promotionOneLable">Promotional Banner One Label</label>
+						
+							<input type="text" name="promotionOneLable" class="form-control" id="promotionOneLable"
+								th:value="${homePage.promotionOneLable}" required="required"
+								placeholder="Promotional Banner One Label" /> 
+								
+							
+					</div>
+					<div class="form-group">
+						<label for="promotionOneText">Promotional Banner One Text</label>
+						
+							<input type="text" name="promotionOneText" class="form-control" id="promotionOneText"
+								th:value="${homePage.promotionOneText}" required="required"
+								placeholder="Promotional Banner One Text" /> 
+								
+							
+					</div>
+					<div class="form-group">
+						<label for="promotionOneUrl">Promotional Banner One Link</label>
+						
+							<input type="text" name="promotionOneUrl" class="form-control" id="promotionOneUrl"
+								th:value="${homePage.promotionOneUrl}" required="required"
+								placeholder="Promotional Banner One Link" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="promotionOneImg" class="form-control" id="promotionOneImg"
+								th:value="${homePage.promotionOneImg}" required="required"
+								/>
+							<label for="promotionOneImage">Promotional Banner One</label>
+						
+							<input type="file" class="form-control" id="promotionOneImage"
+								name="promotionOneImage" th:value="${homePage.promotionOneImage}"/>
+						<span class="help-block">Add Image for Promotional Banner One</span>
+					
+
+					</div>	
+					</div>
+					<!-- Promotional Two-->
+					<div class="slider-container col-md-6">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePage.promotionTwoImg}"/><br/>
+					</div>
+					<!-- Url-->
+					<div class="form-group">
+						<label for="promotionTwoLable">Promotional Banner Two Label</label>
+						
+							<input type="text" name="promotionTwoLable" class="form-control" id="promotionTwoLable"
+								th:value="${homePage.promotionTwoLable}" required="required"
+								placeholder="Promotional Banner Two Label" /> 
+								
+							
+					</div>
+					<div class="form-group">
+						<label for="promotionTwoText">Promotional Banner Two Text</label>
+						
+							<input type="text" name="promotionTwoText" class="form-control" id="promotionTwoText"
+								th:value="${homePage.promotionTwoText}" required="required"
+								placeholder="Promotional Banner Two Text" /> 
+								
+							
+					</div>
+					<div class="form-group">
+						<label for="promotionTwoUrl">Promotional Banner Two Link</label>
+						
+							<input type="text" name="promotionTwoUrl" class="form-control" id="promotionTwoUrl"
+								th:value="${homePage.promotionTwoUrl}" required="required"
+								placeholder="Promotional Banner Two Link" /> 
+						
+					</div>
+					<div class="form-group">
+							<input type="hidden" name="promotionTwoImg" class="form-control" id="promotionTwoImg"
+								th:value="${homePage.promotionTwoImg}" required="required"
+								/>
+							<label for="promotionTwoImage">Promotional Banner Two</label>
+						
+							<input type="file" class="form-control" id="promotionTwoImage"
+								name="promotionTwoImage" th:value="${homePage.promotionTwoImage}"/>
+						<span class="help-block">Add Image for Promotional Banner Two</span>
+					
+
+					</div>	
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+					<!-- Offers Settings -->
 					
 					<div class="col-md-12">
 					<div class="panel panel-default">
@@ -467,7 +900,22 @@
 						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerOneImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="offerOneTitle">Offer One Title</label>
+						
+							<input type="text" name="offerOneTitle" class="form-control" id="offerOneTitle"
+								th:value="${homePage.offerOneTitle}" required="required"
+								placeholder="Offer One Title" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="offerOneText">Offer One Text</label>
+						
+							<input type="text" name="offerOneText" class="form-control" id="offerOneText"
+								th:value="${homePage.offerOneText}" required="required"
+								placeholder="Offer One Text" /> 
+						
+					</div>
 					<div class="form-group">
 						<label for="offerOneUrl">Offer One Link</label>
 						
@@ -496,7 +944,22 @@
 						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerTwoImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="offerTwoTitle">Offer Two Title</label>
+						
+							<input type="text" name="offerTwoTitle" class="form-control" id="offerTwoTitle"
+								th:value="${homePage.offerTwoTitle}" required="required"
+								placeholder="Offer Two Title" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="offerTwoText">Offer Two Text</label>
+						
+							<input type="text" name="offerTwoText" class="form-control" id="offerTwoText"
+								th:value="${homePage.offerTwoText}" required="required"
+								placeholder="Offer Two Text" /> 
+						
+					</div>
 					<div class="form-group">
 						<label for="offerTwoUrl">Offer Two Link</label>
 						
@@ -525,7 +988,22 @@
 						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerThreeImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="offerThreeTitle">Offer Three Title</label>
+						
+							<input type="text" name="offerThreeTitle" class="form-control" id="offerThreeTitle"
+								th:value="${homePage.offerThreeTitle}" required="required"
+								placeholder="Offer Three Title" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="offerThreeText">Offer Three Text</label>
+						
+							<input type="text" name="offerThreeText" class="form-control" id="offerThreeText"
+								th:value="${homePage.offerThreeText}" required="required"
+								placeholder="Offer Three Text" /> 
+						
+					</div>
 					<div class="form-group">
 						<label for="offerThreeUrl">Offer Three Link</label>
 						
@@ -554,7 +1032,22 @@
 						<img class="img-responsive" th:src="${fileUrl}+${homePage.offerFourImg}"/><br/>
 					</div>
 					<!-- Url-->
-
+					<div class="form-group">
+						<label for="offerFourTitle">Offer Four Title</label>
+						
+							<input type="text" name="offerFourTitle" class="form-control" id="offerFourTitle"
+								th:value="${homePage.offerFourTitle}" required="required"
+								placeholder="Offer Four Title" /> 
+						
+					</div>
+					<div class="form-group">
+						<label for="offerFourText">Offer Four Text</label>
+						
+							<input type="text" name="offerFourText" class="form-control" id="offerFourText"
+								th:value="${homePage.offerFourText}" required="required"
+								placeholder="Offer Four Text" /> 
+						
+					</div>
 					<div class="form-group">
 						<label for="offerFourUrl">Offer Four Link</label>
 						
@@ -579,7 +1072,7 @@
 </div>
 </div>
 </div>	
-	</div>
+	
 									
 	</form>
 					</div>

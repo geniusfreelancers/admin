@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.adminportal.domain.HomePage;
+import com.adminportal.domain.HomePageAdditional;
 import com.adminportal.domain.SiteSetting;
 import com.adminportal.domain.User;
 import com.adminportal.service.HomePageService;
@@ -115,8 +116,12 @@ public class SiteSettingsController {
 		if(homePage == null) {
 			homePage = new HomePage();
 		}
+		HomePageAdditional homePageAdditional = homePageService.findAdditionalHomePage(new Long(1));
+		if(homePageAdditional == null) {
+			homePageAdditional = new HomePageAdditional();
+		}
 		model.addAttribute("homePage",homePage);
-		
+		model.addAttribute("homePageAdditional",homePageAdditional);
         model.addAttribute("user", user);
         String fileUrl = endpointUrl + "/" + bucketName + "/";
 		model.addAttribute("fileUrl", fileUrl);
@@ -124,7 +129,8 @@ public class SiteSettingsController {
 	}
 	
 	@RequestMapping(value="/homesettings/update", method=RequestMethod.POST)
-	public String homeSettingsPOST(@ModelAttribute("homePage") HomePage homePage,BindingResult result,
+	public String homeSettingsPOST(@ModelAttribute("homePage") HomePage homePage,
+			@ModelAttribute("homePageAdditional") HomePageAdditional homePageAdditional,BindingResult result,
 			Model model,@AuthenticationPrincipal User activeUser){
 		User user = userService.findByUsername(activeUser.getUsername());
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
@@ -144,26 +150,63 @@ public class SiteSettingsController {
 		String slideThreeImg = homePage.getSlideThreeImg();
 		slideThreeImg = homePageService.updateImage(slideThreeImg, slideThreeImage);		
 		homePage.setSlideThreeImg(slideThreeImg);
-		//Banners
-		MultipartFile bannerOneImage = homePage.getBannerOneImage();
-		String bannerOneImg = homePage.getBannerOneImg();
+		//Special Banner
+		MultipartFile specialOneImage = homePageAdditional.getSpecialOneImage();
+		String specialOneImg = homePageAdditional.getSpecialOneImg();
+		specialOneImg = homePageService.updateImage(specialOneImg, specialOneImage);		
+		homePageAdditional.setSpecialOneImg(specialOneImg);
+		
+		MultipartFile specialTwoImage = homePageAdditional.getSpecialTwoImage();
+		String specialTwoImg = homePageAdditional.getSpecialTwoImg();
+		specialTwoImg = homePageService.updateImage(specialTwoImg, specialTwoImage);		
+		homePageAdditional.setSpecialTwoImg(specialTwoImg);
+		
+		MultipartFile specialThreeImage = homePageAdditional.getSpecialThreeImage();
+		String specialThreeImg = homePageAdditional.getSpecialThreeImg();
+		specialThreeImg = homePageService.updateImage(specialThreeImg, specialThreeImage);		
+		homePageAdditional.setSpecialThreeImg(specialThreeImg);
+		
+		MultipartFile specialFourImage = homePageAdditional.getSpecialFourImage();
+		String specialFourImg = homePageAdditional.getSpecialFourImg();
+		specialFourImg = homePageService.updateImage(specialFourImg, specialFourImage);		
+		homePageAdditional.setSpecialFourImg(specialFourImg);
+		
+		MultipartFile specialSixImage = homePageAdditional.getSpecialSixImage();
+		String specialSixImg = homePageAdditional.getSpecialSixImg();
+		specialSixImg = homePageService.updateImage(specialSixImg, specialSixImage);		
+		homePageAdditional.setSpecialSixImg(specialSixImg);
+		//Special Discount
+		MultipartFile bannerOneImage = homePageAdditional.getBannerOneImage();
+		String bannerOneImg = homePageAdditional.getBannerOneImg();
 		bannerOneImg = homePageService.updateImage(bannerOneImg, bannerOneImage);		
-		homePage.setBannerOneImg(bannerOneImg);
+		homePageAdditional.setBannerOneImg(bannerOneImg);
 		
-		MultipartFile bannerTwoImage = homePage.getBannerTwoImage();
-		String bannerTwoImg = homePage.getBannerTwoImg();
+		MultipartFile bannerTwoImage = homePageAdditional.getBannerTwoImage();
+		String bannerTwoImg = homePageAdditional.getBannerTwoImg();
 		bannerTwoImg = homePageService.updateImage(bannerTwoImg, bannerTwoImage);		
-		homePage.setBannerTwoImg(bannerTwoImg);
+		homePageAdditional.setBannerTwoImg(bannerTwoImg);
 		
-		MultipartFile bannerThreeImage = homePage.getBannerThreeImage();
-		String bannerThreeImg = homePage.getBannerThreeImg();
+		MultipartFile bannerThreeImage = homePageAdditional.getBannerThreeImage();
+		String bannerThreeImg = homePageAdditional.getBannerThreeImg();
 		bannerThreeImg = homePageService.updateImage(bannerThreeImg, bannerThreeImage);		
-		homePage.setBannerThreeImg(bannerThreeImg);
+		homePageAdditional.setBannerThreeImg(bannerThreeImg);
 		
-		MultipartFile bannerFourImage = homePage.getBannerFourImage();
-		String bannerFourImg = homePage.getBannerFourImg();
+		MultipartFile bannerFourImage = homePageAdditional.getBannerFourImage();
+		String bannerFourImg = homePageAdditional.getBannerFourImg();
 		bannerFourImg = homePageService.updateImage(bannerFourImg, bannerFourImage);		
-		homePage.setBannerFourImg(bannerFourImg);
+		homePageAdditional.setBannerFourImg(bannerFourImg);
+		
+		//Promotion
+		MultipartFile promotionOneImage = homePage.getPromotionOneImage();
+		String promotionOneImg = homePage.getPromotionOneImg();
+		promotionOneImg = homePageService.updateImage(promotionOneImg, promotionOneImage);		
+		homePage.setPromotionOneImg(promotionOneImg);
+				
+		MultipartFile promotionTwoImage = homePage.getPromotionTwoImage();
+		String promotionTwoImg = homePage.getPromotionTwoImg();
+		promotionTwoImg = homePageService.updateImage(promotionTwoImg, promotionTwoImage);		
+		homePage.setPromotionTwoImg(promotionTwoImg);
+		
 		//Category
 		MultipartFile categoryOneImage = homePage.getCategoryOneImage();
 		String categoryOneImg = homePage.getCategoryOneImg();
@@ -206,9 +249,9 @@ public class SiteSettingsController {
 		homePage.setOfferFourImg(offerFourImg);
 		
 		homePageService.save(homePage);
-		
+		homePageService.saveAdditionalHomePage(homePageAdditional);
 		model.addAttribute("homePage",homePage);
-		
+		model.addAttribute("homePageAdditional",homePageAdditional);
         model.addAttribute("user", user);
         model.addAttribute("saved",true);
         String fileUrl = endpointUrl + "/" + bucketName + "/";

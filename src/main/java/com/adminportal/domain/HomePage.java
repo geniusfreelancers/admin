@@ -17,38 +17,52 @@ public class HomePage {
 	private String slideTwoUrl;
 	private String slideThreeImg;
 	private String slideThreeUrl;
+	//Main Category
 	private String categoryOneImg;
 	private String categoryOneUrl;
 	private String categoryOneLable;
+	private String categoryOneLable2;
 	private String categoryTwoImg;
 	private String categoryTwoUrl;
 	private String categoryTwoLable;
+	private String categoryTwoLable2;
 	private String categoryThreeImg;
 	private String categoryThreeUrl;
 	private String categoryThreeLable;
+	private String categoryThreeLable2;
 	private String categoryFourImg;
 	private String categoryFourUrl;
 	private String categoryFourLable;
-	private String bannerOneImg;
-	private String bannerOneUrl;
-	private String bannerTwoImg;
-	private String bannerTwoUrl;
-	private String bannerThreeImg;
-	private String bannerThreeUrl;
-	private String bannerFourImg;
-	private String bannerFourUrl;
-	private String bannerFiveImg;
-	private String bannerFiveUrl;
-	private String bannerSixImg;
-	private String bannerSixUrl;
+	private String categoryFourLable2;
+	
+	//Promotion
+	private String promotionOneImg;
+	private String promotionOneUrl;
+	private String promotionOneLable;
+	private String promotionOneText;
+	
+	private String promotionTwoImg;
+	private String promotionTwoUrl;
+	private String promotionTwoLable;
+	private String promotionTwoText;
+	//Offer
 	private String offerOneImg;
+	private String offerOneTitle;
+	private String offerOneText;
 	private String offerOneUrl;
 	private String offerTwoImg;
+	private String offerTwoTitle;
+	private String offerTwoText;
 	private String offerTwoUrl;
 	private String offerThreeImg;
+	private String offerThreeTitle;
+	private String offerThreeText;
 	private String offerThreeUrl;
 	private String offerFourImg;
+	private String offerFourTitle;
+	private String offerFourText;
 	private String offerFourUrl;
+	
 	private Date updatedDate;
 	@Transient
 	private MultipartFile slideOneImage;
@@ -64,18 +78,11 @@ public class HomePage {
 	private MultipartFile categoryThreeImage;
 	@Transient
 	private MultipartFile categoryFourImage;
+	
 	@Transient
-	private MultipartFile bannerOneImage;
+	private MultipartFile promotionOneImage;
 	@Transient
-	private MultipartFile bannerTwoImage;
-	@Transient
-	private MultipartFile bannerThreeImage;
-	@Transient
-	private MultipartFile bannerFourImage;
-	@Transient
-	private MultipartFile bannerFiveImage;
-	@Transient
-	private MultipartFile bannerSixImage;
+	private MultipartFile promotionTwoImage;
 	@Transient
 	private MultipartFile offerOneImage;
 	@Transient
@@ -145,6 +152,12 @@ public class HomePage {
 	public void setCategoryOneLable(String categoryOneLable) {
 		this.categoryOneLable = categoryOneLable;
 	}
+	public String getCategoryOneLable2() {
+		return categoryOneLable2;
+	}
+	public void setCategoryOneLable2(String categoryOneLable2) {
+		this.categoryOneLable2 = categoryOneLable2;
+	}
 	public String getCategoryTwoImg() {
 		return categoryTwoImg;
 	}
@@ -162,6 +175,12 @@ public class HomePage {
 	}
 	public void setCategoryTwoLable(String categoryTwoLable) {
 		this.categoryTwoLable = categoryTwoLable;
+	}
+	public String getCategoryTwoLable2() {
+		return categoryTwoLable2;
+	}
+	public void setCategoryTwoLable2(String categoryTwoLable2) {
+		this.categoryTwoLable2 = categoryTwoLable2;
 	}
 	public String getCategoryThreeImg() {
 		return categoryThreeImg;
@@ -181,6 +200,12 @@ public class HomePage {
 	public void setCategoryThreeLable(String categoryThreeLable) {
 		this.categoryThreeLable = categoryThreeLable;
 	}
+	public String getCategoryThreeLable2() {
+		return categoryThreeLable2;
+	}
+	public void setCategoryThreeLable2(String categoryThreeLable2) {
+		this.categoryThreeLable2 = categoryThreeLable2;
+	}
 	public String getCategoryFourImg() {
 		return categoryFourImg;
 	}
@@ -199,83 +224,78 @@ public class HomePage {
 	public void setCategoryFourLable(String categoryFourLable) {
 		this.categoryFourLable = categoryFourLable;
 	}
-	public String getBannerOneImg() {
-		return bannerOneImg;
+	public String getCategoryFourLable2() {
+		return categoryFourLable2;
 	}
-	public void setBannerOneImg(String bannerOneImg) {
-		this.bannerOneImg = bannerOneImg;
+	public void setCategoryFourLable2(String categoryFourLable2) {
+		this.categoryFourLable2 = categoryFourLable2;
 	}
-	public String getBannerOneUrl() {
-		return bannerOneUrl;
+	
+	public String getPromotionOneImg() {
+		return promotionOneImg;
 	}
-	public void setBannerOneUrl(String bannerOneUrl) {
-		this.bannerOneUrl = bannerOneUrl;
+	public void setPromotionOneImg(String promotionOneImg) {
+		this.promotionOneImg = promotionOneImg;
 	}
-	public String getBannerTwoImg() {
-		return bannerTwoImg;
+	public String getPromotionOneUrl() {
+		return promotionOneUrl;
 	}
-	public void setBannerTwoImg(String bannerTwoImg) {
-		this.bannerTwoImg = bannerTwoImg;
+	public void setPromotionOneUrl(String promotionOneUrl) {
+		this.promotionOneUrl = promotionOneUrl;
 	}
-	public String getBannerTwoUrl() {
-		return bannerTwoUrl;
+	public String getPromotionOneLable() {
+		return promotionOneLable;
 	}
-	public void setBannerTwoUrl(String bannerTwoUrl) {
-		this.bannerTwoUrl = bannerTwoUrl;
+	public void setPromotionOneLable(String promotionOneLable) {
+		this.promotionOneLable = promotionOneLable;
 	}
-	public String getBannerThreeImg() {
-		return bannerThreeImg;
+	public String getPromotionOneText() {
+		return promotionOneText;
 	}
-	public void setBannerThreeImg(String bannerThreeImg) {
-		this.bannerThreeImg = bannerThreeImg;
+	public void setPromotionOneText(String promotionOneText) {
+		this.promotionOneText = promotionOneText;
 	}
-	public String getBannerThreeUrl() {
-		return bannerThreeUrl;
+	public String getPromotionTwoImg() {
+		return promotionTwoImg;
 	}
-	public void setBannerThreeUrl(String bannerThreeUrl) {
-		this.bannerThreeUrl = bannerThreeUrl;
+	public void setPromotionTwoImg(String promotionTwoImg) {
+		this.promotionTwoImg = promotionTwoImg;
 	}
-	public String getBannerFourImg() {
-		return bannerFourImg;
+	public String getPromotionTwoUrl() {
+		return promotionTwoUrl;
 	}
-	public void setBannerFourImg(String bannerFourImg) {
-		this.bannerFourImg = bannerFourImg;
+	public void setPromotionTwoUrl(String promotionTwoUrl) {
+		this.promotionTwoUrl = promotionTwoUrl;
 	}
-	public String getBannerFourUrl() {
-		return bannerFourUrl;
+	public String getPromotionTwoLable() {
+		return promotionTwoLable;
 	}
-	public void setBannerFourUrl(String bannerFourUrl) {
-		this.bannerFourUrl = bannerFourUrl;
+	public void setPromotionTwoLable(String promotionTwoLable) {
+		this.promotionTwoLable = promotionTwoLable;
 	}
-	public String getBannerFiveImg() {
-		return bannerFiveImg;
+	public String getPromotionTwoText() {
+		return promotionTwoText;
 	}
-	public void setBannerFiveImg(String bannerFiveImg) {
-		this.bannerFiveImg = bannerFiveImg;
-	}
-	public String getBannerFiveUrl() {
-		return bannerFiveUrl;
-	}
-	public void setBannerFiveUrl(String bannerFiveUrl) {
-		this.bannerFiveUrl = bannerFiveUrl;
-	}
-	public String getBannerSixImg() {
-		return bannerSixImg;
-	}
-	public void setBannerSixImg(String bannerSixImg) {
-		this.bannerSixImg = bannerSixImg;
-	}
-	public String getBannerSixUrl() {
-		return bannerSixUrl;
-	}
-	public void setBannerSixUrl(String bannerSixUrl) {
-		this.bannerSixUrl = bannerSixUrl;
+	public void setPromotionTwoText(String promotionTwoText) {
+		this.promotionTwoText = promotionTwoText;
 	}
 	public String getOfferOneImg() {
 		return offerOneImg;
 	}
 	public void setOfferOneImg(String offerOneImg) {
 		this.offerOneImg = offerOneImg;
+	}
+	public String getOfferOneTitle() {
+		return offerOneTitle;
+	}
+	public void setOfferOneTitle(String offerOneTitle) {
+		this.offerOneTitle = offerOneTitle;
+	}
+	public String getOfferOneText() {
+		return offerOneText;
+	}
+	public void setOfferOneText(String offerOneText) {
+		this.offerOneText = offerOneText;
 	}
 	public String getOfferOneUrl() {
 		return offerOneUrl;
@@ -289,6 +309,18 @@ public class HomePage {
 	public void setOfferTwoImg(String offerTwoImg) {
 		this.offerTwoImg = offerTwoImg;
 	}
+	public String getOfferTwoTitle() {
+		return offerTwoTitle;
+	}
+	public void setOfferTwoTitle(String offerTwoTitle) {
+		this.offerTwoTitle = offerTwoTitle;
+	}
+	public String getOfferTwoText() {
+		return offerTwoText;
+	}
+	public void setOfferTwoText(String offerTwoText) {
+		this.offerTwoText = offerTwoText;
+	}
 	public String getOfferTwoUrl() {
 		return offerTwoUrl;
 	}
@@ -301,6 +333,18 @@ public class HomePage {
 	public void setOfferThreeImg(String offerThreeImg) {
 		this.offerThreeImg = offerThreeImg;
 	}
+	public String getOfferThreeTitle() {
+		return offerThreeTitle;
+	}
+	public void setOfferThreeTitle(String offerThreeTitle) {
+		this.offerThreeTitle = offerThreeTitle;
+	}
+	public String getOfferThreeText() {
+		return offerThreeText;
+	}
+	public void setOfferThreeText(String offerThreeText) {
+		this.offerThreeText = offerThreeText;
+	}
 	public String getOfferThreeUrl() {
 		return offerThreeUrl;
 	}
@@ -312,6 +356,18 @@ public class HomePage {
 	}
 	public void setOfferFourImg(String offerFourImg) {
 		this.offerFourImg = offerFourImg;
+	}
+	public String getOfferFourTitle() {
+		return offerFourTitle;
+	}
+	public void setOfferFourTitle(String offerFourTitle) {
+		this.offerFourTitle = offerFourTitle;
+	}
+	public String getOfferFourText() {
+		return offerFourText;
+	}
+	public void setOfferFourText(String offerFourText) {
+		this.offerFourText = offerFourText;
 	}
 	public String getOfferFourUrl() {
 		return offerFourUrl;
@@ -367,41 +423,18 @@ public class HomePage {
 	public void setCategoryFourImage(MultipartFile categoryFourImage) {
 		this.categoryFourImage = categoryFourImage;
 	}
-	public MultipartFile getBannerOneImage() {
-		return bannerOneImage;
+	
+	public MultipartFile getPromotionOneImage() {
+		return promotionOneImage;
 	}
-	public void setBannerOneImage(MultipartFile bannerOneImage) {
-		this.bannerOneImage = bannerOneImage;
+	public void setPromotionOneImage(MultipartFile promotionOneImage) {
+		this.promotionOneImage = promotionOneImage;
 	}
-	public MultipartFile getBannerTwoImage() {
-		return bannerTwoImage;
+	public MultipartFile getPromotionTwoImage() {
+		return promotionTwoImage;
 	}
-	public void setBannerTwoImage(MultipartFile bannerTwoImage) {
-		this.bannerTwoImage = bannerTwoImage;
-	}
-	public MultipartFile getBannerThreeImage() {
-		return bannerThreeImage;
-	}
-	public void setBannerThreeImage(MultipartFile bannerThreeImage) {
-		this.bannerThreeImage = bannerThreeImage;
-	}
-	public MultipartFile getBannerFourImage() {
-		return bannerFourImage;
-	}
-	public void setBannerFourImage(MultipartFile bannerFourImage) {
-		this.bannerFourImage = bannerFourImage;
-	}
-	public MultipartFile getBannerFiveImage() {
-		return bannerFiveImage;
-	}
-	public void setBannerFiveImage(MultipartFile bannerFiveImage) {
-		this.bannerFiveImage = bannerFiveImage;
-	}
-	public MultipartFile getBannerSixImage() {
-		return bannerSixImage;
-	}
-	public void setBannerSixImage(MultipartFile bannerSixImage) {
-		this.bannerSixImage = bannerSixImage;
+	public void setPromotionTwoImage(MultipartFile promotionTwoImage) {
+		this.promotionTwoImage = promotionTwoImage;
 	}
 	public MultipartFile getOfferOneImage() {
 		return offerOneImage;
@@ -427,6 +460,5 @@ public class HomePage {
 	public void setOfferFourImage(MultipartFile offerFourImage) {
 		this.offerFourImage = offerFourImage;
 	}
-	
 	
 }
