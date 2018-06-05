@@ -84,6 +84,7 @@ public class MailConstructor {
 		Context context = new Context();
 		context.setVariable("product", product);
 		context.setVariable("emailAddress", emailAddress);
+		System.out.println(templateName);
 		String text = templateEngine.process(templateName, context);
 		
 		MimeMessagePreparator messagePreparator = new MimeMessagePreparator(){

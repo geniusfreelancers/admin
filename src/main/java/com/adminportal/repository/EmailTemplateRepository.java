@@ -6,5 +6,7 @@ import com.adminportal.domain.EmailTemplate;
 
 public interface EmailTemplateRepository extends CrudRepository<EmailTemplate, Long>{
 
+	EmailTemplate findByTitle(String title);
+
 
 }
