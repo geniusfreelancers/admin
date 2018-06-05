@@ -131,7 +131,7 @@ public class TemplateUploadController {
         model.addAttribute("emailTypeList", emailTypeList);
         model.addAttribute("emailTitleList", emailTitleList);
         
-    	return "sendEmail";
+    	return "sendemail";
     }
     
     @RequestMapping(value="/sendEmails", method=RequestMethod.POST)

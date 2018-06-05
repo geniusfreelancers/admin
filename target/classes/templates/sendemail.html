@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fas fa-envelope"></i> SEND EMAIL</h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fa fa-file-text-o" aria-hidden="true"></i><a th:href="@{/}">All Email Templates</a></li>
+                <li><i class="fas fa-envelope"></i>Send Email</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+<h3 class="text"><strong>Send Email</strong></h3>
+
+<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+	<form class="form-horizontal" th:action="@{/sendEmails}"
+				method="post" enctype="multipart/form-data">
+				<fieldset>
+		<div class="col-md-12 col-sm-12">
+
+			<div class="col-md-5 col-md-offset-1">
+			<!-- Send To -->
+					<div class="form-group">
+						<label for="to">Send To</label>
+							
+							 <select id="to"
+								name="to" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option value="all">All</option>
+								<option value="customers">Customers</option>
+								<option value="individual">Individual</option>
+							</select>
+					</div>
+			<!-- Email -->
+					<div class="form-group">
+						<label for="email">Title</label>
+							<input type="text"  name="email" id="email" 
+							class="form-control" placeholder="Email Address"/>
+							
+					</div>
+			
+					
+			</div>
+			<div class="col-md-5 col-md-offset-1">
+			<!-- Template Type -->
+					<div class="form-group">
+						<label for="emailType">Template Type</label>
+							
+							 <select id="emailType"
+								name="emailType" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option th:value="${emailType}" data-th-each="emailType : ${emailTypeList}" th:text="${emailType}"></option>
+							</select>
+					</div>
+			<!-- Title -->
+					<div class="form-group">
+						<label for="title">Template Title</label>
+							
+							 <select id="title"
+								name="title" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option th:value="${emailTitle}" data-th-each="emailTitle : ${emailTitleList}" th:text="${emailTitle}"></option>
+							</select>
+					</div>
+			
+			<div class="form-group">
+				<button type="submit" class="btn btn-success">Send
+									Email</button>
+				<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+			</div>
+			</div>
+		</div>
+		</fieldset>
+		</form>
+
+<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+</body>
+</html>
+ 
