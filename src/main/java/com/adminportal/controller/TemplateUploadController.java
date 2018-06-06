@@ -146,7 +146,7 @@ public class TemplateUploadController {
         EmailTemplate emailTemplate = emailTemplateService.findByTitle(title);
         //Assigning Values for Email Preperation
         String subject = "Marketting Email";
-        String senderEmail = "andyjainson@gmail.com";
+        String senderEmail = "advertising@thetimesofeverest.com";
         String templateName = emailTemplate.getFileName();
         templateName = templateName.substring(0, templateName.indexOf("."));
         
