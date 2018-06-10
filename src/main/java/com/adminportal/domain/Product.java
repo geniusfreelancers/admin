@@ -54,6 +54,7 @@ public class Product {
 	private String productImagesName;
 	private String feature;
 	private String size;
+	private String productTags;
 	private boolean unStiched;
 	@ManyToOne
 	@JoinColumn(name="category_id")
@@ -276,6 +277,14 @@ public class Product {
 	}
 
 	
+	public String getProductTags() {
+		return productTags;
+	}
+
+	public void setProductTags(String productTags) {
+		this.productTags = productTags;
+	}
+
 	public boolean isUnStiched() {
 		return unStiched;
 	}
