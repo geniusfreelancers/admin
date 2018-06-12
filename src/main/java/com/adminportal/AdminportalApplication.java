@@ -49,7 +49,7 @@ public class AdminportalApplication implements CommandLineRunner {
 	    }*/
      @Override	 
 	 public void run(String... args) throws Exception{
-			User user1 = new User();
+			/*User user1 = new User();
 			user1.setUsername("admins");
 			user1.setPassword(SecurityUtility.passwordEncoder().encode("admin"));
 			user1.setEmail("admins@gmail.com");
@@ -59,7 +59,7 @@ public class AdminportalApplication implements CommandLineRunner {
 			role1.setName("ROLE_ADMIN");
 			userRoles.add(new UserRole(user1, role1));
 			
-			userService.createUser(user1, userRoles);
+			userService.createUser(user1, userRoles);*/
 		}
 	 
 	 @Bean
