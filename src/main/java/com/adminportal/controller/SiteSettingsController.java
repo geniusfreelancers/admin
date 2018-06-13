@@ -195,6 +195,11 @@ public class SiteSettingsController {
 		String bannerFourImg = homePageAdditional.getBannerFourImg();
 		bannerFourImg = homePageService.updateImage(bannerFourImg, bannerFourImage);		
 		homePageAdditional.setBannerFourImg(bannerFourImg);
+		//Testimonial Background
+		MultipartFile testimonialImage = homePageAdditional.getTestimonialImage();
+		String testimonialImg = homePageAdditional.getTestimonialImg();
+		testimonialImg = homePageService.updateImage(testimonialImg, testimonialImage);		
+		homePageAdditional.setTestimonialImg(testimonialImg);
 		
 		//Promotion
 		MultipartFile promotionOneImage = homePage.getPromotionOneImage();

@@ -691,6 +691,27 @@
 
 					</div>	
 					</div>
+					<!-- Testimonial Banner -->
+					<div class="slider-container col-md-12">
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${homePageAdditional.testimonialImg}"/><br/>
+					</div>
+					<!-- Url-->
+					
+					<div class="form-group">
+							<input type="hidden" name="testimonialImg" class="form-control" id="testimonialImg"
+								th:value="${homePageAdditional.testimonialImg}" required="required"
+								/>
+							<label for="testimonialImage">Testimonial Background Image</label>
+						
+							<input type="file" class="form-control" id="testimonialImage"
+								name="testimonialImage" th:value="${homePageAdditional.testimonialImage}"/>
+						<span class="help-block">Add Image for Testimonial Background</span>
+					
+
+					</div>	
+					</div>
+					
 					</div>
 					</div>
 					</div>
