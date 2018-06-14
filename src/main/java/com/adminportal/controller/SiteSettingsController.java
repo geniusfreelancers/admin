@@ -67,6 +67,22 @@ public class SiteSettingsController {
 	public String settingsPOST(@ModelAttribute("siteSettings") SiteSetting siteSettings,BindingResult result,
 			Model model,@AuthenticationPrincipal User activeUser){
 		User user = userService.findByUsername(activeUser.getUsername());
+		//Menu Bar Banner
+		MultipartFile menu1BannerImage = siteSettings.getMenu1BannerImage();
+		String menu1Banner = siteSettings.getMenu1Banner();
+		menu1Banner = homePageService.updateImage(menu1Banner, menu1BannerImage);		
+		siteSettings.setMenu1Banner(menu1Banner);
+		
+		MultipartFile menu2BannerImage = siteSettings.getMenu2BannerImage();
+		String menu2Banner = siteSettings.getMenu2Banner();
+		menu2Banner = homePageService.updateImage(menu2Banner, menu2BannerImage);		
+		siteSettings.setMenu2Banner(menu2Banner);
+		
+		MultipartFile menu3BannerImage = siteSettings.getMenu3BannerImage();
+		String menu3Banner = siteSettings.getMenu3Banner();
+		menu3Banner = homePageService.updateImage(menu3Banner, menu3BannerImage);		
+		siteSettings.setMenu3Banner(menu3Banner);
+		
 		MultipartFile siteLogoImage = siteSettings.getSiteLogoImage();
 		String siteLogo = siteSettings.getSiteLogo();
 		if(siteLogoImage == null || siteLogoImage.isEmpty()) {
