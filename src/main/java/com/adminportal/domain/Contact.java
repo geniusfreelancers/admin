@@ -1,11 +1,15 @@
 package com.adminportal.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Contact {
@@ -25,6 +29,8 @@ public class Contact {
 	private Date contactDate;
 	private Date respondedDate;
 	private String status;
+	@Transient
+	private List<MultipartFile> productImage;
 	
 	public Long getId() {
 		return id;
@@ -104,6 +110,12 @@ public class Contact {
 	}
 	public void setRespondedDate(Date respondedDate) {
 		this.respondedDate = respondedDate;
+	}
+	public List<MultipartFile> getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(List<MultipartFile> productImage) {
+		this.productImage = productImage;
 	}
 	
 }

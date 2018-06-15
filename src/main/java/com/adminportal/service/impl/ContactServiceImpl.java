@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.adminportal.domain.Contact;
 import com.adminportal.repository.ContactRepository;
 import com.adminportal.service.ContactService;
 @Service
 public class ContactServiceImpl implements ContactService{
+	
 	@Autowired
 	private ContactRepository contactRepository;
 	
@@ -31,7 +31,7 @@ public class ContactServiceImpl implements ContactService{
 		}
 		return contactList;
 	}
-
+	
 	@Override
 	public List<Contact> findTop10ByOrderByIdDesc() {
 		return contactRepository.findTop10ByOrderByIdDesc();
