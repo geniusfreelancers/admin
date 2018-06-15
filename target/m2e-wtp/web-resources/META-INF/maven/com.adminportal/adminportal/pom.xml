@@ -5,11 +5,7 @@
 
 	<groupId>com.adminportal</groupId>
 	<artifactId>adminportal</artifactId>
-<<<<<<< HEAD
-	<version>12.5.0-SNAPSHOT</version>
-=======
-	<version>0.0.7-SNAPSHOT</version>
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
+	<version>13.0.5-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
 	<name>Adminportal</name>
@@ -26,13 +22,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		   <start-class>com.adminportal.AdminportalApplication</start-class>
 	</properties>
 	
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-<<<<<<< HEAD
 			<artifactId>spring-boot-starter-parent</artifactId>
 			<version>1.5.9.RELEASE</version>
 			<type>pom</type>
@@ -41,18 +37,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>1.5.9.RELEASE</version>
-=======
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-<<<<<<< HEAD
 			<version>1.5.9.RELEASE</version>
-=======
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 		</dependency>
 		
 		<!-- marked the embedded servlet container as provided -->
@@ -65,28 +55,19 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-<<<<<<< HEAD
 			<version>1.5.9.RELEASE</version>
-=======
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-<<<<<<< HEAD
 			<version>1.5.9.RELEASE</version>
-=======
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-<<<<<<< HEAD
 			<version>1.5.9.RELEASE</version>
-=======
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 		</dependency>
 
 		<dependency>
@@ -97,21 +78,20 @@
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
-<<<<<<< HEAD
 			<version>3.0.2.RELEASE</version>
 		</dependency>
 		<!--dependency>
 	    	<groupId>org.thymeleaf.extras</groupId>
 	    	<artifactId>thymeleaf-extras-java8time</artifactId>
 		</dependency-->
-=======
-		</dependency>
+
 		<dependency>
-	    	<groupId>org.thymeleaf.extras</groupId>
-	    	<artifactId>thymeleaf-extras-java8time</artifactId>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk</artifactId>
+		    <version>1.11.333</version>
 		</dependency>
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
-			
+
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -122,16 +102,12 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-<<<<<<< HEAD
 		<!-- Above dependency can be removed if below javax mail api works -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>javax.mail-api</artifactId>
 		    <version>1.6.0</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
-=======
-		
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -158,6 +134,13 @@
 			<artifactId>rest-api-sdk</artifactId>
 			<version>1.4.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -165,7 +148,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-<<<<<<< HEAD
 				<executions>
 			        <execution>
 			          <goals>
@@ -173,8 +155,6 @@
 			          </goals>
 			        </execution>
 			    </executions>
-=======
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
 			</plugin>
 		</plugins>
 	</build>

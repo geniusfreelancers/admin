@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.adminportal.AdminportalApplicationTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 87.082 sec - in com.adminportal.AdminportalApplicationTests
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 69.663 sec - in com.adminportal.AdminportalApplicationTests
->>>>>>> ce900f513d383a7e0b02f1e82e86f4025c4ad2ff
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 104.629 sec - in com.adminportal.AdminportalApplicationTests
