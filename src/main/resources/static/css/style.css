@@ -29,6 +29,9 @@
     margin: 20px;
     padding: 10px 0px;
 }
+.error{
+	border: 1px solid #bd1c1c!important;
+}
 .image-wrapper{
     width: 15%!important;
 }
@@ -1089,7 +1092,7 @@ ul.sidebar-menu li.active a i {
 
     padding: 15px;
 
-    width: 100%;
+    width: 95%;
 
 }
 

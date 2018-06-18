@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="far fa-folder"></i> <strong>Update Sub Sub-Category</strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fas fa-sitemap"></i><a th:href="@{/category/categories}">Categories</a></li>
+                <li><i class="far fa-folder"></i>Update Sub Sub-Category</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+<div class="row">
+
+<div class="col-md-6 col-md-offset-3">
+<div class="col-md-12 well">
+	<h2>Update Sub Sub-Category</h2>
+	<form class="form-horizontal col-md-12" th:action="@{/category/updatesubsubcategory}"
+				method="post">
+				<fieldset>
+				<input hidden="hidden" name="id" th:value="${subsubcategory.id}"/>
+				<!-- Parent Category -->
+					<div class="form-group">
+						<label for="category">Parent Category</label>
+						
+							<select id="category"
+								name="category" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+									
+								<option data-th-each="category : ${categoryList}" th:selected="(${subsubcategory.subCategory.category.id}==${category.id})" th:value="${category.id}" th:text="${category.categoryName}"></option>
+								
+							</select>
+						
+					</div>
+					
+					<!-- Parent Sub Category -->
+					<div class="form-group">
+						<label for="subCategory">Parent Sub Category</label>
+						<select id="subCategory"
+								name="subCategory" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option data-th-each="subcategory : ${subcategoryList}" th:selected="(${subsubcategory.subCategory.id}==${subcategory.id})" th:value="${subcategory.id}" th:text="${subcategory.subCategoryName}"></option>
+								
+							</select>
+						
+					</div>
+				<!-- title -->
+					<div class="form-group">
+						<label for="subSubCategoryName">Sub Sub-Category Name</label>
+						
+							<input type="text" name="subSubCategoryName" class="form-control" id="subSubCategoryName"
+								th:value="${subsubcategory.subSubCategoryName}" required="required"
+								placeholder="Sub Sub-Category Name" /> 
+						
+					</div>
+					
+					<!-- Slug -->
+					<div class="form-group">
+						<label for="subSubCategorySlug">Sub Sub-Category Slug</label>
+						
+							<input type="text" name="subSubCategorySlug" class="form-control" id="subSubCategorySlug"
+								th:value="${subsubcategory.subSubCategorySlug}" required="required"
+								placeholder="Sub Sub-Category Slug" /> 
+						
+					</div>
+					
+					
+					
+					<div class="form-group">
+						
+							<button type="submit" id="editsubsubcategorysubmit" class="btn btn-success">Update Sub Sub-Category</button>
+							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+						
+					</div>	
+					
+					</fieldset>
+		</form>
+</div>
+<div id="subsubcategoryList" class="col-md-12">
+
+</div>
+</div>
+</div>
+	
+		
+
+							
+	
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	
+</body>
+</html>

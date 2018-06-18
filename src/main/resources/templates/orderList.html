@@ -81,7 +81,7 @@
 						<td th:text="${order.orderStatus}" class="col-md-1 text-center"></td>
 						<td class="col-md-2 text-center">
 							<input hidden="hidden" name="id" th:value="${order.id}"/>
-							<a class="btn btn-primary btn-xs edit-product" th:href="@{/product/updateProduct?id=}+${order.id}">
+							<a class="btn btn-primary btn-xs edit-product" th:href="@{/order/editOrder/}+${order.id}">
 							<span class="fa fa-pencil-square-o"></span> Edit</a>
 							<button th:id="'oneProduct-'+${order.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete">
 							<span class="fa fa-times"></span> Delete</button>		

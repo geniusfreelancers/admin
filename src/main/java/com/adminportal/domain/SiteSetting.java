@@ -1,6 +1,7 @@
 package com.adminportal.domain;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +18,8 @@ public class SiteSetting {
 	private BigDecimal shippingCost;
 	private BigDecimal premiumShippingCost;
 	private String siteLogo;
-	
+	private String hotDeal;
+	private Date hotDealExpiry;
 	@Transient
 	private MultipartFile siteLogoImage;
 	private String shopOfferBanner;
@@ -26,6 +28,12 @@ public class SiteSetting {
 	private String cartOfferBanner;
 	@Transient
 	private MultipartFile cartOfferBannerImage;
+	private String maleImageName;
+	@Transient
+	private MultipartFile maleImage;
+	private String femaleImageName;
+	@Transient
+	private MultipartFile femaleImage;
 	private String storeAddress1;
 	private String storeAddress2;
 	private String storeAddressCity;
@@ -37,6 +45,16 @@ public class SiteSetting {
 	private String storeInfoEmail;
 
 	private boolean loginKillSwitch;
+	//Banner for Navigation Bar
+	private String menu1Banner;
+	@Transient
+	private MultipartFile menu1BannerImage;
+	private String menu2Banner;
+	@Transient
+	private MultipartFile menu2BannerImage;
+	private String menu3Banner;
+	@Transient
+	private MultipartFile menu3BannerImage;
 	
 	private String facebookUrl;
 	private String twitterUrl;
@@ -64,6 +82,31 @@ public class SiteSetting {
 	}
 	public void setCartOfferBannerImage(MultipartFile cartOfferBannerImage) {
 		this.cartOfferBannerImage = cartOfferBannerImage;
+	}
+	
+	public String getMaleImageName() {
+		return maleImageName;
+	}
+	public void setMaleImageName(String maleImageName) {
+		this.maleImageName = maleImageName;
+	}
+	public MultipartFile getMaleImage() {
+		return maleImage;
+	}
+	public void setMaleImage(MultipartFile maleImage) {
+		this.maleImage = maleImage;
+	}
+	public String getFemaleImageName() {
+		return femaleImageName;
+	}
+	public void setFemaleImageName(String femaleImageName) {
+		this.femaleImageName = femaleImageName;
+	}
+	public MultipartFile getFemaleImage() {
+		return femaleImage;
+	}
+	public void setFemaleImage(MultipartFile femaleImage) {
+		this.femaleImage = femaleImage;
 	}
 	public Long getId() {
 		return id;
@@ -98,6 +141,18 @@ public class SiteSetting {
 		this.siteLogo = siteLogo;
 	}
 
+	public String getHotDeal() {
+		return hotDeal;
+	}
+	public void setHotDeal(String hotDeal) {
+		this.hotDeal = hotDeal;
+	}
+	public Date getHotDealExpiry() {
+		return hotDealExpiry;
+	}
+	public void setHotDealExpiry(Date hotDealExpiry) {
+		this.hotDealExpiry = hotDealExpiry;
+	}
 	public MultipartFile getSiteLogoImage() {
 		return siteLogoImage;
 	}
@@ -217,6 +272,43 @@ public class SiteSetting {
 	}
 	public void setLoginKillSwitch(boolean loginKillSwitch) {
 		this.loginKillSwitch = loginKillSwitch;
+	}
+	
+	public String getMenu1Banner() {
+		return menu1Banner;
+	}
+	public void setMenu1Banner(String menu1Banner) {
+		this.menu1Banner = menu1Banner;
+	}
+	public MultipartFile getMenu1BannerImage() {
+		return menu1BannerImage;
+	}
+	public void setMenu1BannerImage(MultipartFile menu1BannerImage) {
+		this.menu1BannerImage = menu1BannerImage;
+	}
+	public String getMenu2Banner() {
+		return menu2Banner;
+	}
+	public void setMenu2Banner(String menu2Banner) {
+		this.menu2Banner = menu2Banner;
+	}
+	public MultipartFile getMenu2BannerImage() {
+		return menu2BannerImage;
+	}
+	public void setMenu2BannerImage(MultipartFile menu2BannerImage) {
+		this.menu2BannerImage = menu2BannerImage;
+	}
+	public String getMenu3Banner() {
+		return menu3Banner;
+	}
+	public void setMenu3Banner(String menu3Banner) {
+		this.menu3Banner = menu3Banner;
+	}
+	public MultipartFile getMenu3BannerImage() {
+		return menu3BannerImage;
+	}
+	public void setMenu3BannerImage(MultipartFile menu3BannerImage) {
+		this.menu3BannerImage = menu3BannerImage;
 	}
 	public String getFacebookUrl() {
 		return facebookUrl;

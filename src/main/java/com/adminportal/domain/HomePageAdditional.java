@@ -54,7 +54,9 @@ public class HomePageAdditional {
 		private String bannerFourUrl;
 		private String bannerFourLable;
 		private String bannerFourLable2;
-		
+		private String testimonialImg;
+		@Transient
+		private MultipartFile testimonialImage;
 		@Transient
 		private MultipartFile specialOneImage;
 		@Transient
@@ -388,4 +390,17 @@ public class HomePageAdditional {
 		public void setSpecialSixImage(MultipartFile specialSixImage) {
 			this.specialSixImage = specialSixImage;
 		}
+		public String getTestimonialImg() {
+			return testimonialImg;
+		}
+		public void setTestimonialImg(String testimonialImg) {
+			this.testimonialImg = testimonialImg;
+		}
+		public MultipartFile getTestimonialImage() {
+			return testimonialImage;
+		}
+		public void setTestimonialImage(MultipartFile testimonialImage) {
+			this.testimonialImage = testimonialImage;
+		}
+		
 }

@@ -3,10 +3,13 @@ package com.adminportal.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,6 +76,78 @@ public class CategoryController {
 		return newcategoryList;
 	}
 	
+	//Update Category
+	@RequestMapping("/updatecategory")
+	public String updateCategory(@RequestParam("id") Long id, Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
+		Category category = categoryService.findOne(id);
+		model.addAttribute("category", category);
+		return "editcategory";
+	}
+	
+	
+	@RequestMapping(value="/updatecategory", method=RequestMethod.POST)
+	public String updateCategoryPost(@ModelAttribute("category") Category category, BindingResult result, Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
+		categoryService.save(category);
+		model.addAttribute("updateSuccess",true);
+		model.addAttribute("category", category);
+		return "editcategory";
+	}
+	//Update Sub Category
+	@RequestMapping("/updatesubcategory")
+	public String updateSubCategory(@RequestParam("id") Long id, Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
+		SubCategory subcategory = categoryService.findOneSub(id);
+		List<Category> categoryList = categoryService.findAllCategories();
+		model.addAttribute("subcategory", subcategory);
+		model.addAttribute("categoryList", categoryList);
+		return "editsubcategory";
+	}
+	
+	
+	@RequestMapping(value="/updatesubcategory", method=RequestMethod.POST)
+	public String updateSubCategoryPost(@ModelAttribute("subcategory") SubCategory subcategory, BindingResult result, Model model,@AuthenticationPrincipal User activeUser){
+		User user = userService.findByUsername(activeUser.getUsername());
+        model.addAttribute("user", user);
+		categoryService.save(subcategory);
+		model.addAttribute("updateSuccess",true);
+		model.addAttribute("subcategory", subcategory);
+		List<Category> categoryList = categoryService.findAllCategories();
+		model.addAttribute("categoryList", categoryList);
+		return "editsubcategory";
+	}
+	
+	//Update Sub Sub Category
+		@RequestMapping("/updatesubsubcategory")
+		public String updateSubSubCategory(@RequestParam("id") Long id, Model model,@AuthenticationPrincipal User activeUser){
+			User user = userService.findByUsername(activeUser.getUsername());
+	        model.addAttribute("user", user);
+			SubSubCategory subsubcategory = categoryService.findOneSubSub(id);
+			Category category = subsubcategory.getSubCategory().getCategory();
+			List<SubCategory> subcategoryList = category.getSubCategory();
+			List<Category> categoryList = categoryService.findAllCategories();
+			model.addAttribute("subcategoryList", subcategoryList);
+			model.addAttribute("subsubcategory", subsubcategory);
+			model.addAttribute("categoryList", categoryList);
+			return "editsubsubcategory";
+		}
+		
+		
+		@RequestMapping(value="/updatesubsubcategory", method=RequestMethod.POST)
+		public String updateSubSubCategoryPost(@ModelAttribute("subsubcategory") SubSubCategory subsubcategory, BindingResult result, Model model,@AuthenticationPrincipal User activeUser){
+			User user = userService.findByUsername(activeUser.getUsername());
+	        model.addAttribute("user", user);
+			categoryService.save(subsubcategory);
+			model.addAttribute("updateSuccess",true);
+			model.addAttribute("subsubcategory", subsubcategory);
+			List<Category> categoryList = categoryService.findAllCategories();
+			model.addAttribute("categoryList", categoryList);
+			return "editsubsubcategory";
+		}
 	@RequestMapping(value="/getsubcategories", method=RequestMethod.GET)
 	public @ResponseBody
 	List<SubCategory> getsubcategories(@RequestParam(value= "id", required = true) Long id,Model model){

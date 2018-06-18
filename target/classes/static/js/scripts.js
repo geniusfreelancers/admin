@@ -53,9 +53,27 @@ $(function() {
 $(function() {
 	$('#addnewcategorysubmit').click(
 	        function() {
+	        	var categoryName = $('#categoryName').val();
+	            var categorySlug = $('#categorySlug').val();
+	            var stichingCost = $('#stichingCost').val();
+	            if(stichingCost ==""){
+	            	stichingCost = 0;
+	            }
+	        	if(categoryName == "" && categorySlug == ""){
+	        		$('#categoryList').html("<span style='color:red;'>All fields are required!</span>");
+	        		$('#categoryName').addClass("error");
+	        		$('#categorySlug').addClass("error");
+	        	}else if(categoryName == ""){
+	        		$('#categoryName').addClass("error");
+	        		$('#categorySlug').removeClass("error");
+	        	}else if(categorySlug == ""){
+	        		$('#categorySlug').addClass("error");
+	        		$('#categoryName').removeClass("error");
+	        	}else{
 	            $.post("/adminportal/category/addmaincategory", {
-	            	categoryName : $('#categoryName').val(),
-	                categorySlug : $('#categorySlug').val(),
+	            	categoryName : categoryName,
+	                categorySlug : categorySlug,
+	                stichingCost : stichingCost,
 	                ajax : 'true'
 	            }, function(data) {
 	                var html = '';
@@ -67,14 +85,18 @@ $(function() {
 	                }
 	                	htmls += '</option>';
 	                    html += '<a href="category/id=' + data[len-1].id + '">'+ data[len-1].categoryName + '</a>';
+	                $('#categoryName').removeClass("error");
+	                $('#categorySlug').removeClass("error");
 	                $('#categoryList').show();
 	                $('#categoryList').html("Category "+html+" has been added sucessfully");
 	                $('#categoryName').val('');
 	                $('#categorySlug').val('');
+	                $('#stichingCost').val('');
 	                $('#parentcategory').html(htmls);
 	                
 	                
 	            });
+	        }
 	            return false;
 	        });
   });

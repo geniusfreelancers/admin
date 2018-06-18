@@ -18,7 +18,7 @@ public class Category {
 	private Long id;
 	private String categorySlug;
 	private String categoryName;
-	
+	private double stichingCost;
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "category")
 	@JsonIgnore
 	private List<SubCategory> subCategory;
@@ -49,6 +49,14 @@ public class Category {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public double getStichingCost() {
+		return stichingCost;
+	}
+
+	public void setStichingCost(double stichingCost) {
+		this.stichingCost = stichingCost;
 	}
 
 	public List<SubCategory> getSubCategory() {

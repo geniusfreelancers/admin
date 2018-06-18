@@ -185,6 +185,7 @@
 							<h5 class="text-primary text-right" style="font-size: large;"  th:with="result=${cartItem.product.ourPrice * cartItem.qty}">
 									$<span th:text="${#numbers.formatDecimal(result, 0, 'COMMA', 2, 'POINT')}" ></span>
 								</h5>
+							<p><i class="fas fa-times"></i> Remove</p>	
 							</div>
 					
 						</div>

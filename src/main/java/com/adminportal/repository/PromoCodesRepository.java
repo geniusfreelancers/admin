@@ -1,6 +1,5 @@
 package com.adminportal.repository;
 
-import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 

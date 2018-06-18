@@ -88,8 +88,10 @@ public class ProductController {
 		MultipartFile coverImage = product.getProductCoverImage();
 		String coverImageName = null;
 		if(coverImage == null || coverImage.isEmpty()) {
+			model.addAttribute("missingCoverImage",true);
 			return "addProduct";
 		}else {
+			model.addAttribute("missingCoverImage",false);
 			coverImageName = amazonClient.uploadFile(coverImage);
 			product.setCoverImageName(coverImageName);
 		}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/head :: common-header"/>
+<body>
+<section id="container" class="">
+	<div th:replace="common/head :: navbar" />
+	<div th:replace="common/head :: sibebar" />
+<section id="main-content">
+<section class="wrapper">
+
+<!-- Main Section Starts -->
+	    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="far fa-folder"></i> <strong>Update Category</strong></h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
+                <li><i class="fas fa-sitemap"></i><a th:href="@{/category/categories}">Categories</a></li>
+                <li><i class="far fa-folder"></i>Update Category</li>
+            </ol>
+        </div>
+    </div>
+<!-- Start -->
+<div class="row">
+<div id="categoryList" class="col-md-12 text-center">
+	<span th:if="${updateSuccess}" class="text-success">Category updated successfully</span>
+</div>
+<div class="col-md-6 col-md-offset-3">
+<div class="col-md-12 well">
+	<h2>Update Category</h2>
+	<form class="form-horizontal col-md-12" th:action="@{/category/updatecategory}"
+				method="post">
+				<input hidden="hidden" name="id" th:value="${category.id}"/>
+				<fieldset>
+				
+				<!-- title -->
+					<div class="form-group">
+						<label for="categoryName">Category Name</label>
+						
+							<input type="text" name="categoryName" class="form-control" id="categoryName"
+								th:value="${category.categoryName}" required="required"
+								placeholder="Category Name" /> 
+						
+					</div>
+					
+					<!-- Slug -->
+					<div class="form-group">
+						<label for="categorySlug">Category Slug</label>
+						
+							<input type="text" name="categorySlug" class="form-control" id="categorySlug"
+								th:value="${category.categorySlug}" required="required"
+								placeholder="Category Slug" /> 
+						
+					</div>
+					<!-- Stitching Cost -->
+					<div class="form-group">
+						<label for="stichingCost">Stitching Cost</label>
+						<div class="input-group">
+							<span class="input-group-addon">$</span><input type="number" step="0.01"
+							 name="stichingCost" class="form-control" id="stichingCost"
+								th:value="${category.stichingCost}"
+								placeholder="Stitching Cost" /> 
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						
+							<button type="submit" id="updatecategorysubmit" class="btn btn-success">Update
+								Category</button>
+							<a class="btn btn-danger" th:href="@{/category/categories}">Cancel</a>
+						
+					</div>	
+					
+					</fieldset>
+		</form>
+	
+</div>	
+
+</div>
+</div>
+	
+		
+
+							
+	
+	
+	
+	<!-- End -->
+</section>
+
+</section></section>
+	<div th:replace="common/head :: body-bottom-scripts" />
+	
+</body>
+</html>

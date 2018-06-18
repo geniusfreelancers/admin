@@ -102,7 +102,32 @@
 												</div>
 										</div>
 									</div>				
-
+			<!-- HOT DEAL -->
+			<div class="row">
+										
+										<div class="col-xs-6">
+											<!-- Hot Deal Tag -->
+												<div class="form-group">
+													<label for="hotDeal">Hot Deal Tag</label>
+													
+														<input type="text" name="hotDeal" class="form-control" id="hotDeal"
+															th:value="${siteSettings.hotDeal}" required="required"
+															placeholder="Hot Deal Tag" /> 
+													
+												</div>
+										</div>
+										<div class="col-xs-6">
+											<!-- Hot Deal Expiry -->
+												<div class="form-group">
+													<label for="hotDealExpiry">Hot Deal Expiry</label>
+													
+														<input type="text" name="hotDealExpiry" class="form-control" id="hotDealExpiry"
+															th:value="${siteSettings.hotDealExpiry}" required="required" th:field="*{siteSettings.hotDealExpiry}"
+															placeholder="Hot Deal Expiry" /> 
+													
+												</div>
+										</div>
+									</div>	
 					<!-- Site Logo -->
 					<div class="col-md-12">
 						<img class="img-responsive" th:src="${fileUrl}+${siteSettings.siteLogo}" /><br/>
@@ -116,11 +141,37 @@
 							<input type="file" class="form-control" id="siteLogoImage"
 								name="siteLogoImage" th:value="${siteSettings.siteLogoImage}" placeholder="Site Logo"/>
 						<span class="help-block">Add Site Logo</span>
-							
-							
-						
 					</div>
-							
+					
+					<!-- Gender Logo -->
+					<div class="row">
+					<div class="col-md-6">
+						<img class="img-responsive" th:src="${fileUrl}+${siteSettings.maleImageName}" /><br/>
+						<input type="hidden" name="maleImageName" class="form-control" id="maleImageName"
+								th:value="${siteSettings.maleImageName}" required="required"
+								placeholder="Male Image Name" /> 
+						<div class="form-group">
+						<label for="maleImage">Male Image</label>
+						
+							<input type="file" class="form-control" id="maleImage"
+								name="maleImage" th:value="${siteSettings.maleImage}" placeholder="Male Image"/>
+						<span class="help-block">Add Male Image</span>
+					</div>			
+					</div>
+					<div class="col-md-6">
+						<img class="img-responsive" th:src="${fileUrl}+${siteSettings.femaleImageName}" /><br/>
+						<input type="hidden" name="femaleImageName" class="form-control" id="femaleImageName"
+								th:value="${siteSettings.femaleImageName}" required="required"
+								placeholder="Female Image Name" /> 
+						<div class="form-group">
+						<label for="femaleImage">Female Image</label>
+						
+							<input type="file" class="form-control" id="femaleImage"
+								name="femaleImage" th:value="${siteSettings.femaleImage}" placeholder="Female Image"/>
+						<span class="help-block">Add Female Image</span>
+					</div>			
+					</div>
+					</div>		
 						</div>
 					</div>
 					</div>
@@ -207,8 +258,82 @@
 					</div>
 					</div>	
 	
-						<!-- Offer -->
+						<!-- Nav Bar Setting -->
+				<div class="col-md-6">
+				<div class="panel-group" id="accordion">
 					
+					<div class="col-md-12">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#navbarInfo">Nav Bar Banner Setting</a>
+								</h4>
+							</div>
+							<div id="navbarInfo" class="panel-collapse collapse">
+								<div class="panel-body">
+				
+					<!-- Menu 1 Banner -->
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${siteSettings.menu1Banner}" /><br/>
+						<input type="hidden" name="menu1Banner" class="form-control" id="menu1Banner"
+								th:value="${siteSettings.menu1Banner}" required="required"
+								placeholder="Menu 1 Banner" /> 
+					</div>
+					<div class="form-group">
+						<label for="menu1BannerImage">Menu 1 Banner</label>
+						
+							<input type="file" class="form-control" id="menu1BannerImage"
+								name="menu1BannerImage" th:value="${siteSettings.menu1BannerImage}" placeholder="Menu 1 Banner"/>
+						<span class="help-block">Add Menu 1 Banner</span>
+							
+							
+						
+					</div>
+					
+					<!-- Menu 2 Banner -->
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${siteSettings.menu2Banner}" /><br/>
+						<input type="hidden" name="menu2Banner" class="form-control" id="menu2Banner"
+								th:value="${siteSettings.menu2Banner}" required="required"
+								placeholder="Menu 2 Banner" /> 
+					</div>
+					<div class="form-group">
+						<label for="menu2BannerImage">Menu 2 Banner</label>
+						
+							<input type="file" class="form-control" id="menu2BannerImage"
+								name="menu2BannerImage" th:value="${siteSettings.menu2BannerImage}" placeholder="Menu 2 Banner"/>
+						<span class="help-block">Add Menu 2 Banner</span>
+							
+							
+						
+					</div>
+					
+					<!-- Menu 3 Banner -->
+					<div class="col-md-12">
+						<img class="img-responsive" th:src="${fileUrl}+${siteSettings.menu3Banner}" /><br/>
+						<input type="hidden" name="menu3Banner" class="form-control" id="menu3Banner"
+								th:value="${siteSettings.menu3Banner}" required="required"
+								placeholder="Menu 3 Banner" /> 
+					</div>
+					<div class="form-group">
+						<label for="siteLogoImage">Menu 3 Banner</label>
+						
+							<input type="file" class="form-control" id="menu3BannerImage"
+								name="menu3BannerImage" th:value="${siteSettings.menu3BannerImage}" placeholder="Menu 3 Banner"/>
+						<span class="help-block">Add Menu 3 Banner</span>
+							
+							
+						
+					</div>
+							
+						</div>
+					</div>
+					</div>
+					</div>
+					</div></div>
+					<!-- Nav Bar Setting -->	
 				<div class="col-md-6">
 				<div class="panel-group" id="accordion">
 					
