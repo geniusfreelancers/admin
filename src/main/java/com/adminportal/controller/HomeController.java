@@ -44,6 +44,8 @@ public class HomeController {
 	private ShoppingCartService shoppingCartService;
 	@Autowired
 	private ContactService contactService;
+	@Autowired
+	private AmazonSESEmail amazonSesEmail;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -56,6 +58,7 @@ public class HomeController {
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
         model.addAttribute("user", user);
+        amazonSesEmail.sendAWSEmail();
         List<Contact> contactList = contactService.findTop10ByOrderByIdDesc();
         List<Order> ordersList = orderService.findTop10ByOrderByIdDesc();
 		
