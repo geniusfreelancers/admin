@@ -1,6 +1,7 @@
 package com.adminportal.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,6 +22,7 @@ import com.adminportal.service.ProductService;
 import com.adminportal.service.ShoppingCartService;
 import com.adminportal.service.SiteSettingService;
 import com.adminportal.service.UserService;
+import com.adminportal.utility.AmazonSESEmail;
 
 @Controller
 public class HomeController {
@@ -58,7 +60,10 @@ public class HomeController {
 		SiteSetting siteSettings = siteSettingService.findOne(new Long(1));
 		model.addAttribute("siteSettings",siteSettings);
         model.addAttribute("user", user);
-        amazonSesEmail.sendAWSEmail();
+    //    amazonSesEmail.sendAWSEmail();
+        Order order = orderService.findOne((long) 8);
+       String mytestresult = amazonSesEmail.constructTestConfirmationEmail(user, order,Locale.ENGLISH,"guestOrderConfirmationEmailTemplate");
+      System.out.println("MY TEST RESULT: "+mytestresult);
         List<Contact> contactList = contactService.findTop10ByOrderByIdDesc();
         List<Order> ordersList = orderService.findTop10ByOrderByIdDesc();
 		

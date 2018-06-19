@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Bootstrap core CSS -->
+<link href="http://kolystyle-env.advbdrc4rc.us-east-2.elasticbeanstalk.com/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="http://kolystyle-env.advbdrc4rc.us-east-2.elasticbeanstalk.com/css/style.css" rel="stylesheet" />
+
+<!-- Font Awesome icons -->
+<link href="http://kolystyle-env.advbdrc4rc.us-east-2.elasticbeanstalk.com/css/font-awesome.min.css" rel="stylesheet" />
+
+<style>
+body{
+
+}
+.bg-image{
+color:#ffffff;
+background:url("https://themes-scsnoopyindustri.netdna-ssl.com/BBT_Builder/Template_Pics/OrderInfo/herobg.png") center top / 100% 100% no-repeat rgb(20, 22, 19);
+}
+.bg-metalic-dark{
+background:#0c0c0c;
+color:#ffffff;
+}
+.bg-metalic{
+background:#2d2c2c;
+color:#ffffff;
+}
+.white-border{
+border:1px solid #ffffff;
+margin-bottom:10px;
+padding-top: 10px;
+}
+.bg-grey{
+background: #fcfcfc;
+border:1px solid #e0dddd;
+}
+.text-red{
+color:#ff391f;
+}
+.light-text{
+color:#818181;
+}
+.social-icons{
+list-style:none;
+}
+li {
+    display: inline-block;
+}
+table {
+	border-collapse: collapse;
+}
+thead {
+    background: #000000;
+    color: #ffffff;
+}
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="row">
+	<div class="col-md-12 bg-metalic-dark">
+		<div class="col-sm-4">3050 E Livingston Ave, Suite 27, Columbus, OH - 43227</div>
+		<div class="col-sm-4"><i class="fas fa-mobile"></i> <span>+1 (718) 801-7950</span></div>
+		<div class="col-sm-4"><i class="far fa-envelope"></i> <span>order@kolystyle.com</span></div>
+	</div>
+	<div class="col-md-12 bg-metalic">
+		<div class="col-md-3">
+			<img class="logo-email" src="#"/>
+		</div>
+		<div class="col-md-9">
+			<ul class="navbar">
+				<li>Men</li>
+				<li>Women</li>
+				<li>Kids</li>
+				<li>Jewelry</li>
+				<li>Gowns</li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+<div class="row bg-image">
+	<div class="col-md-12 text-center">
+	<h2>Order Confirmation</h2>
+	<p>Hello, CUSTOMER NAME! Thank you for shopping at Kolystyle.com and for your order!</p>
+	<p>We've received order # ORDER NUMBER and are working on it now. We'll email you an update when we've shipped it with a tracking number so you can track your order. 
+<br/>
+If you have any questions contact us here or call us at 1-###-###-####. We are here to help!
+</p>
+	
+	<p>Please review the order details within this email and if there are any changes you wish to make to your order contact us within the next 12 hours.</p>
+	<p>Thank you,<br/>Koly Style</p>
+	</div>
+	<div class="col-sm-4 col-sm-offset-4 white-border">
+		<p>Order #: <span>#####</span></p>
+		<p>Order Confirmation #: <span>########</span></p>
+	
+	</div>
+</div>
+
+<div class="row">
+	<br/>
+	<div class="col-md-5 bg-grey">
+		<h3 class="text-red">Your Billing Address</h3>
+		<p class="light-text"><span>FirstName</span> <span>LastName</span></p>
+		<p class="light-text"><span>123 Street Name</span> <span>Suite 12</span></p>
+		<p class="light-text"><span>City</span> <span>ST</span> <span>ZipCode</span></p>
+		<p class="light-text"><span>COUNTRY</span></p>
+	</div>
+	<div class="col-md-5 col-md-offset-2 bg-grey">
+		<h3 class="text-red">Your Shipping Address</h3>
+		<p class="light-text"><span>FirstName</span> <span>LastName</span></p>
+		<p class="light-text"><span>123 Street Name</span> <span>Suite 12</span></p>
+		<p class="light-text"><span>City</span> <span>ST</span> <span>ZipCode</span></p>
+		<p class="light-text"><span>COUNTRY</span></p>
+	</div>
+
+</div>
+
+<div class="row">
+		<h3>
+		<strong>Order Summary</strong>
+	</h3>
+	<table>
+		<thead>
+			<tr>
+				<td><strong>Product</strong></td>
+				<td class="text-center"><strong>Unit Price</strong></td>
+				<td class="text-center"><strong>Qty</strong></td>
+				<td class="text-right"><strong>Amount</strong></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cartItem : ${cartItemList}">
+				<td><span data-th-text="${cartItem.product.title}"></span></td>
+				<td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
+				<td class="text-center" data-th-text="${cartItem.qty}"></td>
+				<td class="text-center" data-th-text="${cartItem.subtotal}"></td>
+			</tr>
+			<tr>
+				<td class="highrow"></td>
+				<td class="highrow"></td>
+				<td class="highrow text-center"><strong>Subtotal</strong></td>
+				<td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
+			</tr>
+			<tr>
+				<td class="emptyrow"></td>
+				<td class="emptyrow"></td>
+				<td class="emptyrow text-center"><strong>Tax</strong></td>
+				<td class="emptyrow text-right"
+					data-th-text="${#numbers.formatDecimal(order.orderTotal*0.06,0,2)}"></td>
+			</tr>
+			<tr>
+				<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+				<td class="emptyrow"></td>
+				<td class="emptyrow text-center"><strong>Total</strong></td>
+				<td th:with="total=${order.orderTotal+order.orderTotal*0.06}"
+					data-th-text="${#numbers.formatDecimal(total,0,2)}"
+					class="emptyrow text-right"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<div class="row">
+	<div class="col-md-12">PRODUCTS RELATED TO YOUR ORDER</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">OUR MOST POPULAR PRODUCTS</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-5 bg-grey">
+		<h3 class="text-primary">RETURN POLICY:</h3>
+		<p class="light-text">If you need to return your products, you can request a return label online! Click here and follow the onscreen instructions. All returns from within the US are free!</p>
+	</div>
+	<div class="col-md-5 col-md-offset-2 bg-grey">
+		<h3 class="text-primary">SUPPORT:</h3>
+		<p class="light-text">If you have any questions or concerns, please feel free to email us: support@company.com</p>
+	</div>
+
+</div>
+<br/>
+<div class="row bg-metalic-dark">
+	<footer>
+
+	<div class="col-md-12 text-center">
+		<h3>FOLLOW US ON</h3>
+		<ul class="social-icons">
+			<li><i class="fab fa-facebook-square"></i></li>
+			<li><i class="fab fa-instagram"></i></li>
+			<li><i class="fab fa-twitter-square"></i></li>
+			<li><i class="fab fa-google-plus-square"></i></li>
+			<li><i class="fab fa-youtube"></i></li>
+		</ul>
+	</div>
+	
+	<div class="col-md-12">
+		<p>Thank you for subscribing to the Koly Style Newsletter. Our newsletter contains information on new 
+			products and special promotions. You may choose to stop receiving our newsletter at anytime by 
+			changing your communication preferences.</p>
+			<p>Click here to unsubscribe</p>
+			
+			<p>Copyright &copy; 2018 Koly Style. All rights reserved.</p>
+			
+	</div>
+
+	</footer>
+</div>
+</div>
+</body>
+</html>
