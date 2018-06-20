@@ -61,7 +61,50 @@
 .addNewProduct {
     color: #000;
 }
-
+#responsecontainer{
+	display:none;
+}
+.userResponse {
+    border: 1px solid #c2d0d6bd;
+    margin: 5px 0;
+    background: #c2d0d6bd;
+    color: #000000;
+    float: right;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 40px 40px 0px 40px;
+}
+.systemResponse {
+    border: 1px solid #34aadcbd;
+    margin: 5px 0;
+    background: #34aadcbd;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 0px 40px 40px 40px;
+}
+.response-content{
+	margin:0px;
+	margin-bottom: 5px;
+}
+.respond-additional{
+	margin:0px;
+    text-align:right;
+    font-size: 12px;
+    font-weight: bold;
+}
+.response-title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: #2d13bb;
+    margin-top: 5px;
+}
+textarea#responseText {
+    width: 100%;
+    height: 250px;
+}
 body {
 
     color: #797979;

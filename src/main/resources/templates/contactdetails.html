@@ -11,48 +11,107 @@
 <!-- Main Section Starts -->
 	    <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header"><i class="fas fa-comment" aria-hidden="true"></i> <strong><span th:text="${contact.id}" ></span></strong></h3>
+            <h3 class="page-header"><i class="fas fa-comment" aria-hidden="true"></i> <strong> Inquiry <span th:text="${contact.id}" ></span></strong></h3>
             <ol class="breadcrumb">
                 <li><i class="fa fa-home"></i><a th:href="@{/}">Home</a></li>
                 <li><i class="far fa-comments" aria-hidden="true"></i><a th:href="@{/contactlists}">All Inquiries</a></li>
-                <li><i class="fas fa-comment" aria-hidden="true"></i><span class="capitalize" th:text="${contact.id}"></span></li>
+                <li><i class="fas fa-comment" aria-hidden="true"></i>Inquiry <span class="capitalize" th:text="${contact.id}"></span></li>
             </ol>
         </div>
     </div>
 <!-- Start -->
 
+<div class="col-md-6">
+	<a th:href="@{/order/cancelOrder/}+${contact.id}" style="float: left;" class="btn btn-default">Go Back</a>
+</div>
+<div class="col-md-6">
+	<a th:href="@{/contactdetails/resolved/}+${contact.id}" th:if="${contact.status} != 'resolved'" style="float: right;" class="btn btn-default">Mark Resolved</a>
+</div>
 
 	
-		<div class="table-responsive">
-			<strong><span>Inquiry # : </span></strong>
-			<span class="capitalize" th:text="${contact.id}"></span><br/>
-			<strong><span>Full Name : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.fullName}"></span><br/>
+		<div class="col-md-12">
+		<br/>
+			<div class="col-md-6">
 			
-			<strong><span>Email : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.email}"></span><br/>
-			<strong><span>Reason : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.reason}"></span><br/>
-			<strong><span>Help For : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.helpFor}"></span><br/>
-			<strong><span>Assistant Type : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.assistanceType}"></span><br/>
-			<strong><span>Reason Type : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.reasonType}"></span><br/>
-			<strong><span>Order # : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.orderNumber}"></span><br/>
-			<strong><span>Inquiry Date : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.contactDate}"></span><br/>
-			<strong><span>Inquiry Status : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.status}"></span><br/>
+			<p><strong><span>Full Name : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.fullName}"></span></p>
+			
+			<p><strong><span>Email : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.email}"></span></p>
+			<p><strong><span>Inquiry Date : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.contactDate}"></span></p>
+			<p><strong><span>Inquiry Status : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.status}"></span></p>
 			<strong><span>Responded Date : </span></strong><br/>
-			<span class="capitalize" th:text="${contact.respondedDate}"></span><br/>
+			<span class="capitalize" th:text="${contact.respondedDate}"></span>
+			
+			</div>
+			<div class="col-md-6">
+			<p><strong><span>Reason : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.reason}"></span></p>
+			<p><strong><span>Help For : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.helpFor}"></span></p>
+			<p><strong><span>Assistant Type : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.assistanceType}"></span></p>
+			<p><strong><span>Reason Type : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.reasonType}"></span></p>
+			<p><strong><span>Order # : </span></strong><br/>
+			<span class="capitalize" th:text="${contact.orderNumber}"></span></p>
+			
+			
+			</div>
+		</div>
+		<div class="col-md-12" th:if="${attachment}">
+			<p><a th:href="@{/contactdetails/attachments/}+${contact.id}">Attachments</a></p>
+		</div>
+		<div class="col-md-12">
+		
 			<strong><span>Description : </span></strong><br/>
 			<span th:utext="${contact.details}"></span><br/>
 		</div>
-
-							
-	
+		<div class="col-md-12"><p class="response-title">Responses</p></div>
+		<div class="col-md-12">
+			<div data-th-each="responses : ${contact.InquiryRespondList}">
+			<div class="col-md-7 systemResponse" th:if="${responses.fromSystem}">
+			<p class="response-content" th:text="${responses.responseText}"></p>
+			
+			<p class="respond-additional"><span>KS System</span> | 
+			<span th:text="${responses.respondedBy}"></span> | 
+			<span th:text="${responses.respondDate}"></span>
+			</p>
+			</div>
+			<div class="col-md-7 userResponse" th:if="!${responses.fromSystem}">
+			<p class="response-content" th:text="${responses.responseText}"></p>
+			<p class="respond-additional">
+			<span>Customer</span> | 
+			<span th:text="${responses.respondedBy}"></span> | 
+			<span th:text="${responses.respondDate}"></span></p>
+			<span th:if="!${responses.opened}">Not opened</span>
+			</div>
+			</div>
+		</div>
+		<div class="col-md-12"><br/>
+				<a href="#response" style="float: left;" class="btn btn-primary" id="respondButton">Respond</a>
+			</div>
+			<form class="form-horizontal" th:action="@{/contact/respond/}+${contact.id}"
+				method="post">
+		<div class="col-md-12" id="responsecontainer">
+		<br/><div class="col-md-12">
+			
+					<textarea class="response mceNoEditor" id="responseText" name="responseText" required="required" rows="" cols="" placeholder="Type in your response here..."></textarea>
+			
+			</div>
+			<div class="col-md-6"><br/>
+			<a href="#response" class="btn btn-danger" id="respondButton">Cancel</a>
+			
+			</div>
+			<div class="col-md-6">	<br/>				
+				<button type="submit" style="float: right;" id="respondsubmit" class="btn btn-success">Submit
+								</button>
+			</div>
+		</div>	
+		</form>				
+			
 	
 	
 	<!-- End -->
@@ -60,6 +119,14 @@
 
 </section></section>
 	<div th:replace="common/head :: body-bottom-scripts" />
+	<script>
+	$(function() {
+		$('#respondButton').on('click', function (){
+			$('#responsecontainer').show();
+		});
+	});
+		
+	</script>
 
 </body>
 </html>

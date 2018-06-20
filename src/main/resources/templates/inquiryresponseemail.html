@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<!-- Font Awesome icons -->
+<link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+<style>
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<p>
+		Dear <span th:text="${contact.fullName}"></span>,
+	</p>
+	<br />
+	<p th:text="${respond.responseText}"></p>
+	<p>Previous Conversation</p>
+	<p data-th-each="respon : ${contact.inquiryRespondList}" th:text="${respon.responseText}"></p>
+	<hr />
+	
+	<br />
+	<p>Regards,</p>
+		<p><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>
+	<p>Koly Style</p>
+
+</body>
+</html>

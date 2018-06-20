@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.adminportal.domain.Contact;
+import com.adminportal.domain.InquiryRespond;
 import com.adminportal.repository.ContactRepository;
+import com.adminportal.repository.InquiryRespondRepository;
 import com.adminportal.service.ContactService;
 @Service
 public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private ContactRepository contactRepository;
+	@Autowired
+	private InquiryRespondRepository inquiryRespondRepository;
 	
 	public List<Contact> findAllByOrderByIdDesc(){
 		return contactRepository.findAllByOrderByIdDesc();
@@ -39,6 +43,19 @@ public class ContactServiceImpl implements ContactService{
 
 	public Contact findById(Long id) {
 		return contactRepository.findOne(id);
+	}
+
+	@Override
+	public String saveResponse(InquiryRespond inquiryRespond) {
+		inquiryRespondRepository.save(inquiryRespond);
+		return "success";
+		
+	}
+
+	@Override
+	public Contact save(Contact contact) {
+		return contactRepository.save(contact);
+		
 	}
 	
 	

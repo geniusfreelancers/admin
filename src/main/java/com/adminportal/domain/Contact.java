@@ -3,10 +3,13 @@ package com.adminportal.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +34,9 @@ public class Contact {
 	private String status;
 	@Transient
 	private List<MultipartFile> productImage;
+	
+	@OneToMany(mappedBy = "contact",cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
+	private List<InquiryRespond> inquiryRespondList;
 	
 	public Long getId() {
 		return id;
@@ -116,6 +122,12 @@ public class Contact {
 	}
 	public void setProductImage(List<MultipartFile> productImage) {
 		this.productImage = productImage;
+	}
+	public List<InquiryRespond> getInquiryRespondList() {
+		return inquiryRespondList;
+	}
+	public void setInquiryRespondList(List<InquiryRespond> inquiryRespondList) {
+		this.inquiryRespondList = inquiryRespondList;
 	}
 	
 }
