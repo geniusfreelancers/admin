@@ -20,10 +20,6 @@ import com.adminportal.service.UserService;
 import com.adminportal.service.impl.StorageProperties;
 import com.adminportal.utility.SecurityUtility;
 
-
-
-
-
 /*@SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 @ComponentScan({ "com.adminportal", "controller" })
@@ -99,5 +95,5 @@ public class AdminportalApplication implements CommandLineRunner {
 	            storageService.init();
 	        };
 	    }
-
 }
+

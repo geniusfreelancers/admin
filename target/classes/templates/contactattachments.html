@@ -25,11 +25,12 @@
 	<a th:href="@{/contactdetails/}+${contact.id}" style="float: left;" class="btn btn-default">Go Back</a>
 </div>
 <div class="col-md-6">
-	<a th:href="@{/order/editOrder/}+${contact.id}" style="float: right;" class="btn btn-default">Mark Resolved</a>
+	<a th:href="@{/contactdetails/resolved/}+${contact.id}" th:if="${contact.status} != 'resolved'" style="float: right;" class="btn btn-default">Mark Resolved</a>
 </div>
 
-		<div class="col-md-12" th:if="${attachment}" data-th-each="images : ${imageLists}">
-			<div class="col-md-6">
+		<div class="col-md-12" th:if="${attachment}">
+		<br/>
+			<div class="col-md-6" data-th-each="images : ${imageLists}">
 				<img class="attachments" th:src="${fileUrl}+${images}"/>
 			</div>
 		</div>
@@ -38,6 +39,59 @@
 			<strong><span>Description : </span></strong><br/>
 			<span th:utext="${contact.details}"></span><br/>
 		</div>
+<div class="col-md-12"><p class="response-title">Responses</p></div>
+		<div class="col-md-12">
+			<div data-th-each="responses : ${contact.InquiryRespondList}">
+			<div class="col-md-7" th:if="${responses.fromSystem}">
+			<div class="col-md-2">
+				<img class="chatImage" th:src="@{/image/systemuser.jpg}"/>
+			</div>
+			<div class="systemResponse col-md-10">
+			<p class="response-content" th:text="${responses.responseText}"></p>
+			
+			<p class="respond-additional"><span>KS System</span> | 
+			<span th:text="${responses.respondedBy}"></span> | 
+			<span th:text="${responses.respondDate}"></span>
+			</p>
+			</div>
+			</div>
+			<div class="col-md-7" style="float: right;" th:if="!${responses.fromSystem}">
+			<div class="userResponse col-md-10">
+			<p class="response-content" th:text="${responses.responseText}"></p>
+			<p class="respond-additional">
+			<span>Customer</span> | 
+			<span th:text="${responses.respondedBy}"></span> | 
+			<span th:text="${responses.respondDate}"></span></p>
+			<span th:if="!${responses.opened}">Not opened</span>
+			</div>
+			<div class="col-md-2">
+				<img class="chatImage" th:src="@{/image/user.jpg}"/>
+			</div>
+			</div>
+			</div>
+		</div>
+		<div class="col-md-12"><br/>
+				<a href="#response" style="float: left;" class="btn btn-primary" id="respondButton">Respond</a>
+			</div>
+			<form class="form-horizontal" th:action="@{/contact/respond/}+${contact.id}"
+				method="post">
+		<div class="col-md-12" id="responsecontainer">
+		<br/><div class="col-md-12">
+			
+					<textarea class="response mceNoEditor" id="responseText" name="responseText" required="required" rows="" cols="" placeholder="Type in your response here..."></textarea>
+			
+			</div>
+			<div class="col-md-6"><br/>
+			<a href="#response" class="btn btn-danger" id="respondButton">Cancel</a>
+			
+			</div>
+			<div class="col-md-6">	<br/>				
+				<button type="submit" style="float: right;" id="respondsubmit" class="btn btn-success">Submit
+								</button>
+			</div>
+		</div>	
+		</form>				
+			
 					
 			
 	

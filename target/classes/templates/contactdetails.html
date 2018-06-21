@@ -72,7 +72,11 @@
 		<div class="col-md-12"><p class="response-title">Responses</p></div>
 		<div class="col-md-12">
 			<div data-th-each="responses : ${contact.InquiryRespondList}">
-			<div class="col-md-7 systemResponse" th:if="${responses.fromSystem}">
+			<div class="col-md-7" th:if="${responses.fromSystem}">
+			<div class="col-md-2">
+				<img class="chatImage" th:src="@{/image/systemuser.jpg}"/>
+			</div>
+			<div class="systemResponse col-md-10">
 			<p class="response-content" th:text="${responses.responseText}"></p>
 			
 			<p class="respond-additional"><span>KS System</span> | 
@@ -80,13 +84,19 @@
 			<span th:text="${responses.respondDate}"></span>
 			</p>
 			</div>
-			<div class="col-md-7 userResponse" th:if="!${responses.fromSystem}">
+			</div>
+			<div class="col-md-7" style="float: right;" th:if="!${responses.fromSystem}">
+			<div class="userResponse col-md-10">
 			<p class="response-content" th:text="${responses.responseText}"></p>
 			<p class="respond-additional">
 			<span>Customer</span> | 
 			<span th:text="${responses.respondedBy}"></span> | 
 			<span th:text="${responses.respondDate}"></span></p>
 			<span th:if="!${responses.opened}">Not opened</span>
+			</div>
+			<div class="col-md-2">
+				<img class="chatImage" th:src="@{/image/user.jpg}"/>
+			</div>
 			</div>
 			</div>
 		</div>
