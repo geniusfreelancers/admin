@@ -24,6 +24,7 @@ public class CartItem {
 	private Long id;
 	private int qty;
 	private BigDecimal subtotal;
+	private BigDecimal stitchingTotal;
 	private String productSize;
 	/*@OneToOne
 	private Product product;*/
@@ -69,6 +70,14 @@ public class CartItem {
 
 	public void setSubtotal(BigDecimal subtotal) {
 		this.subtotal = subtotal;
+	}
+
+	public BigDecimal getStitchingTotal() {
+		return stitchingTotal;
+	}
+
+	public void setStitchingTotal(BigDecimal stitchingTotal) {
+		this.stitchingTotal = stitchingTotal;
 	}
 
 	public String getProductSize() {

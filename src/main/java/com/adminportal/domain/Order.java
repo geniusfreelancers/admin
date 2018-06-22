@@ -45,10 +45,11 @@ public class Order {
 	private BigDecimal discount;
 	private BigDecimal shippingCost;
 	private BigDecimal orderTotal;
+	private BigDecimal stitchingTotal;
 	private String shippingCarrier;
 	private String trackingNumber;
 	private Date estimatedDeliveryDate;
-	
+	private int orderSize;
 	@OneToMany(mappedBy = "order", cascade=CascadeType.ALL)
 	private List<CartItem> cartItemList;
 	
@@ -145,6 +146,14 @@ public class Order {
 
 	public void setOrderTotal(BigDecimal orderTotal) {
 		this.orderTotal = orderTotal;
+	}
+
+	public BigDecimal getStitchingTotal() {
+		return stitchingTotal;
+	}
+
+	public void setStitchingTotal(BigDecimal stitchingTotal) {
+		this.stitchingTotal = stitchingTotal;
 	}
 
 	public List<CartItem> getCartItemList() {
@@ -281,6 +290,14 @@ public class Order {
 
 	public void setEstimatedDeliveryDate(Date estimatedDeliveryDate) {
 		this.estimatedDeliveryDate = estimatedDeliveryDate;
+	}
+
+	public int getOrderSize() {
+		return orderSize;
+	}
+
+	public void setOrderSize(int orderSize) {
+		this.orderSize = orderSize;
 	}
 	
 	

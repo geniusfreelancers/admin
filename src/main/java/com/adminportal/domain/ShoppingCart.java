@@ -37,6 +37,8 @@ public class ShoppingCart {
 	private Date updatedDate;
 	private BigDecimal shippingCost;
 	private BigDecimal orderTotal;
+
+	private BigDecimal stitchingTotal;
 	private String shippingMethod = "groundShipping";
 	private String errors;
 	
@@ -145,6 +147,14 @@ public class ShoppingCart {
 
 	public void setOrderTotal(BigDecimal orderTotal) {
 		this.orderTotal = orderTotal;
+	}
+
+	public BigDecimal getStitchingTotal() {
+		return stitchingTotal;
+	}
+
+	public void setStitchingTotal(BigDecimal stitchingTotal) {
+		this.stitchingTotal = stitchingTotal;
 	}
 
 	public String getShippingMethod() {
