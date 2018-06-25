@@ -20,7 +20,7 @@ public class ShoppingCart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private BigDecimal GrandTotal;
-	
+	private int cartItemQty;
 	
 //	@OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OneToMany(mappedBy = "shoppingCart",cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
@@ -75,6 +75,14 @@ public class ShoppingCart {
 
 	public void setCartItemList(List<CartItem> cartItemList) {
 		this.cartItemList = cartItemList;
+	}
+
+	public int getCartItemQty() {
+		return cartItemQty;
+	}
+
+	public void setCartItemQty(int cartItemQty) {
+		this.cartItemQty = cartItemQty;
 	}
 
 	public User getUser() {

@@ -1,11 +1,10 @@
 Manifest-Version: 1.0
 Implementation-Title: Adminportal
-Implementation-Version: 13.0.5-SNAPSHOT
+Implementation-Version: 14.0.0-SNAPSHOT
 Built-By: Samima
 Implementation-Vendor-Id: com.adminportal
 Build-Jdk: 1.8.0_171
 Implementation-URL: http://projects.spring.io/spring-boot/adminportal/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
-Main-Class: com.adminportal.AdminportalApplication
 

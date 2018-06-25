@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: Adminportal
-Implementation-Version: 14.0.4-SNAPSHOT
+Implementation-Version: 14.0.0-SNAPSHOT
 Built-By: Samima
 Implementation-Vendor-Id: com.adminportal
 Build-Jdk: 1.8.0_171
